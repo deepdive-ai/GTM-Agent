@@ -2,11 +2,11 @@
 
 A planned go-to-market content agent that uses supplied reference material and a campaign brief to draft, review, and refine content.
 
-Keratoconus education is the first use case. The intended audience, campaign goal, geography, and call to action still need to be defined.
+Keratoconus education is the first use case. The first campaign targets patients, aims to encourage visits to an eye clinic, and uses the call to action **Book an appointment**. Clinic details, geography, and the booking destination remain to be supplied.
 
 ## Project status
 
-**Preparation stage:** this repository currently contains source documents and editorial guidance. The agent, ingestion pipeline, review subagent, command-line interface, and Streamlit interface have not been implemented here. The architecture below is planned, not a description of working features.
+**Preparation stage:** this repository currently contains source documents, a campaign brief, and editorial guidance. The agent, ingestion pipeline, review subagent, command-line interface, and Streamlit interface have not been implemented here. The architecture below is planned, not a description of working features.
 
 ## Planned workflow
 
@@ -33,9 +33,10 @@ data/raw/
     keratoconus_eye_rubbing.md
   campaigns/
     keratoconus_editorial_guidance.md
+    keratoconus_campaign_brief.md
 ```
 
-The `products` folder follows the reference project's document-type convention; it holds subject reference material and does not mean keratoconus is a product. Campaign guidance is stored separately from medical facts. A campaign brief will be added after the audience and goal are chosen.
+The `products` folder follows the reference project's document-type convention; it holds subject reference material and does not mean keratoconus is a product. Campaign guidance is stored separately from medical facts. The [campaign brief](data/raw/campaigns/keratoconus_campaign_brief.md) records the user-selected audience, goal, and call to action, along with outstanding details.
 
 ## Keratoconus source material
 
@@ -57,7 +58,7 @@ When building this agent, preserve source URLs, titles, and review dates as chun
 
 ## Next milestones
 
-- Define the first campaign's audience, goal, and call to action.
+- Complete the campaign brief with the clinic name, location, booking destination, and tone.
 - Implement loading, chunking, embedding, retrieval, and source attribution.
 - Add the main agent, review subagent, and output saving.
 - Add configuration and runnable CLI/UI instructions after validation.

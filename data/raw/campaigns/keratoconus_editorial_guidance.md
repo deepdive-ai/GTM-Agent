@@ -9,4 +9,4 @@ These are writing rules, not medical evidence or an approved campaign brief.
 - Do not imply avoiding eye rubbing guarantees prevention or reverses disease.
 - Verify local approvals, availability, costs, and clinic services separately.
 - Obtain clinical review before publishing medical content.
-- Audience, geography, campaign goal, tone, clinic details, and call to action are not yet supplied. Ask for them rather than inventing them.
+- Use the campaign brief: audience is patients, goal is eye-clinic visits, and CTA is "Book an appointment". Geography, tone, clinic details, and booking destination are not yet supplied; do not invent them.
