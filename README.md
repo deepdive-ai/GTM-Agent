@@ -2,7 +2,7 @@
 
 A planned go-to-market content agent that uses supplied reference material and a campaign brief to draft, review, and refine content.
 
-Keratoconus education is the first use case. The first campaign targets patients, aims to encourage visits to an eye clinic, and uses the call to action **Book an appointment**. Clinic details, geography, and the booking destination remain to be supplied.
+Keratoconus education is the first use case. The first campaign targets patients, aims to encourage visits to an eye clinic, and uses the call to action **Book an appointment**. The clinic is Nexus Vision Speciality Eye Care in Padmarao Nagar, Secunderabad, Hyderabad. The user-selected booking channel is **Call +91 8247710054**. Advertising geography and creative preferences remain to be selected.
 
 ## Project status
 
@@ -31,6 +31,7 @@ data/raw/
     keratoconus_vision_correction_and_monitoring.md
     keratoconus_cross_linking_expectations.md
     keratoconus_eye_rubbing.md
+    nexus_vision_clinic_profile.md
   campaigns/
     keratoconus_editorial_guidance.md
     keratoconus_campaign_brief.md
@@ -40,7 +41,7 @@ The `products` folder follows the reference project's document-type convention; 
 
 ## Keratoconus source material
 
-The six topic files contain paraphrased summaries with source URLs from Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Compiled on 27 September 2026, they are starter references, not exhaustive medical guidance or clinician-approved copy. They do not establish local treatment availability, clinic services, prices, or regulatory approvals.
+The six topic files contain paraphrased summaries with source URLs from Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Compiled on 27 September 2026, they are starter references, not exhaustive medical guidance or clinician-approved copy. They do not establish local treatment availability, clinic services, prices, or regulatory approvals. The separate [clinic profile](data/raw/products/nexus_vision_clinic_profile.md) records website-listed contact details and services, distinguishing clinic claims from medical evidence.
 
 Each topic file is shorter than the reference chunker's 1,000-character limit. Because that implementation splits each file independently, the complete topic and its citation remain together under the tested settings. Markdown headings alone do not enforce chunk boundaries. Longer future documents will require another check and source metadata support.
 
@@ -58,7 +59,7 @@ When building this agent, preserve source URLs, titles, and review dates as chun
 
 ## Next milestones
 
-- Complete the campaign brief with the clinic name, location, booking destination, and tone.
+- Choose the campaign tone, language, formats, timing, and advertising service area.
 - Implement loading, chunking, embedding, retrieval, and source attribution.
 - Add the main agent, review subagent, and output saving.
 - Add configuration and runnable CLI/UI instructions after validation.

@@ -9,4 +9,4 @@ These are writing rules, not medical evidence or an approved campaign brief.
 - Do not imply avoiding eye rubbing guarantees prevention or reverses disease.
 - Verify local approvals, availability, costs, and clinic services separately.
 - Obtain clinical review before publishing medical content.
-- Use the campaign brief: audience is patients, goal is eye-clinic visits, and CTA is "Book an appointment". Geography, tone, clinic details, and booking destination are not yet supplied; do not invent them.
+- Use the campaign brief: audience is patients, goal is eye-clinic visits, and CTA is "Book an appointment". Use the Nexus Vision clinic profile for location and services; the user selected calls to +91 8247710054. Advertising geography and creative preferences remain undecided; do not invent them.

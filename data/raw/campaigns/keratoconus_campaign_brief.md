@@ -1,20 +1,20 @@
 # Keratoconus campaign brief
 
-## Confirmed by the user
+## User-confirmed campaign decisions
 
-- Topic: Keratoconus.
-- Target audience: Patients.
-- Campaign goal: Encourage patients to visit an eye clinic.
-- Call to action: Book an appointment.
+- Audience: Patients; no narrower age or diagnosis group specified.
+- Goal: Encourage patients to visit Nexus Vision Speciality Eye Care.
+- CTA: Book an appointment.
+- Selected booking channel: Call +91 8247710054.
+- Click-to-call destination: tel:+918247710054.
 
-## Details still needed
+## Clinic context
 
-- Clinic name and location/service area.
-- Booking URL, phone number, or other appointment channel.
-- Clinic services and credentials that may be mentioned.
-- Tone, language, content formats, and campaign timing.
-- Any narrower patient group; do not assume age or diagnosis status.
+Nexus Vision Speciality Eye Care is in Padmarao Nagar, Secunderabad, Hyderabad. See nexus_vision_clinic_profile.md for the full address and website-listed services.
+Source: https://nexusvisioneyecare.com/
 
-## Drafting guidance
+## Remaining creative decisions
 
-Use the keratoconus reference files for factual claims and follow the separate editorial guidance. Do not invent clinic details or booking links. Use clearly marked placeholders in drafts until these are supplied. This brief records campaign intent, not medical evidence. The goal is an appointment request, not a promise of a particular treatment or outcome.
+Tone, language, formats, timing, and advertising service area are not selected. Clinic location does not define ad targeting.
+
+Use the medical reference files and editorial guidance. Do not invent prices, credentials, outcomes, or services. Booking copy: "Book an appointment at Nexus Vision Speciality Eye Care. Call +91 8247710054."
