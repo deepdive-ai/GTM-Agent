@@ -1,67 +1,119 @@
 # GTM Agent
 
-A planned go-to-market content agent that uses supplied reference material and a campaign brief to draft, review, and refine content.
+An AI content-generation project designed to turn verified reference material and a campaign brief into audience-specific marketing drafts, review them, and return content with source references.
 
-Keratoconus education is the first use case. The first campaign targets patients, aims to encourage visits to an eye clinic, and uses the call to action **Book an appointment**. The clinic is Nexus Vision Speciality Eye Care in Padmarao Nagar, Secunderabad, Hyderabad. The user-selected booking channel is **Call +91 8247710054**. Campaign language is **English**, with a **warm and reassuring** tone. Advertising geography and other creative preferences remain to be selected.
+**Current stage:** Knowledge-base preparation completed. Agent implementation is next.
 
-## Project status
+**Last progress update:** 27 September 2026.
 
-**Preparation stage:** this repository currently contains source documents, a campaign brief, and editorial guidance. The agent, ingestion pipeline, review subagent, command-line interface, and Streamlit interface have not been implemented here. The architecture below is planned, not a description of working features.
+## Problem and proposed solution
 
-## Planned workflow
+Creating patient-facing content requires both reliable medical information and a clear campaign objective. Generic drafts can miss the intended audience, lose source attribution, or make unsupported claims.
 
-1. Read reference documents and a user-defined campaign brief.
-2. Clean and split documents into chunks while preserving source attribution.
-3. Embed and store the chunks in a searchable knowledge base.
-4. Retrieve relevant evidence for the requested topic and audience.
-5. Draft a campaign brief and requested formats, such as social posts, email, blogs, and ads.
-6. Delegate checks of factual grounding, tone, completeness, and unsupported claims to a review subagent.
-7. Revise and save drafts with source references for human review.
+GTM Agent will retrieve relevant material from a curated knowledge base, draft content for the specified audience, and use a review subagent to check factual grounding and campaign alignment. The first use case is a keratoconus patient campaign for Nexus Vision Speciality Eye Care.
 
-The reference implementation uses Deep Agents, LangChain/LangGraph, Hugging Face embeddings, Pinecone, and Streamlit. We plan to follow that structure and add explicit source-URL metadata. Automated review will support, not replace, clinical review for medical campaigns.
+## First campaign
 
-## Repository structure
+| Field | Decision |
+| --- | --- |
+| Topic | Keratoconus |
+| Audience | Patients |
+| Clinic | Nexus Vision Speciality Eye Care |
+| Location | Padmarao Nagar, Secunderabad, Hyderabad |
+| Goal | Encourage patients to visit the clinic |
+| Call to action | Book an appointment: call +91 8247710054 |
+| Language | English |
+| Tone | Warm and reassuring |
+| Writing preference | Do not use em dashes in generated content |
+
+Content formats, campaign timing, and advertising service area are still to be selected. The clinic's location does not automatically define the advertising audience.
+
+## Implementation status
+
+| Component | Status | Evidence or next action |
+| --- | --- | --- |
+| Medical references | Prepared | Six cited keratoconus topic files |
+| Clinic reference | Prepared | Website-sourced location, contact details, and services |
+| Campaign brief and editorial guidance | Prepared | Audience, goal, CTA, language, tone, and writing rules recorded |
+| Document chunking check | Verified locally | Current documents checked with the reference splitter settings; see progress log |
+| Application and configuration | Not implemented | Create project structure and dependency configuration |
+| Ingestion, embeddings, and retrieval | Not implemented | Add loading, source metadata, and vector search |
+| Main agent and review subagent | Not implemented | Add drafting, review, revision, and saving |
+| Demo interface and evaluation | Not implemented | Build and test a complete campaign-generation run |
+
+## Planned architecture
 
 ```text
-data/raw/
-  products/
-    keratoconus_condition_and_symptoms.md
-    keratoconus_causes_and_progression.md
-    keratoconus_diagnosis_and_treatment_goals.md
-    keratoconus_vision_correction_and_monitoring.md
-    keratoconus_cross_linking_expectations.md
-    keratoconus_eye_rubbing.md
-    nexus_vision_clinic_profile.md
-  campaigns/
-    keratoconus_editorial_guidance.md
-    keratoconus_campaign_brief.md
+Reference documents + campaign brief
+                  |
+          Load and chunk documents
+                  |
+       Embed and store in Pinecone
+                  |
+     Main agent retrieves and drafts
+                  |
+       Review subagent checks draft
+                  |
+     Revise and save with source references
+                  |
+              Human review
 ```
 
-The `products` folder follows the reference project's document-type convention; it holds subject reference material and does not mean keratoconus is a product. Campaign guidance is stored separately from medical facts. The [campaign brief](data/raw/campaigns/keratoconus_campaign_brief.md) records the user-selected audience, goal, and call to action, along with outstanding details.
+Planned stack: Python, Deep Agents, LangChain/LangGraph, Hugging Face embeddings, Pinecone, and Streamlit. These integrations are not installed or implemented in this repository yet.
 
-## Keratoconus source material
+Source URLs should be carried in chunk metadata and exposed during retrieval. Required editorial rules should also be included in the agent instructions, so their application does not depend on a guidance document being retrieved.
 
-The six topic files contain paraphrased summaries with source URLs from Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Compiled on 27 September 2026, they are starter references, not exhaustive medical guidance or clinician-approved copy. They do not establish local treatment availability, clinic services, prices, or regulatory approvals. The separate [clinic profile](data/raw/products/nexus_vision_clinic_profile.md) records website-listed contact details and services, distinguishing clinic claims from medical evidence.
+## Repository contents
 
-Each topic file is shorter than the reference chunker's 1,000-character limit. Because that implementation splits each file independently, the complete topic and its citation remain together under the tested settings. Markdown headings alone do not enforce chunk boundaries. Longer future documents will require another check and source metadata support.
+| Location | Contents |
+| --- | --- |
+| [data/raw/products/](data/raw/products/) | Six medical topic summaries and the Nexus Vision clinic profile |
+| [Campaign brief](data/raw/campaigns/keratoconus_campaign_brief.md) | User-selected campaign decisions |
+| [Editorial guidance](data/raw/campaigns/keratoconus_editorial_guidance.md) | Factual, tone-related, and writing constraints |
 
-## Setup and ingestion
+The `products` folder is a document-category convention inherited from the intended ingestion structure. It holds subject and service references; keratoconus is a medical condition.
 
-There are no runnable agent commands in this repository yet. To try these documents with the original application:
+Medical summaries cite Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Clinic details come from the clinic's own website. These are starter references and have not received clinical review. They do not support invented prices, credentials, treatment guarantees, or claims that every procedure is available at the clinic.
 
-1. Set up the reference repository according to its README.
-2. Copy the topic files and campaign guidance into the matching `data/raw` folders.
-3. Supply a campaign brief with audience, geography, objective, tone, service details where relevant, and call to action.
-4. Use a separate configured knowledge-base namespace and a source directory containing only the intended campaign documents to avoid mixing unrelated demo material.
-5. Run the reference application's ingestion command and inspect its saved chunks before generating drafts.
+## Daily progress
 
-When building this agent, preserve source URLs, titles, and review dates as chunk metadata and expose them to the drafting and review agents. The reference loader currently treats source URLs as document text rather than extracting them into metadata. Editorial guidance retrieved from the knowledge base is also not guaranteed to appear in every request; required rules should be included in the agent's instructions when implemented.
+### 27 September 2026: Scope and knowledge-base preparation
 
-## Next milestones
+**Completed**
 
-- Choose the campaign formats, timing, and advertising service area.
-- Implement loading, chunking, embedding, retrieval, and source attribution.
-- Add the main agent, review subagent, and output saving.
-- Add configuration and runnable CLI/UI instructions after validation.
+- Created the public repository and defined the first patient campaign.
+- Prepared six medical topic files, each with its source citation.
+- Added the clinic profile, campaign brief, and separate editorial guidance.
+- Confirmed English, a warm and reassuring tone, the phone CTA, and the no-em-dashes rule.
 
-Keep API keys, `.env` files, and private patient information out of this public repository.
+**Validation and findings**
+
+- Inspected the reference application's loader and chunker. Its recursive character splitter uses a 1,000-character limit and 150-character overlap, without special handling for Markdown citations.
+- Found that the initial combined document separated an eye-rubbing passage from its citation.
+- Reorganized the material into short files. Local checks with the same splitter settings confirmed that each current ingestion document stays in one chunk, with medical citations attached.
+- No embedding, Pinecone ingestion, retrieval, or agent-generation run has been completed. The chunking check is not an end-to-end application test.
+
+**Next work**
+
+1. Create the Python application structure and configuration.
+2. Implement document loading and preserve source attribution through chunking.
+3. Add embeddings and retrieval, then inspect returned evidence before connecting the agent.
+
+**Open decisions**
+
+- Select campaign formats, timing, and advertising service area.
+- Choose the model/provider and configure the development environment and Pinecone namespace.
+
+Future daily entries should record the work completed, verification results, remaining issues, and next actions under the actual date. Preserve earlier entries; record planned work as planned rather than completed.
+
+## Running the project
+
+There is no runnable application yet. Setup commands and a demo walkthrough will be added when the implementation has been tested. API keys and `.env` files must remain outside this public repository.
+
+## Planned demo success criteria
+
+- Retrieve relevant evidence for a patient-facing keratoconus request.
+- Generate the selected formats in English with a warm, reassuring tone and the correct appointment CTA.
+- Preserve source references and avoid unsupported clinical or clinic-specific claims.
+- Apply the no-em-dashes rule and have the review subagent flag violations.
+- Save the draft and review notes for human approval before publication.
