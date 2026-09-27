@@ -17,6 +17,7 @@ GTM Agent will retrieve relevant material from a curated knowledge base, draft c
 | Field | Decision |
 | --- | --- |
 | Topic | Keratoconus |
+| Content formats | LinkedIn posts, blog articles, Google Business Profile posts |
 | Audience | Patients |
 | Clinic | Nexus Vision Speciality Eye Care |
 | Location | Padmarao Nagar, Secunderabad, Hyderabad |
@@ -26,7 +27,7 @@ GTM Agent will retrieve relevant material from a curated knowledge base, draft c
 | Tone | Warm and reassuring |
 | Writing preference | Do not use em dashes in generated content |
 
-Content formats, campaign timing, and advertising service area are still to be selected. The clinic's location does not automatically define the advertising audience.
+Campaign timing and advertising service area are still to be selected. The clinic's location does not automatically define the advertising audience.
 
 ## Implementation status
 
@@ -34,7 +35,7 @@ Content formats, campaign timing, and advertising service area are still to be s
 | --- | --- | --- |
 | Medical references | Prepared | Six cited keratoconus topic files |
 | Clinic reference | Prepared | Website-sourced location, contact details, and services |
-| Campaign brief and editorial guidance | Prepared | Audience, goal, CTA, language, tone, and writing rules recorded |
+| Campaign brief and editorial guidance | Prepared | Audience, formats, goal, CTA, language, tone, and writing rules recorded |
 | Document chunking check | Verified locally | Current documents checked with the reference splitter settings; see progress log |
 | Application and configuration | Not implemented | Create project structure and dependency configuration |
 | Ingestion, embeddings, and retrieval | Not implemented | Add loading, source metadata, and vector search |
@@ -85,6 +86,7 @@ Medical summaries cite Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Cl
 - Prepared six medical topic files, each with its source citation.
 - Added the clinic profile, campaign brief, and separate editorial guidance.
 - Confirmed English, a warm and reassuring tone, the phone CTA, and the no-em-dashes rule.
+- Selected LinkedIn posts, blog articles, and Google Business Profile posts as the initial output formats.
 
 **Validation and findings**
 
@@ -101,7 +103,7 @@ Medical summaries cite Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Cl
 
 **Open decisions**
 
-- Select campaign formats, timing, and advertising service area.
+- Select campaign timing and advertising service area.
 - Choose the model/provider and configure the development environment and Pinecone namespace.
 
 Future daily entries should record the work completed, verification results, remaining issues, and next actions under the actual date. Preserve earlier entries; record planned work as planned rather than completed.
@@ -113,7 +115,7 @@ There is no runnable application yet. Setup commands and a demo walkthrough will
 ## Planned demo success criteria
 
 - Retrieve relevant evidence for a patient-facing keratoconus request.
-- Generate the selected formats in English with a warm, reassuring tone and the correct appointment CTA.
+- Generate LinkedIn posts, blog articles, and Google Business Profile posts in English with a warm, reassuring tone and the appropriate appointment CTA for each channel.
 - Preserve source references and avoid unsupported clinical or clinic-specific claims.
 - Apply the no-em-dashes rule and have the review subagent flag violations.
 - Save the draft and review notes for human approval before publication.
