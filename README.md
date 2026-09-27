@@ -1,6 +1,6 @@
 # GTM Agent
 
-A planned go-to-market content agent that uses supplied reference material and a campaign brief to draft, review, and refine content. The project is inspired by [The Gen Academy's 3D-GTM-Agent](https://github.com/The-Gen-Academy/3D-GTM-Agent).
+A planned go-to-market content agent that uses supplied reference material and a campaign brief to draft, review, and refine content.
 
 Keratoconus education is the first use case. The intended audience, campaign goal, geography, and call to action still need to be defined.
 
