@@ -2,7 +2,7 @@
 
 A planned go-to-market content agent that uses supplied reference material and a campaign brief to draft, review, and refine content.
 
-Keratoconus education is the first use case. The first campaign targets patients, aims to encourage visits to an eye clinic, and uses the call to action **Book an appointment**. The clinic is Nexus Vision Speciality Eye Care in Padmarao Nagar, Secunderabad, Hyderabad. The user-selected booking channel is **Call +91 8247710054**. Campaign language is **English**. Advertising geography and other creative preferences remain to be selected.
+Keratoconus education is the first use case. The first campaign targets patients, aims to encourage visits to an eye clinic, and uses the call to action **Book an appointment**. The clinic is Nexus Vision Speciality Eye Care in Padmarao Nagar, Secunderabad, Hyderabad. The user-selected booking channel is **Call +91 8247710054**. Campaign language is **English**, with a **warm and reassuring** tone. Advertising geography and other creative preferences remain to be selected.
 
 ## Project status
 
@@ -59,7 +59,7 @@ When building this agent, preserve source URLs, titles, and review dates as chun
 
 ## Next milestones
 
-- Choose the campaign tone, formats, timing, and advertising service area.
+- Choose the campaign formats, timing, and advertising service area.
 - Implement loading, chunking, embedding, retrieval, and source attribution.
 - Add the main agent, review subagent, and output saving.
 - Add configuration and runnable CLI/UI instructions after validation.
