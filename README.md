@@ -1,18 +1,35 @@
 # GTM Agent
 
-An AI content-generation project designed to turn verified reference material and a campaign brief into audience-specific marketing drafts, review them, and return content with source references.
+A general-purpose AI content agent designed to turn reference material and a campaign brief into audience-specific content, review it, and return drafts with source references. The planned design supports different businesses, industries, and topics through campaign-specific inputs.
 
-**Current stage:** Knowledge-base preparation completed. Agent implementation is next.
+**Current stage:** Initial source documents and campaign configuration prepared for the first example. The reusable agent and ingestion pipeline are not implemented yet.
 
-**Last progress update:** 27 September 2026.
+**Last progress update:** 28 September 2026.
 
 ## Problem and proposed solution
 
-Creating patient-facing content requires both reliable medical information and a clear campaign objective. Generic drafts can miss the intended audience, lose source attribution, or make unsupported claims.
+Creating useful content requires reliable information about the subject, a clear audience, and an objective. Generic drafts can miss a brand's voice, lose source attribution, or make unsupported claims. These challenges apply to product launches, educational content, service promotions, and other campaigns across industries.
 
-GTM Agent will retrieve relevant material from a curated knowledge base, draft content for the specified audience, and use a review subagent to check factual grounding and campaign alignment. The first use case is a keratoconus patient campaign for Nexus Vision Speciality Eye Care.
+GTM Agent will retrieve relevant material from a campaign's knowledge base, draft content for the specified audience, and use a review subagent to check factual grounding and campaign alignment. Keratoconus content for Nexus Vision Speciality Eye Care is the first example used to develop and evaluate this workflow. Healthcare is one use case, not the scope of the core agent.
 
-## First campaign
+## Scope and campaign configuration
+
+The core workflow will handle retrieval, planning, drafting, review, revision, and output saving. Business and domain details will come from campaign inputs rather than being hard-coded into the agent.
+
+| Input | What changes between campaigns |
+| --- | --- |
+| Campaign brief | Topic, business, audience, goal, formats, language, tone, and call to action |
+| Reference documents | Product facts, service details, research, FAQs, or other relevant evidence |
+| Brand guidance | Voice, terminology, preferred wording, and style rules |
+| Domain guidance | Additional checks appropriate to the subject, such as medical claim review for healthcare |
+
+For example, a software launch could supply product documentation and signup goals; an education business could supply course details and an enrolment objective. The intended workflow stays the same. When implemented, each campaign's retrieval context should be isolated to avoid mixing facts or brand details between businesses.
+
+The initial output formats are **LinkedIn posts, blog articles, and Google Business Profile posts**. Supporting more topics and supporting more formats are separate capabilities. Video scripts and video generation are being explored as future extensions, not implemented features. Scheduling, publishing, and performance tracking are outside the initial generation-and-review scope.
+
+To prepare another campaign, supply its own brief, source documents, and guidance. An operational campaign-selection interface will be added during implementation; the repository currently contains only the first example's inputs.
+
+## First example campaign: Nexus Vision
 
 | Field | Decision |
 | --- | --- |
@@ -33,11 +50,11 @@ Campaign timing and advertising service area are still to be selected. The clini
 
 | Component | Status | Evidence or next action |
 | --- | --- | --- |
-| Medical references | Prepared | Six cited keratoconus topic files |
-| Clinic reference | Prepared | Website-sourced location, contact details, and services |
+| First example: subject references | Prepared | Six cited keratoconus topic files |
+| First example: business profile | Prepared | Website-sourced Nexus Vision location, contact details, and services |
 | Campaign brief and editorial guidance | Prepared | Audience, formats, goal, CTA, language, tone, and writing rules recorded |
 | Document chunking check | Verified locally | Current documents checked with the reference splitter settings; see progress log |
-| Application and configuration | Not implemented | Create project structure and dependency configuration |
+| Application and campaign configuration | Not implemented | Create project structure, dependencies, and reusable campaign inputs |
 | Ingestion, embeddings, and retrieval | Not implemented | Add loading, source metadata, and vector search |
 | Main agent and review subagent | Not implemented | Add drafting, review, revision, and saving |
 | Demo interface and evaluation | Not implemented | Build and test a complete campaign-generation run |
@@ -45,7 +62,7 @@ Campaign timing and advertising service area are still to be selected. The clini
 ## Planned architecture
 
 ```text
-Reference documents + campaign brief
+Campaign brief + sources + brand/domain guidance
                   |
           Load and chunk documents
                   |
@@ -62,9 +79,9 @@ Reference documents + campaign brief
 
 Planned stack: Python, Deep Agents, LangChain/LangGraph, Hugging Face embeddings, Pinecone, and Streamlit. These integrations are not installed or implemented in this repository yet.
 
-Source URLs should be carried in chunk metadata and exposed during retrieval. Required editorial rules should also be included in the agent instructions, so their application does not depend on a guidance document being retrieved.
+Source URLs should be carried in chunk metadata and exposed during retrieval. Required editorial rules should be included in the instructions for the selected campaign, so their application does not depend on a guidance document being retrieved. Shared checks will cover source support, audience fit, format, tone, and CTA. Domain-specific checks, including clinical review for medical content, will apply only where relevant.
 
-## Repository contents
+## Current repository contents: first example campaign
 
 | Location | Contents |
 | --- | --- |
@@ -77,6 +94,21 @@ The `products` folder is a document-category convention inherited from the inten
 Medical summaries cite Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Clinic details come from the clinic's own website. These are starter references and have not received clinical review. They do not support invented prices, credentials, treatment guarantees, or claims that every procedure is available at the clinic.
 
 ## Daily progress
+
+### 28 September 2026: General-purpose scope clarified
+
+**Completed**
+
+- Updated the project description and problem statement to cover content across industries and topics.
+- Documented the separation between the reusable agent, campaign inputs, brand guidance, and domain-specific review rules.
+- Kept Nexus Vision as the first example and clarified the three initial formats and future video exploration.
+- Generalized the planned evaluation criteria and retained example-specific checks.
+
+**Validation and next work**
+
+- Documentation-only update. This does not add working agent capabilities or establish performance on other domains.
+- Next: implement reusable campaign configuration and document ingestion, then test retrieval before adding drafting and review.
+
 
 ### 27 September 2026: Scope and knowledge-base preparation
 
@@ -112,10 +144,12 @@ Future daily entries should record the work completed, verification results, rem
 
 There is no runnable application yet. Setup commands and a demo walkthrough will be added when the implementation has been tested. API keys and `.env` files must remain outside this public repository.
 
-## Planned demo success criteria
+## Planned evaluation criteria
 
-- Retrieve relevant evidence for a patient-facing keratoconus request.
-- Generate LinkedIn posts, blog articles, and Google Business Profile posts in English with a warm, reassuring tone and the appropriate appointment CTA for each channel.
-- Preserve source references and avoid unsupported clinical or clinic-specific claims.
-- Apply the no-em-dashes rule and have the review subagent flag violations.
-- Save the draft and review notes for human approval before publication.
+- Use the selected campaign's sources and settings without leaking information from another campaign.
+- Generate the requested initial formats with the configured audience, language, tone, and CTA.
+- Preserve source references, flag unsupported claims, and apply brand and relevant domain rules.
+- Save drafts and review notes for human approval before publication.
+- Test a second, nonmedical campaign to demonstrate that the workflow can change topics without changing core agent logic. This test has not been run.
+
+For the Nexus Vision example, additionally check patient-appropriate wording, English, a warm and reassuring tone, the correct phone CTA, and the no-em-dashes rule. Medical content requires clinical review before publication.
