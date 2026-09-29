@@ -2,9 +2,9 @@
 
 A general-purpose AI content agent designed to turn reference material and a campaign brief into audience-specific content, review it, and return drafts with source references. The planned design supports different businesses, industries, and topics through campaign-specific inputs.
 
-**Current stage:** Initial source documents and campaign configuration prepared for the first example. The reusable agent and ingestion pipeline are not implemented yet.
+**Current stage:** Initial source documents and campaign configuration prepared for the first example, with reusable content and research guardrails documented. The reusable agent and ingestion pipeline are not implemented yet.
 
-**Last progress update:** 28 September 2026.
+**Last progress update:** 29 September 2026.
 
 ## Problem and proposed solution
 
@@ -54,6 +54,7 @@ Campaign timing and advertising service area are still to be selected. The clini
 | First example: business profile | Prepared | Website-sourced Nexus Vision location, contact details, and services |
 | Campaign brief and editorial guidance | Prepared | Audience, formats, goal, CTA, language, tone, and writing rules recorded |
 | Document chunking check | Verified locally | Current documents checked with the reference splitter settings; see progress log |
+| Shared factual guardrails | Documented | [Content and research guardrails](guidelines/factual_guardrails.md); runtime enforcement is not implemented |
 | Application and campaign configuration | Not implemented | Create project structure, dependencies, and reusable campaign inputs |
 | Ingestion, embeddings, and retrieval | Not implemented | Add loading, source metadata, and vector search |
 | Main agent and review subagent | Not implemented | Add drafting, review, revision, and saving |
@@ -81,10 +82,11 @@ Planned stack: Python, Deep Agents, LangChain/LangGraph, Hugging Face embeddings
 
 Source URLs should be carried in chunk metadata and exposed during retrieval. Required editorial rules should be included in the instructions for the selected campaign, so their application does not depend on a guidance document being retrieved. Shared checks will cover source support, audience fit, format, tone, and CTA. Domain-specific checks, including clinical review for medical content, will apply only where relevant.
 
-## Current repository contents: first example campaign
+## Current repository contents
 
 | Location | Contents |
 | --- | --- |
+| [Shared guardrails](guidelines/factual_guardrails.md) | Reusable factual, research, evidence, and publication rules for every campaign |
 | [data/raw/products/](data/raw/products/) | Six medical topic summaries and the Nexus Vision clinic profile |
 | [Campaign brief](data/raw/campaigns/keratoconus_campaign_brief.md) | User-selected campaign decisions |
 | [Editorial guidance](data/raw/campaigns/keratoconus_editorial_guidance.md) | Factual, tone-related, and writing constraints |
@@ -94,6 +96,21 @@ The `products` folder is a document-category convention inherited from the inten
 Medical summaries cite Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Clinic details come from the clinic's own website. These are starter references and have not received clinical review. They do not support invented prices, credentials, treatment guarantees, or claims that every procedure is available at the clinic.
 
 ## Daily progress
+
+### 29 September 2026: Factual guardrails defined
+
+**Completed**
+
+- Saved [reusable content and research guardrails](guidelines/factual_guardrails.md) for all industries and formats.
+- Defined how to flag missing details and evidence, ask focused questions, and resolve or remove unsupported claims before publication.
+- Added rules against invented metrics and customer claims, and separated factual claims from suggestions.
+- Required evidence for trend and performance claims, original content, source traceability, campaign alignment, privacy, and human approval.
+
+**Validation and next work**
+
+- Checked that the note explicitly covers missing evidence and includes all 12 agreed rules.
+- Documentation only: these rules are not yet enforced by a working agent. Niche research and performance analysis are not implemented.
+- Next: include the shared guardrails in drafting and review instructions when implementing the agent.
 
 ### 28 September 2026: General-purpose scope clarified
 
