@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.sqlite
+*.sqlite-*
+.streamlit/secrets.toml
+
+*.json
+*.pdf
+*.jpg
+*.png

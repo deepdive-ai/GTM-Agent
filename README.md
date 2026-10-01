@@ -2,9 +2,11 @@
 
 A general-purpose AI content agent designed to turn reference material and a campaign brief into audience-specific content, review it, and return drafts with source references. The planned design supports different businesses, industries, and topics through campaign-specific inputs.
 
-**Current stage:** Initial source documents and campaign configuration prepared for the first example, with reusable content and research guardrails documented. The reusable agent and ingestion pipeline are not implemented yet.
+**Current stage:** A working local social listening prototype collects YouTube comments and uses Gemini to produce evidence-linked audience themes and content suggestions. The full campaign-generation agent and document ingestion pipeline remain planned.
 
-**Last progress update:** 29 September 2026.
+**Last progress update:** 1 October 2026.
+
+[View the verified prototype run, PDF and AI report](https://gtm-audience-evidence-20261001.netlify.app/). This public page contains saved evidence, not the live Streamlit application.
 
 ## Problem and proposed solution
 
@@ -54,11 +56,27 @@ Campaign timing and advertising service area are still to be selected. The clini
 | First example: business profile | Prepared | Website-sourced Nexus Vision location, contact details, and services |
 | Campaign brief and editorial guidance | Prepared | Audience, formats, goal, CTA, language, tone, and writing rules recorded |
 | Document chunking check | Verified locally | Current documents checked with the reference splitter settings; see progress log |
-| Shared factual guardrails | Documented | [Content and research guardrails](guidelines/factual_guardrails.md); runtime enforcement is not implemented |
-| Application and campaign configuration | Not implemented | Create project structure, dependencies, and reusable campaign inputs |
+| Shared factual guardrails | Documented; partial prototype checks | [Guardrails](guidelines/factual_guardrails.md); listening analysis validates evidence IDs and computes counts, but semantic accuracy still requires review |
+| YouTube collection and Streamlit interface | Implemented prototype | Bounded collection, saved runs, masked API-key inputs and JSON export |
+| Gemini audience interpretation | Implemented and tested on one sample | English/Hindi/Hinglish interpretation, relevance classification, themes and content suggestions |
+| Full campaign application and configuration | Not implemented | Extend beyond the standalone listening prototype |
 | Ingestion, embeddings, and retrieval | Not implemented | Add loading, source metadata, and vector search |
 | Main agent and review subagent | Not implemented | Add drafting, review, revision, and saving |
-| Demo interface and evaluation | Not implemented | Build and test a complete campaign-generation run |
+| Full campaign demo and evaluation | Not implemented | The listening interface works; end-to-end content generation remains planned |
+
+## Social listening prototype
+
+```text
+Topic -> YouTube videos and comments -> Local collection history
+                                      -> Gemini interpretation
+                                      -> Validate evidence IDs and compute counts
+                                      -> Review themes, suggestions and original comments
+                                      -> Export evidence and AI analysis as JSON
+```
+
+Each comment receives a relevance classification, language label, English interpretation and reason. Themes reference original comment IDs; the app builds source links from the collected records. The keyword sorter remains available only as a baseline comparison. The model does not receive the YouTube key.
+
+The prototype can search different topics, but only the keratoconus sample has been evaluated so far. It does not establish trends, unique audience counts, geographic demand, medical facts or booking performance. Collection is bounded to recent top-level comments on a small set of search results. Additional sources, campaign planning and content generation are future work.
 
 ## Planned architecture
 
@@ -78,7 +96,7 @@ Campaign brief + sources + brand/domain guidance
               Human review
 ```
 
-Planned stack: Python, Deep Agents, LangChain/LangGraph, Hugging Face embeddings, Pinecone, and Streamlit. These integrations are not installed or implemented in this repository yet.
+The listening prototype uses Python, Streamlit, SQLite, YouTube Data API v3 and Gemini. The broader planned stack includes Deep Agents, LangChain/LangGraph, Hugging Face embeddings and Pinecone; these broader integrations are not implemented yet.
 
 Source URLs should be carried in chunk metadata and exposed during retrieval. Required editorial rules should be included in the instructions for the selected campaign, so their application does not depend on a guidance document being retrieved. Shared checks will cover source support, audience fit, format, tone, and CTA. Domain-specific checks, including clinical review for medical content, will apply only where relevant.
 
@@ -86,6 +104,7 @@ Source URLs should be carried in chunk metadata and exposed during retrieval. Re
 
 | Location | Contents |
 | --- | --- |
+| [social_listening/](social_listening/) | Runnable Streamlit prototype, YouTube collector, Gemini analyzer, tests and setup instructions |
 | [Shared guardrails](guidelines/factual_guardrails.md) | Reusable factual, research, evidence, and publication rules for every campaign |
 | [data/raw/products/](data/raw/products/) | Six medical topic summaries and the Nexus Vision clinic profile |
 | [Campaign brief](data/raw/campaigns/keratoconus_campaign_brief.md) | User-selected campaign decisions |
@@ -96,6 +115,30 @@ The `products` folder is a document-category convention inherited from the inten
 Medical summaries cite Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Clinic details come from the clinic's own website. These are starter references and have not received clinical review. They do not support invented prices, credentials, treatment guarantees, or claims that every procedure is available at the clinic.
 
 ## Daily progress
+
+### 1 October 2026: Social listening prototype implemented and tested
+
+**Completed**
+
+- Built a local Streamlit interface with YouTube collection, SQLite run history and JSON download.
+- Integrated Gemini structured output to interpret English, Hindi and Hinglish comments inside the app.
+- Added relevance classification, original comment evidence, content suggestions and missing-evidence requirements.
+- Added validation that rejects unknown or missing comment IDs and derives theme counts from source records.
+- Published a [saved evidence page](https://gtm-audience-evidence-20261001.netlify.app/) with the Streamlit PDF and AI JSON report.
+
+**Validation and findings**
+
+- Ten automated tests passed, including mocked API errors, duplicate handling, evidence validation and Streamlit UI flows.
+- Live run collected 35 comments across five videos. The final Gemini run classified 18 as relevant and 17 as irrelevant, producing four themes.
+- Captured questions the keyword baseline missed: per-eye pricing, wearing hours, exercise, bubbles and replacement.
+- Verified the exported AI report and its supporting IDs and counts. Themes can overlap; counts are not unique people.
+- One-sample validation is not an accuracy benchmark. The model inferred that “45” meant “45,000” and excluded a contact request that may be commercially relevant. Human review remains necessary.
+
+**Next work**
+
+- Improve ambiguous-number handling and relevance classification.
+- Test more topics and larger, more varied samples before claiming cross-industry accuracy.
+- Evaluate additional sources subject to data access and platform permissions.
 
 ### 29 September 2026: Factual guardrails defined
 
@@ -159,7 +202,21 @@ Future daily entries should record the work completed, verification results, rem
 
 ## Running the project
 
-There is no runnable application yet. Setup commands and a demo walkthrough will be added when the implementation has been tested. API keys and `.env` files must remain outside this public repository.
+Run the social listening prototype from a local checkout (Python 3.9+):
+
+```sh
+cd social_listening
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m streamlit run app.py --server.address 127.0.0.1
+```
+
+Start with the labelled synthetic demo, or enter a YouTube Data API key to collect public comments. Enter a separate Gemini API key and click **Analyze audience signals** to send the current sample to Gemini. No recollection is required to analyze a saved run. Account quota and pricing apply; Gemini free access is not guaranteed. See [setup and limitations](social_listening/README.md).
+
+Run checks with `python -m unittest discover -s . -p 'test_*.py'` from `social_listening/`.
+
+The full campaign-generation application is not implemented. API keys, `.env` files, SQLite databases and local report exports must remain outside this public repository.
 
 ## Planned evaluation criteria
 
