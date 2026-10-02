@@ -1,120 +1,120 @@
 # GTM Agent
 
-A general-purpose AI content agent designed to turn reference material and a campaign brief into audience-specific content, review it, and return drafts with source references. The planned design supports different businesses, industries, and topics through campaign-specific inputs.
+A general-purpose content agent prototype that uses audience research to suggest topics and supplied reference documents to support explanations. A guided review step turns a selected topic into a draft with paragraph-level source references. Business, audience, goal, tone and documents are campaign inputs; Nexus Vision is the first example.
 
-**Current stage:** A working local social listening prototype collects YouTube comments and uses Gemini to produce evidence-linked audience themes and content suggestions. The full campaign-generation agent and document ingestion pipeline remain planned.
+**Current stage:** The local Streamlit workflow covers YouTube comment analysis, optional video research, source-grounded topic briefs and reviewed content drafting. Indexed RAG retrieval and a separate review subagent are not implemented yet.
 
-**Last progress update:** 1 October 2026.
+**Last progress update:** 2 October 2026.
 
-[View the verified prototype run, PDF and AI report](https://gtm-audience-evidence-20261001.netlify.app/). This public page contains saved evidence, not the live Streamlit application.
+[View today's Streamlit PDF, screenshots and sample draft](https://gtm-content-progress-20261002.netlify.app/) · [View the 1 October audience evidence](https://gtm-audience-evidence-20261001.netlify.app/)
 
-## Problem and proposed solution
+These public pages contain saved development evidence, not a live interactive app. The medical example remains a draft awaiting clinical review, not approved campaign content.
 
-Creating useful content requires reliable information about the subject, a clear audience, and an objective. Generic drafts can miss a brand's voice, lose source attribution, or make unsupported claims. These challenges apply to product launches, educational content, service promotions, and other campaigns across industries.
+## Working workflow
 
-GTM Agent will retrieve relevant material from a campaign's knowledge base, draft content for the specified audience, and use a review subagent to check factual grounding and campaign alignment. Keratoconus content for Nexus Vision Speciality Eye Care is the first example used to develop and evaluate this workflow. Healthcare is one use case, not the scope of the core agent.
+```text
+YouTube videos + comments
+          |
+Audience themes + optional video research
+          |
+Campaign brief + uploaded reference documents
+          |
+Proposed topics + cited statements + missing evidence
+          |
+Human reviews topic scope and selects statements
+          |
+Draft in one selected format + paragraph references
+          |
+Human review before publication
+```
 
-## Scope and campaign configuration
+Comments help identify questions worth addressing. Uploaded documents supply explanatory material. Titles and descriptions support positioning analysis; spoken-content analysis requires available captions. Speaker claims are attributed research context, not automatically verified facts.
 
-The core workflow will handle retrieval, planning, drafting, review, revision, and output saving. Business and domain details will come from campaign inputs rather than being hard-coded into the agent.
+The prototype supports LinkedIn posts, blogs and Google Business Profile posts as selectable formats. It generates one selected format per request. LinkedIn, a short blog and Google Business Profile drafts were generated separately in today's live demonstration. This is one sample, not a format-quality benchmark. Video generation, scheduling, publishing and conversion tracking are future work.
 
-| Input | What changes between campaigns |
+## Campaign inputs
+
+| Input | Purpose |
 | --- | --- |
-| Campaign brief | Topic, business, audience, goal, formats, language, tone, and call to action |
-| Reference documents | Product facts, service details, research, FAQs, or other relevant evidence |
-| Brand guidance | Voice, terminology, preferred wording, and style rules |
-| Domain guidance | Additional checks appropriate to the subject, such as medical claim review for healthcare |
+| Business, audience and goal | Define whom the campaign serves and the intended action |
+| Reference documents | Supply product, service, subject or research evidence |
+| Formats, language, tone and CTA | Guide the output |
+| Source review status | Keep draft material distinct from approved business material |
+| Editorial direction | Refine scope and wording; it supplies no new factual evidence |
 
-For example, a software launch could supply product documentation and signup goals; an education business could supply course details and an enrolment objective. The intended workflow stays the same. When implemented, each campaign's retrieval context should be isolated to avoid mixing facts or brand details between businesses.
+The first example is keratoconus education for Nexus Vision Speciality Eye Care, aimed at patients and encouraging a clinic appointment. The chosen language is English, tone warm and reassuring, and CTA **Call +91 8247710054 to book an appointment**. Generated prose must not use em dashes. Campaign timing and advertising service area remain undecided.
 
-The initial output formats are **LinkedIn posts, blog articles, and Google Business Profile posts**. Supporting more topics and supporting more formats are separate capabilities. Video scripts and video generation are being explored as future extensions, not implemented features. Scheduling, publishing, and performance tracking are outside the initial generation-and-review scope.
-
-To prepare another campaign, supply its own brief, source documents, and guidance. An operational campaign-selection interface will be added during implementation; the repository currently contains only the first example's inputs.
-
-## First example campaign: Nexus Vision
-
-| Field | Decision |
-| --- | --- |
-| Topic | Keratoconus |
-| Content formats | LinkedIn posts, blog articles, Google Business Profile posts |
-| Audience | Patients |
-| Clinic | Nexus Vision Speciality Eye Care |
-| Location | Padmarao Nagar, Secunderabad, Hyderabad |
-| Goal | Encourage patients to visit the clinic |
-| Call to action | Book an appointment: call +91 8247710054 |
-| Language | English |
-| Tone | Warm and reassuring |
-| Writing preference | Do not use em dashes in generated content |
-
-Campaign timing and advertising service area are still to be selected. The clinic's location does not automatically define the advertising audience.
+The six medical starter summaries were prepared by the assistant with citations, not supplied or clinically approved by the user. The user supplied the clinic website and campaign decisions. Sources and clinic details still require appropriate review; they do not substantiate invented prices, guarantees or procedure availability.
 
 ## Implementation status
 
-| Component | Status | Evidence or next action |
-| --- | --- | --- |
-| First example: subject references | Prepared | Six cited keratoconus topic files |
-| First example: business profile | Prepared | Website-sourced Nexus Vision location, contact details, and services |
-| Campaign brief and editorial guidance | Prepared | Audience, formats, goal, CTA, language, tone, and writing rules recorded |
-| Document chunking check | Verified locally | Current documents checked with the reference splitter settings; see progress log |
-| Shared factual guardrails | Documented; partial prototype checks | [Guardrails](guidelines/factual_guardrails.md); listening analysis validates evidence IDs and computes counts, but semantic accuracy still requires review |
-| YouTube collection and Streamlit interface | Implemented prototype | Bounded collection, saved runs, masked API-key inputs and JSON export |
-| Gemini audience interpretation | Implemented and tested on one sample | English/Hindi/Hinglish interpretation, relevance classification, themes and content suggestions |
-| Full campaign application and configuration | Not implemented | Extend beyond the standalone listening prototype |
-| Ingestion, embeddings, and retrieval | Not implemented | Add loading, source metadata, and vector search |
-| Main agent and review subagent | Not implemented | Add drafting, review, revision, and saving |
-| Full campaign demo and evaluation | Not implemented | The listening interface works; end-to-end content generation remains planned |
+| Component | Current status |
+| --- | --- |
+| YouTube collection and SQLite history | Working bounded prototype |
+| English, Hindi and Hinglish comment interpretation | Working Gemini analysis; one live topic evaluated |
+| Free caption retrieval and video research | Implemented with explicit unavailable-caption handling |
+| Campaign inputs and document upload | Implemented for UTF-8 Markdown/plain text |
+| Source-grounded topic briefs | Implemented with exact-excerpt and evidence-ID checks |
+| Guided topic review and content writer | Implemented; all three formats generated in the live example |
+| JSON and text exports | Implemented; selected sample exports published as development evidence |
+| Factual guardrails | Documented with partial runtime checks; human semantic review required |
+| Indexed document RAG | Next milestone; not implemented |
+| LangChain/LangGraph, Deep Agents, embeddings/vector store | Planned; not integrated |
+| Separate review subagent, publishing and monitoring | Not implemented |
 
-## Social listening prototype
+## Grounding today and planned RAG
 
-```text
-Topic -> YouTube videos and comments -> Local collection history
-                                      -> Gemini interpretation
-                                      -> Validate evidence IDs and compute counts
-                                      -> Review themes, suggestions and original comments
-                                      -> Export evidence and AI analysis as JSON
-```
+Today the planner sends the complete uploaded documents to Gemini. After topic review, the writer receives selected statements, original excerpts, campaign inputs and unresolved gaps. That provides source-grounded drafting without indexed retrieval.
 
-Each comment receives a relevance classification, language label, English interpretation and reason. Themes reference original comment IDs; the app builds source links from the collected records. The keyword sorter remains available only as a baseline comparison. The model does not receive the YouTube key.
+Next, documents will be loaded and chunked with source metadata, indexed and searched for passages relevant to each topic. Retrieval will be evaluated before replacing the current whole-document input. The earlier proposed stack included Hugging Face embeddings and Pinecone; a retrieval backend is not yet implemented or finalized. Source attribution and campaign isolation must survive retrieval.
 
-The prototype can search different topics, but only the keratoconus sample has been evaluated so far. It does not establish trends, unique audience counts, geographic demand, medical facts or booking performance. Collection is bounded to recent top-level comments on a small set of search results. Additional sources, campaign planning and content generation are future work.
+RAG selects evidence; it does not verify whether a source is correct or whether a draft follows it faithfully. Those checks remain necessary.
 
-## Planned architecture
+## Evidence and limits
 
-```text
-Campaign brief + sources + brand/domain guidance
-                  |
-          Load and chunk documents
-                  |
-       Embed and store in Pinecone
-                  |
-     Main agent retrieves and drafts
-                  |
-       Review subagent checks draft
-                  |
-     Revise and save with source references
-                  |
-              Human review
-```
+[Shared factual guardrails](guidelines/factual_guardrails.md) cover supplied facts, missing evidence, unsupported claims and human approval. Runtime checks reject unknown IDs, invented excerpts, missing paragraph references, changed CTAs and em dashes in generated prose. Original source quotations retain their punctuation.
 
-The listening prototype uses Python, Streamlit, SQLite, YouTube Data API v3 and Gemini. The broader planned stack includes Deep Agents, LangChain/LangGraph, Hugging Face embeddings and Pinecone; these broader integrations are not implemented yet.
+These checks establish traceability, not correctness. Review must assess whether excerpts support the full meaning of a statement. The live test exposed overly broad comparison framing and video findings whose brief excerpts did not support every implication. A comparison topic was narrowed before drafting. Missing pricing, insurance and lens-use evidence remains unresolved.
 
-Source URLs should be carried in chunk metadata and exposed during retrieval. Required editorial rules should be included in the instructions for the selected campaign, so their application does not depend on a guidance document being retrieved. Shared checks will cover source support, audience fit, format, tone, and CTA. Domain-specific checks, including clinical review for medical content, will apply only where relevant.
+The collection is a small snapshot of recent top-level comments, not exhaustive social listening. Engagement totals and repeated saved runs do not yet establish trends, market demand, audience geography, medical facts or bookings. Cross-industry accuracy and commercial readiness have not been demonstrated.
 
-## Current repository contents
+## Repository contents
 
 | Location | Contents |
 | --- | --- |
-| [social_listening/](social_listening/) | Runnable Streamlit prototype, YouTube collector, Gemini analyzer, tests and setup instructions |
-| [Shared guardrails](guidelines/factual_guardrails.md) | Reusable factual, research, evidence, and publication rules for every campaign |
-| [data/raw/products/](data/raw/products/) | Six medical topic summaries and the Nexus Vision clinic profile |
-| [Campaign brief](data/raw/campaigns/keratoconus_campaign_brief.md) | User-selected campaign decisions |
-| [Editorial guidance](data/raw/campaigns/keratoconus_editorial_guidance.md) | Factual, tone-related, and writing constraints |
-
-The `products` folder is a document-category convention inherited from the intended ingestion structure. It holds subject and service references; keratoconus is a medical condition.
-
-Medical summaries cite Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Clinic details come from the clinic's own website. These are starter references and have not received clinical review. They do not support invented prices, credentials, treatment guarantees, or claims that every procedure is available at the clinic.
+| [social_listening/](social_listening/) | Streamlit app, collector, analyzers, planner, writer, tests and setup |
+| [docs/progress/2026-10-02/](docs/progress/2026-10-02/) | Today's PDF, screenshots, LinkedIn draft and source catalog |
+| [guidelines/factual_guardrails.md](guidelines/factual_guardrails.md) | Reusable content and research rules |
+| [data/raw/products/](data/raw/products/) | Six cited keratoconus summaries and clinic profile |
+| [Campaign brief](data/raw/campaigns/keratoconus_campaign_brief.md) | First example's campaign decisions |
+| [Editorial guidance](data/raw/campaigns/keratoconus_editorial_guidance.md) | First example's wording, tone and factual constraints |
 
 ## Daily progress
+
+### 2 October 2026: Research connected to source-grounded drafting
+
+**Completed**
+
+- Added free caption retrieval and video research with numbered source passages and explicit transcript availability.
+- Added document uploads, campaign settings, topic proposals, cited statements and missing-evidence questions.
+- Added guided topic review and a writer for one selected LinkedIn, blog or Google Business Profile format.
+- Added paragraph references, exact CTA checks, no-em-dash validation and TXT/JSON downloads.
+- Saved the Streamlit PDF and a sample draft with source references as public development evidence.
+
+**Validation and findings**
+
+- All 35 automated tests passed on 2 October; mocked transport and UI checks complement the live sample.
+- Reanalyzed the existing 35-comment, five-video collection: 18 relevant, 14 irrelevant and three uncertain. These model classifications are not an accuracy benchmark.
+- Video research returned five analyses and three opportunities. A free auto-generated Hindi caption retrieval succeeded.
+- Uploaded six assistant-prepared source summaries with clinical review pending. Narrowed an unsupported comparison topic and generated one LinkedIn draft from four selected statements.
+- The draft retained the exact appointment CTA and paragraph references. Blog and Google Business Profile drafts were subsequently generated from the same four statements, exported and checked for valid references and the exact CTA. The blog introduction contains an extra management claim not established by its citation; it is flagged for removal during review. No campaign content was published.
+- Exact excerpts do not guarantee semantic support. Ambiguous numbers, topic framing and source sufficiency still need review.
+
+**Next work**
+
+1. Implement and evaluate indexed RAG retrieval with source metadata.
+2. Evaluate quality across all three formats and test a nonmedical campaign.
+3. Improve semantic support checks and topic-to-evidence fit; retain human review.
 
 ### 1 October 2026: Social listening prototype implemented and tested
 
@@ -200,9 +200,9 @@ Medical summaries cite Mayo Clinic, Moorfields Eye Hospital, and AAO EyeWiki. Cl
 
 Future daily entries should record the work completed, verification results, remaining issues, and next actions under the actual date. Preserve earlier entries; record planned work as planned rather than completed.
 
-## Running the project
+## Running the prototype
 
-Run the social listening prototype from a local checkout (Python 3.9+):
+From a local checkout, with Python 3.9+:
 
 ```sh
 cd social_listening
@@ -212,18 +212,17 @@ python -m pip install -r requirements.txt
 python -m streamlit run app.py --server.address 127.0.0.1
 ```
 
-Start with the labelled synthetic demo, or enter a YouTube Data API key to collect public comments. Enter a separate Gemini API key and click **Analyze audience signals** to send the current sample to Gemini. No recollection is required to analyze a saved run. Account quota and pricing apply; Gemini free access is not guaranteed. See [setup and limitations](social_listening/README.md).
+Use the labelled synthetic demo or enter a YouTube Data API key for public comment collection. A separate Gemini key runs analysis and generation. Account quota and pricing apply; no paid transcript fallback is used. See [setup, workflow and limits](social_listening/README.md).
 
-Run checks with `python -m unittest discover -s . -p 'test_*.py'` from `social_listening/`.
+```sh
+python -m unittest discover -s . -p 'test_*.py'
+```
 
-The full campaign-generation application is not implemented. API keys, `.env` files, SQLite databases and local report exports must remain outside this public repository.
+Keep API keys, `.env`, local SQLite databases and private reports out of Git. The dated proof folder contains explicitly selected demonstration exports, not credentials or a local database.
 
-## Planned evaluation criteria
+## Evaluation still needed
 
-- Use the selected campaign's sources and settings without leaking information from another campaign.
-- Generate the requested initial formats with the configured audience, language, tone, and CTA.
-- Preserve source references, flag unsupported claims, and apply brand and relevant domain rules.
-- Save drafts and review notes for human approval before publication.
-- Test a second, nonmedical campaign to demonstrate that the workflow can change topics without changing core agent logic. This test has not been run.
-
-For the Nexus Vision example, additionally check patient-appropriate wording, English, a warm and reassuring tone, the correct phone CTA, and the no-em-dashes rule. Medical content requires clinical review before publication.
+- Whether retrieved passages support each full claim, including qualifications.
+- Draft quality and factual alignment in all three formats.
+- A second, nonmedical campaign without changing core logic or mixing campaign sources.
+- Human review and clinical approval for the medical example before publication.

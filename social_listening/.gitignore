@@ -5,6 +5,7 @@ __pycache__/
 *.sqlite-*
 .streamlit/secrets.toml
 
+.deps/
 *.json
 *.pdf
 *.jpg

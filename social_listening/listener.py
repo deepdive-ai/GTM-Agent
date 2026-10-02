@@ -57,7 +57,7 @@ def collect(key, query, video_limit=5, comment_limit=50, days=365, language='en'
     seen = set()
     for video in videos.get('items', []):
         vid = video['id']; snippet = video['snippet']
-        report['videos'].append({'id':vid,'title':html.unescape(snippet['title']),'channel':snippet['channelTitle'],'published_at':snippet['publishedAt'],'url':'https://www.youtube.com/watch?v='+vid,'statistics':video.get('statistics',{})})
+        report['videos'].append({'id':vid,'title':html.unescape(snippet['title']),'description':html.unescape(snippet.get('description','')),'channel':snippet['channelTitle'],'published_at':snippet['publishedAt'],'url':'https://www.youtube.com/watch?v='+vid,'statistics':video.get('statistics',{})})
         try:
             threads = fetch('commentThreads', key, part='snippet', videoId=vid, maxResults=comment_limit, order='time', textFormat='plainText')
         except CollectionError as error:

@@ -1,0 +1,11 @@
+{
+  "status": "Drafts not approved for publication",
+  "source_review": "Clinical review pending",
+  "format_checks": "All three exports passed statement-reference, CTA and punctuation validation; exact excerpts were found in the uploaded source catalog. These are traceability checks, not an accuracy benchmark.",
+  "blog_issue": {
+    "text": "Understanding this condition is the first step towards managing it effectively.",
+    "finding": "Not established by the cited statement.",
+    "action": "Remove or revise before publication."
+  },
+  "pdf_scope": "PDF captured the LinkedIn run before blog and Google Business Profile generation."
+}

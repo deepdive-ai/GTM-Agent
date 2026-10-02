@@ -1,0 +1,35 @@
+{
+  "status": "Assistant-prepared reference summaries; clinical review pending",
+  "sources": [
+    {
+      "id": "source-1",
+      "name": "keratoconus_condition_and_symptoms.md",
+      "text": "# Keratoconus: condition and symptoms\n\nKeratoconus changes the shape of the cornea, the clear front surface of the eye. The cornea becomes thinner and protrudes into a cone-like shape, affecting how it focuses light. Both eyes are usually affected, but not equally. Symptoms can include distorted or blurred vision, sensitivity to light and glare, and frequent prescription changes. Rapid worsening of eyesight warrants assessment by an eye doctor. Symptoms alone do not establish a diagnosis.\n\nSource: Mayo Clinic, “Keratoconus — Symptoms and causes.”\nhttps://www.mayoclinic.org/diseases-conditions/keratoconus/symptoms-causes/syc-20351352\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+    },
+    {
+      "id": "source-2",
+      "name": "keratoconus_causes_and_progression.md",
+      "text": "# Keratoconus: causes and progression\n\nThe exact cause of keratoconus is not fully understood; genetic and environmental influences are implicated. The condition often develops in adolescence or early adulthood. Its severity and speed of progression differ between people. Family history and allergic conditions can be relevant to the clinical history.\n\nSource: Moorfields Eye Hospital, “Keratoconus.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+    },
+    {
+      "id": "source-3",
+      "name": "keratoconus_diagnosis_and_treatment_goals.md",
+      "text": "# Keratoconus: diagnosis and treatment goals\n\nAssessment of keratoconus can include medical and family history, a vision/refraction examination, slit-lamp examination, and corneal imaging. Topography maps corneal shape; tomography can also assess thickness. Treatment has two distinct goals: improve vision and limit progression. The approach depends on severity and whether the condition is changing. Cross-linking may be recommended for progressive disease to help stabilize the cornea. It is not a promise of perfect vision.\n\nSource: Mayo Clinic, “Keratoconus — Diagnosis and treatment.”\nhttps://www.mayoclinic.org/diseases-conditions/keratoconus/diagnosis-treatment/drc-20351357\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+    },
+    {
+      "id": "source-4",
+      "name": "keratoconus_cross_linking_expectations.md",
+      "text": "# Keratoconus: cross-linking expectations\n\nCross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward. Temporary discomfort and hazy vision can occur, and the procedure carries risks, including possible reduced vision. Suitability, technique, recovery, and expected benefit require an individual clinical discussion.\n\nSource: Moorfields Eye Hospital, “Corneal cross linking.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+    },
+    {
+      "id": "source-5",
+      "name": "keratoconus_eye_rubbing.md",
+      "text": "# Keratoconus: eye rubbing\n\nEye rubbing is associated with keratoconus and its progression. Educational material can encourage avoiding rubbing and discussing irritation or allergies with an eye-care professional.\n\nSource: American Academy of Ophthalmology EyeWiki, “Keratoconus,” reviewed 26 August 2026.\nhttps://eyewiki.aao.org/Keratoconus\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+    },
+    {
+      "id": "source-6",
+      "name": "keratoconus_vision_correction_and_monitoring.md",
+      "text": "# Keratoconus: vision correction and monitoring\n\nGlasses or soft contact lenses may help in earlier keratoconus. Specialist contact lenses may be needed as corneal shape becomes more irregular. Advanced cases with inadequate vision despite lenses may require consideration of transplantation. Follow-up examinations and scans help clinicians assess changes and decide whether additional treatment is appropriate.\n\nSource: Moorfields Eye Hospital, “Keratoconus diagnosis and treatment.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/diagnosis-and-treatment\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+    }
+  ]
+}
