@@ -4,7 +4,9 @@ A general-purpose content agent prototype that uses audience research to suggest
 
 **Current stage:** The local Streamlit workflow covers YouTube comment analysis, optional video research, source-grounded topic briefs and reviewed content drafting. Indexed RAG retrieval and a separate review subagent are not implemented yet.
 
-**Last progress update:** 2 October 2026.
+**Last progress update:** 3 October 2026.
+
+[Try the interactive saved sample](https://gtm-campaign-sample.netlify.app/). No installation or API keys needed. This browser sample lets visitors inspect saved research, review drafts and download test notes; it does not run fresh AI generation or the Python application.
 
 [View today's Streamlit PDF, screenshots and sample draft](https://gtm-content-progress-20261002.netlify.app/) · [View the 1 October audience evidence](https://gtm-audience-evidence-20261001.netlify.app/)
 
@@ -90,6 +92,26 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 | [Editorial guidance](data/raw/campaigns/keratoconus_editorial_guidance.md) | First example's wording, tone and factual constraints |
 
 ## Daily progress
+
+### 3 October 2026: Public guided sample available for testing
+
+**Completed**
+
+- Published a browser-based sample with topic choice, original audience comments, source passages, missing-evidence requests and saved drafts in three formats.
+- Added a scope review gate. Changed statement selections cannot silently reuse a saved draft.
+- Added downloadable campaign briefs, evidence requests and feedback notes. Feedback remains on the visitor's device unless they choose to share it.
+- Labelled all research and draft outputs as saved material from 2 October; no fresh collection or AI generation occurs in the public sample.
+
+**Verification and limits**
+
+- Developer browser checks covered supported and missing-evidence paths, all three saved formats, source expansion, the review gate, modified selections and JSON downloads. Sample excerpts and JavaScript syntax passed local checks.
+- This is a static interactive sample, not a hosted Streamlit deployment. The Python app remains available for local live research and generation.
+- Clinical review and independent user testing remain pending. The known unsupported blog sentence is flagged. Indexed RAG remains unimplemented.
+
+**Next work**
+
+- Recruit a content marketer or agency user to try the sample without assistance and report what they accomplished and where they struggled.
+- Use their feedback to refine the workflow, and continue retrieval and semantic-support evaluation.
 
 ### 2 October 2026: Research connected to source-grounded drafting
 
