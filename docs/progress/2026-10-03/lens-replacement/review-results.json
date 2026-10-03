@@ -52,5 +52,15 @@
     "Whole-document grounding and selected excerpts were used; indexed RAG was not run.",
     "The public site serves saved outputs, not live AI generation.",
     "Independent tester feedback and business outcomes remain unverified."
-  ]
+  ],
+  "public_browser_checks": {
+    "date": "2026-10-03",
+    "result": "Passed",
+    "checks": [
+      "Replacement question and new references displayed",
+      "All three saved formats displayed",
+      "Scope review required before viewing a draft",
+      "Changed statement selection disables saved draft reuse"
+    ]
+  }
 }

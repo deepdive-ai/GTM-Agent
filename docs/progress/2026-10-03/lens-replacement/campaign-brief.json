@@ -5,9 +5,13 @@
   "cta": "Call +91 8247710054 to book an appointment",
   "language": "English",
   "tone": "Warm and reassuring",
-  "formats": ["LinkedIn post", "Blog", "Google Business Profile post"],
+  "formats": [
+    "LinkedIn post",
+    "Blog",
+    "Google Business Profile post"
+  ],
   "source_review_status": "Draft material; review pending",
-  "generation_status": "Pending Gemini key entry in Streamlit",
+  "generation_status": "Completed in Streamlit on 3 October 2026; drafts exported for human review",
   "audience_comment": {
     "text": "Will have to change lens after interval of time",
     "url": "https://www.youtube.com/watch?v=6K87YX7qsoo&lc=UgyXlHOpj2gfQKDpOQN4AaABAg"
