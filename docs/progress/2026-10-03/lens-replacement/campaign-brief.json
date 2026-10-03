@@ -1,0 +1,17 @@
+{
+  "business": "Nexus Vision Eye Care",
+  "audience": "Patients considering or using scleral lenses for keratoconus",
+  "goal": "Answer the audience concern about needing to replace scleral lenses over time: explain supported reasons for replacement and whether there is one deadline for everyone. Encourage patients to visit the eye clinic for individual advice.",
+  "cta": "Call +91 8247710054 to book an appointment",
+  "language": "English",
+  "tone": "Warm and reassuring",
+  "formats": ["LinkedIn post", "Blog", "Google Business Profile post"],
+  "source_review_status": "Draft material; review pending",
+  "generation_status": "Pending Gemini key entry in Streamlit",
+  "audience_comment": {
+    "text": "Will have to change lens after interval of time",
+    "url": "https://www.youtube.com/watch?v=6K87YX7qsoo&lc=UgyXlHOpj2gfQKDpOQN4AaABAg"
+  },
+  "editorial_question": "Why might scleral lenses need replacing over time, and is there one replacement deadline for everyone?",
+  "instructions": "Use only supported statements from the three supplied reference summaries. Preserve qualifications about general lifespan and individual circumstances. Do not invent clinic services, prices, warranties or universal replacement deadlines. Do not use em dashes. Require clinical review before publication."
+}

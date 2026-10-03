@@ -8,7 +8,7 @@ A general-purpose content agent prototype that uses audience research to suggest
 
 [Try the interactive saved sample](https://gtm-campaign-sample.netlify.app/). No installation or API keys needed. This browser sample lets visitors inspect saved research, review drafts and download test notes; it does not run fresh AI generation or the Python application.
 
-[View today's Streamlit PDF, screenshots and sample draft](https://gtm-content-progress-20261002.netlify.app/) · [View the 1 October audience evidence](https://gtm-audience-evidence-20261001.netlify.app/)
+[View the 2 October Streamlit PDF, screenshots and sample draft](https://gtm-content-progress-20261002.netlify.app/) · [View the 1 October audience evidence](https://gtm-audience-evidence-20261001.netlify.app/)
 
 These public pages contain saved development evidence, not a live interactive app. The medical example remains a draft awaiting clinical review, not approved campaign content.
 
@@ -46,7 +46,7 @@ The prototype supports LinkedIn posts, blogs and Google Business Profile posts a
 
 The first example is keratoconus education for Nexus Vision Speciality Eye Care, aimed at patients and encouraging a clinic appointment. The chosen language is English, tone warm and reassuring, and CTA **Call +91 8247710054 to book an appointment**. Generated prose must not use em dashes. Campaign timing and advertising service area remain undecided.
 
-The six medical starter summaries were prepared by the assistant with citations, not supplied or clinically approved by the user. The user supplied the clinic website and campaign decisions. Sources and clinic details still require appropriate review; they do not substantiate invented prices, guarantees or procedure availability.
+The six medical starter summaries and three later lens-replacement summaries were prepared by the assistant with citations, not supplied or clinically approved by the user. The user supplied the clinic website and campaign decisions. Sources and clinic details still require appropriate review; they do not substantiate invented prices, guarantees or procedure availability.
 
 ## Implementation status
 
@@ -76,7 +76,7 @@ RAG selects evidence; it does not verify whether a source is correct or whether 
 
 [Shared factual guardrails](guidelines/factual_guardrails.md) cover supplied facts, missing evidence, unsupported claims and human approval. Runtime checks reject unknown IDs, invented excerpts, missing paragraph references, changed CTAs and em dashes in generated prose. Original source quotations retain their punctuation.
 
-These checks establish traceability, not correctness. Review must assess whether excerpts support the full meaning of a statement. The live test exposed overly broad comparison framing and video findings whose brief excerpts did not support every implication. A comparison topic was narrowed before drafting. Missing pricing, insurance and lens-use evidence remains unresolved.
+These checks establish traceability, not correctness. Review must assess whether excerpts support the full meaning of a statement. The live test exposed overly broad comparison framing and video findings whose brief excerpts did not support every implication. A comparison topic was narrowed before drafting. The 3 October example adds replacement evidence and narrows the scope to that question. Pricing, insurance, daily wear and treatment comparisons remain outside this completed sample.
 
 The collection is a small snapshot of recent top-level comments, not exhaustive social listening. Engagement totals and repeated saved runs do not yet establish trends, market demand, audience geography, medical facts or bookings. Cross-industry accuracy and commercial readiness have not been demonstrated.
 
@@ -87,31 +87,38 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 | [social_listening/](social_listening/) | Streamlit app, collector, analyzers, planner, writer, tests and setup |
 | [docs/progress/2026-10-02/](docs/progress/2026-10-02/) | Today's PDF, screenshots, LinkedIn draft and source catalog |
 | [guidelines/factual_guardrails.md](guidelines/factual_guardrails.md) | Reusable content and research rules |
-| [data/raw/products/](data/raw/products/) | Six cited keratoconus summaries and clinic profile |
+| [data/raw/products/](data/raw/products/) | Cited keratoconus and lens-replacement summaries, plus clinic profile |
 | [Campaign brief](data/raw/campaigns/keratoconus_campaign_brief.md) | First example's campaign decisions |
 | [Editorial guidance](data/raw/campaigns/keratoconus_editorial_guidance.md) | First example's wording, tone and factual constraints |
 
 ## Daily progress
 
-### 3 October 2026: Public guided sample available for testing
+### 3 October 2026: An audience replacement question connected to supported drafts
 
 **Completed**
 
-- Published a browser-based sample with topic choice, original audience comments, source passages, missing-evidence requests and saved drafts in three formats.
-- Added a scope review gate. Changed statement selections cannot silently reuse a saved draft.
-- Added downloadable campaign briefs, evidence requests and feedback notes. Feedback remains on the visitor's device unless they choose to share it.
-- Labelled all research and draft outputs as saved material from 2 October; no fresh collection or AI generation occurs in the public sample.
+- Added three cited reference summaries from Moorfields, Cleveland Clinic and a professional Contact Lens Spectrum article to address scleral lens replacement.
+- Reanalyzed the existing 35-comment collection in Streamlit. Gemini proposed a replacement topic linked to the original audience comment.
+- Reviewed the proposed statements, excluded one consequence not established by its selected excerpt, and generated LinkedIn, short blog and Google Business Profile drafts through the actual Gemini writer.
+- Replaced the public sample's incomplete main example with this focused question, explanatory statements, original-source links and the three saved outputs.
+- Retained the scope review gate and downloadable drafts, briefs and feedback notes. Changed selections cannot silently reuse a saved draft.
 
 **Verification and limits**
 
-- Developer browser checks covered supported and missing-evidence paths, all three saved formats, source expansion, the review gate, modified selections and JSON downloads. Sample excerpts and JavaScript syntax passed local checks.
-- This is a static interactive sample, not a hosted Streamlit deployment. The Python app remains available for local live research and generation.
-- Clinical review and independent user testing remain pending. The known unsupported blog sentence is flagged. Indexed RAG remains unimplemented.
+- Checked exact excerpts, paragraph references, the phone CTA and the no-em-dashes rule. Drafts contain 175, 177 and 118 words respectively; the blog remains a short explanation rather than a long-form article.
+- Reviewed the prose against the supplied summaries and the original source guidance. This review does not certify clinical accuracy or approve publication.
+- The browser sample serves saved outputs, not live AI generation. Whole-document input and selected excerpts were used; indexed RAG remains unimplemented.
+- Clinical approval, independent user testing, cross-industry evaluation and business outcomes remain pending.
+
+**Evidence**
+
+- [Try the focused sample](https://gtm-campaign-sample.netlify.app/)
+- [Topic brief, actual generated outputs and review record](docs/progress/2026-10-03/lens-replacement/)
 
 **Next work**
 
-- Recruit a content marketer or agency user to try the sample without assistance and report what they accomplished and where they struggled.
-- Use their feedback to refine the workflow, and continue retrieval and semantic-support evaluation.
+- Obtain clinical review for this medical example and independent feedback on the workflow.
+- Implement and evaluate retrieval, then test a nonmedical campaign.
 
 ### 2 October 2026: Research connected to source-grounded drafting
 

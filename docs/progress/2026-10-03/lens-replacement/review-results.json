@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-03",
+  "question": "Why might scleral lenses need replacing over time, and is there one replacement deadline for everyone?",
+  "excluded_statement_index": 8,
+  "excluded_reason": "The statement added a possible new fitting consequence not established by its selected excerpt.",
+  "selected_statement_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9
+  ],
+  "checks": [
+    {
+      "format": "LinkedIn",
+      "words": 175,
+      "model": "gemini-2.5-flash",
+      "generated_at": "2026-10-03T16:29:29.301970+00:00",
+      "excerpt_checks": "passed",
+      "paragraph_reference_checks": "passed",
+      "cta_and_punctuation_checks": "passed",
+      "semantic_review": "Draft paragraphs checked against the cited summaries; no extra clinical claims identified in this review. This is not clinical approval."
+    },
+    {
+      "format": "Blog",
+      "words": 177,
+      "model": "gemini-2.5-flash",
+      "generated_at": "2026-10-03T16:31:25.801209+00:00",
+      "excerpt_checks": "passed",
+      "paragraph_reference_checks": "passed",
+      "cta_and_punctuation_checks": "passed",
+      "semantic_review": "Draft paragraphs checked against the cited summaries; no extra clinical claims identified in this review. This is not clinical approval."
+    },
+    {
+      "format": "Google Business Profile",
+      "words": 118,
+      "model": "gemini-2.5-flash",
+      "generated_at": "2026-10-03T16:34:58.115165+00:00",
+      "excerpt_checks": "passed",
+      "paragraph_reference_checks": "passed",
+      "cta_and_punctuation_checks": "passed",
+      "semantic_review": "Draft paragraphs checked against the cited summaries; no extra clinical claims identified in this review. This is not clinical approval."
+    }
+  ],
+  "limits": [
+    "Assistant-prepared source summaries and medical drafts require clinical approval before campaign publication.",
+    "The blog is a short explanatory draft rather than a 400-650 word article; no padding was added.",
+    "Whole-document grounding and selected excerpts were used; indexed RAG was not run.",
+    "The public site serves saved outputs, not live AI generation.",
+    "Independent tester feedback and business outcomes remain unverified."
+  ]
+}

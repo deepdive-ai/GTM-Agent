@@ -2,114 +2,48 @@
   "topics": [
     {
       "id": 0,
-      "title": "Understanding Scleral Lenses: Daily Wear and Longevity",
-      "original_title": "Understanding Scleral Lenses: Daily Wear and Longevity",
-      "rationale": "Audience members frequently ask about the practical aspects of wearing scleral lenses, specifically how long they can be worn daily and if they need to be replaced over time. This topic directly addresses these common concerns, providing essential information for potential long-term users.",
-      "gaps": [
-        "Expert recommendations on maximum daily wear time for scleral lenses.",
-        "Information on the typical lifespan and replacement frequency of scleral lenses.",
-        "Guidelines for physical activities while wearing scleral lenses.",
-        "Troubleshooting tips for common issues like bubbles in scleral lenses."
-      ],
+      "title": "Understanding Scleral Lens Replacement: When and Why",
+      "original_title": "Understanding Scleral Lens Replacement: When and Why",
+      "rationale": "This topic directly addresses the audience's concern about needing to replace scleral lenses over time, as indicated by a commenter asking 'Will have to change lens after interval of time'. It provides a warm and reassuring explanation of the reasons for replacement and clarifies that there isn't a single deadline for everyone, aligning with the brief's goal.",
+      "gaps": [],
       "comments": [
-        {
-          "id": "UgzWgt5SehXu_CFcggh4AaABAg",
-          "text": "Ma'am kitne hours wear kar sakte ek baar m?",
-          "url": "https://www.youtube.com/watch?v=hBFQk0CvkIM&lc=UgzWgt5SehXu_CFcggh4AaABAg"
-        },
         {
           "id": "UgyXlHOpj2gfQKDpOQN4AaABAg",
           "text": "Will have to change lens after interval of time",
           "url": "https://www.youtube.com/watch?v=6K87YX7qsoo&lc=UgyXlHOpj2gfQKDpOQN4AaABAg"
         }
       ],
-      "available": false
-    },
-    {
-      "id": 1,
-      "title": "Keratoconus care: improving vision and limiting progression",
-      "original_title": "Scleral Lenses vs. ICL/LASIK: Which is Right for Advanced Keratoconus?",
-      "rationale": "Several audience comments indicate a need for comparative information between scleral lenses and surgical options like ICL or LASIK, especially for advanced keratoconus. This topic aims to clarify the differences and help patients understand which option might be best for their specific condition.",
-      "gaps": [
-        "Expert medical advice comparing scleral lenses, ICL, and LASIK for different stages and severities of keratoconus, including eligibility criteria, outcomes, and potential risks.",
-        "Clarification on what \"permanent solution\" means in the context of keratoconus."
-      ],
-      "comments": [
-        {
-          "id": "UgyKjy9O6NT6zqfa2bh4AaABAg",
-          "text": "Ma'am what is a permanent solution if we don't want to use a contact lens?\nKindly suggest.",
-          "url": "https://www.youtube.com/watch?v=yGE57_3S_ug&lc=UgyKjy9O6NT6zqfa2bh4AaABAg"
-        },
-        {
-          "id": "UgwwiZ-FjLzRmjnvzCl4AaABAg",
-          "text": "Mere right eye main advance keratoconus hain konsa best hoga ICL or scleral lence?",
-          "url": "https://www.youtube.com/watch?v=6K87YX7qsoo&lc=UgwwiZ-FjLzRmjnvzCl4AaABAg"
-        }
-      ],
-      "available": true
-    },
-    {
-      "id": 2,
-      "title": "Navigating the Cost of Scleral Lenses and Insurance Coverage",
-      "original_title": "Navigating the Cost of Scleral Lenses and Insurance Coverage",
-      "rationale": "The cost of scleral lenses and whether they are covered by insurance are significant concerns for the audience. This topic directly addresses these financial questions, providing clarity on pricing structures and insurance possibilities.",
-      "gaps": [
-        "Specific pricing details for scleral lenses (per eye/pair).",
-        "Factors affecting the cost of scleral lenses.",
-        "Information on typical insurance coverage for scleral lenses and keratoconus treatments (what is typically covered, what is not, how to check).",
-        "Any available financing options for scleral lenses."
-      ],
-      "comments": [
-        {
-          "id": "UgwoMiE0t9OntEkT42B4AaABAg",
-          "text": "Is is covered under insurance?",
-          "url": "https://www.youtube.com/watch?v=hBFQk0CvkIM&lc=UgwoMiE0t9OntEkT42B4AaABAg"
-        },
-        {
-          "id": "UgxMnTCFErvOK-oDmtF4AaABAg",
-          "text": "Price?",
-          "url": "https://www.youtube.com/watch?v=hBFQk0CvkIM&lc=UgxMnTCFErvOK-oDmtF4AaABAg"
-        }
-      ],
-      "available": false
+      "available": true,
+      "scope_note": "A real comment prompted this replacement question. Gemini proposed the topic using three reference summaries. Review excluded an overextended statement before drafting. This example addresses replacement reasons and general timing; it does not set an individual treatment plan."
     }
   ],
   "sources": [
     {
       "id": "source-1",
-      "name": "keratoconus_condition_and_symptoms.md",
-      "text": "# Keratoconus: condition and symptoms\n\nKeratoconus changes the shape of the cornea, the clear front surface of the eye. The cornea becomes thinner and protrudes into a cone-like shape, affecting how it focuses light. Both eyes are usually affected, but not equally. Symptoms can include distorted or blurred vision, sensitivity to light and glare, and frequent prescription changes. Rapid worsening of eyesight warrants assessment by an eye doctor. Symptoms alone do not establish a diagnosis.\n\nSource: Mayo Clinic, “Keratoconus — Symptoms and causes.”\nhttps://www.mayoclinic.org/diseases-conditions/keratoconus/symptoms-causes/syc-20351352\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+      "name": "scleral_lens_surface_wear.md",
+      "text": "# Scleral lens surface wear\n\nStatus: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending.\nPrepared and source accessed: 3 October 2026.\n\nMoorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling. Re-polishing a lens is not always an option. Careful handling helps preserve the lens surface.\n\nSource: Moorfields Eye Hospital, Care of your scleral contact lenses, section Taking care of your contact lenses.\nhttps://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses\n\nScope: Explains surface wear. This source does not establish an individual replacement date or a clinic's replacement policy.",
+      "primary_url": "https://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses",
+      "document_url": "scleral_lens_surface_wear.md"
     },
     {
       "id": "source-2",
-      "name": "keratoconus_causes_and_progression.md",
-      "text": "# Keratoconus: causes and progression\n\nThe exact cause of keratoconus is not fully understood; genetic and environmental influences are implicated. The condition often develops in adolescence or early adulthood. Its severity and speed of progression differ between people. Family history and allergic conditions can be relevant to the clinical history.\n\nSource: Moorfields Eye Hospital, “Keratoconus.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+      "name": "scleral_lens_replacement_reasons.md",
+      "text": "# Reasons a scleral lens may need replacement\n\nStatus: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study.\nPrepared and source accessed: 3 October 2026.\n\nThe clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing.\n\nA replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting. Changes in an ectatic cornea can alter the clearance beneath a scleral lens.\n\nSource: Dr. DeNaeyer, Replacing and Refitting Scleral Contact Lenses, Contact Lens Spectrum, 1 November 2018.\nhttps://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/\n\nSource caveat: The article dates from 2018 and discloses the author's commercial interests in lens-related companies. Use it for the stated replacement reasons, not promises about current products, superiority or outcomes.",
+      "primary_url": "https://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/",
+      "document_url": "scleral_lens_replacement_reasons.md"
     },
     {
       "id": "source-3",
-      "name": "keratoconus_diagnosis_and_treatment_goals.md",
-      "text": "# Keratoconus: diagnosis and treatment goals\n\nAssessment of keratoconus can include medical and family history, a vision/refraction examination, slit-lamp examination, and corneal imaging. Topography maps corneal shape; tomography can also assess thickness. Treatment has two distinct goals: improve vision and limit progression. The approach depends on severity and whether the condition is changing. Cross-linking may be recommended for progressive disease to help stabilize the cornea. It is not a promise of perfect vision.\n\nSource: Mayo Clinic, “Keratoconus — Diagnosis and treatment.”\nhttps://www.mayoclinic.org/diseases-conditions/keratoconus/diagnosis-treatment/drc-20351357\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
-    },
-    {
-      "id": "source-4",
-      "name": "keratoconus_cross_linking_expectations.md",
-      "text": "# Keratoconus: cross-linking expectations\n\nCross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward. Temporary discomfort and hazy vision can occur, and the procedure carries risks, including possible reduced vision. Suitability, technique, recovery, and expected benefit require an individual clinical discussion.\n\nSource: Moorfields Eye Hospital, “Corneal cross linking.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
-    },
-    {
-      "id": "source-5",
-      "name": "keratoconus_eye_rubbing.md",
-      "text": "# Keratoconus: eye rubbing\n\nEye rubbing is associated with keratoconus and its progression. Educational material can encourage avoiding rubbing and discussing irritation or allergies with an eye-care professional.\n\nSource: American Academy of Ophthalmology EyeWiki, “Keratoconus,” reviewed 26 August 2026.\nhttps://eyewiki.aao.org/Keratoconus\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
-    },
-    {
-      "id": "source-6",
-      "name": "keratoconus_vision_correction_and_monitoring.md",
-      "text": "# Keratoconus: vision correction and monitoring\n\nGlasses or soft contact lenses may help in earlier keratoconus. Specialist contact lenses may be needed as corneal shape becomes more irregular. Advanced cases with inadequate vision despite lenses may require consideration of transplantation. Follow-up examinations and scans help clinicians assess changes and decide whether additional treatment is appropriate.\n\nSource: Moorfields Eye Hospital, “Keratoconus diagnosis and treatment.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/diagnosis-and-treatment\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+      "name": "scleral_lens_lifespan_and_review.md",
+      "text": "# Scleral lens lifespan and follow-up\n\nStatus: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending.\nPrepared and source accessed: 3 October 2026.\n\nCleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer. An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances. This is general information, not a fixed replacement deadline for every patient.\n\nCleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.\n\nSource: Cleveland Clinic, Scleral Lenses, sections How long do scleral lenses last? and When should I see my healthcare provider? Page medically reviewed; last updated 28 May 2024.\nhttps://my.clevelandclinic.org/health/treatments/scleral-lenses\n\nScope: Supports general lifespan and follow-up information. It does not establish the replacement schedule, price, warranty or services of Nexus Vision.",
+      "primary_url": "https://my.clevelandclinic.org/health/treatments/scleral-lenses",
+      "document_url": "scleral_lens_lifespan_and_review.md"
     }
   ],
   "brief": {
     "business": "Nexus Vision Eye Care",
-    "audience": "Patients seeking information about keratoconus and scleral lenses",
-    "goal": "Help patients understand their options and encourage an eye-clinic appointment. Prioritise long-term scleral lens use and monitoring if supported by the audience evidence.",
+    "audience": "Patients considering or using scleral lenses for keratoconus",
+    "goal": "Answer the audience concern about needing to replace scleral lenses over time: explain supported reasons for replacement and whether there is one deadline for everyone. Encourage patients to visit the eye clinic for individual advice.",
     "formats": [
       "LinkedIn post",
       "Blog",
@@ -122,184 +56,125 @@
   },
   "statements": [
     {
-      "text": "Keratoconus is a condition where the cornea, the clear front surface of the eye, thins and protrudes into a cone-like shape, which can lead to distorted or blurred vision.",
+      "text": "Scleral lenses generally have an expected lifespan of one to two years, though some lenses may last longer.",
       "citations": [
         {
-          "source_id": "source-1",
-          "excerpt": "Keratoconus changes the shape of the cornea, the clear front surface of the eye. The cornea becomes thinner and protrudes into a cone-like shape, affecting how it focuses light. Both eyes are usually affected, but not equally. Symptoms can include distorted or blurred vision, sensitivity to light and glare, and frequent prescription changes."
+          "source_id": "source-3",
+          "excerpt": "Cleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer."
         }
       ],
       "id": "statement-1"
     },
     {
-      "text": "Treatment for keratoconus has two main goals: to improve vision and to limit the progression of the condition.",
+      "text": "The expected lifespan of an individual's scleral lenses can vary based on factors such as the lens brand, material, and personal circumstances.",
       "citations": [
         {
           "source_id": "source-3",
-          "excerpt": "Treatment has two distinct goals: improve vision and limit progression."
+          "excerpt": "An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances."
         }
       ],
       "id": "statement-2"
     },
     {
-      "text": "In earlier stages of keratoconus, glasses or soft contact lenses may be sufficient for vision correction, but as the corneal shape becomes more irregular, specialist contact lenses may be necessary.",
+      "text": "There is no fixed replacement deadline for every patient.",
       "citations": [
         {
-          "source_id": "source-6",
-          "excerpt": "Glasses or soft contact lenses may help in earlier keratoconus. Specialist contact lenses may be needed as corneal shape becomes more irregular."
+          "source_id": "source-3",
+          "excerpt": "This is general information, not a fixed replacement deadline for every patient."
         }
       ],
       "id": "statement-3"
     },
     {
-      "text": "Cross-linking is a procedure that may be recommended for progressive keratoconus to help stabilize the cornea and prevent further deterioration, though patients may still require glasses or contact lenses afterward.",
+      "text": "Reasons a scleral lens may need replacement include the accumulation of deposits, damage like surface cracking or breakage, or changes in the lens fit or prescription power.",
       "citations": [
         {
-          "source_id": "source-3",
-          "excerpt": "Cross-linking may be recommended for progressive disease to help stabilize the cornea."
-        },
+          "source_id": "source-2",
+          "excerpt": "The clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing."
+        }
+      ],
+      "id": "statement-4"
+    },
+    {
+      "text": "The surfaces of gas-permeable scleral lenses can deteriorate due to repeated wearing and handling.",
+      "citations": [
         {
-          "source_id": "source-4",
-          "excerpt": "Cross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward."
+          "source_id": "source-1",
+          "excerpt": "Moorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling."
         }
       ],
       "id": "statement-5"
+    },
+    {
+      "text": "Careful handling can help preserve the lens surface.",
+      "citations": [
+        {
+          "source_id": "source-1",
+          "excerpt": "Careful handling helps preserve the lens surface."
+        }
+      ],
+      "id": "statement-6"
+    },
+    {
+      "text": "Re-polishing a lens is not always a viable option.",
+      "citations": [
+        {
+          "source_id": "source-1",
+          "excerpt": "Re-polishing a lens is not always an option."
+        }
+      ],
+      "id": "statement-7"
+    },
+    {
+      "text": "If a scleral lens needs replacement, it may not be an identical copy; the existing design might be duplicated, adjusted, or a new fitting may be required.",
+      "citations": [
+        {
+          "source_id": "source-2",
+          "excerpt": "A replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting."
+        }
+      ],
+      "id": "statement-8"
+    },
+    {
+      "text": "It is recommended to inform an eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift, or lenses that become difficult to remove.",
+      "citations": [
+        {
+          "source_id": "source-3",
+          "excerpt": "Cleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove."
+        }
+      ],
+      "id": "statement-10"
     }
   ],
   "drafts": {
     "LinkedIn": {
-      "headline": "Understanding Keratoconus: Improving Vision and Limiting Progression",
+      "headline": "Scleral Lens Replacement: What to Expect",
       "blocks": [
         {
           "kind": "factual",
-          "text": "Keratoconus is an eye condition where the cornea, the clear front surface of the eye, thins and protrudes into a cone-like shape. This change can lead to distorted or blurred vision.",
+          "text": "Scleral lenses generally have an expected lifespan of one to two years, though some lenses may last longer. However, there is no fixed replacement deadline for every patient, as the expected lifespan of an individual's scleral lenses can vary based on factors such as the lens brand, material, and personal circumstances.",
           "statement_ids": [
-            "statement-1"
-          ]
-        },
-        {
-          "kind": "factual",
-          "text": "When addressing keratoconus, treatment typically focuses on two main objectives: improving vision and limiting the progression of the condition.",
-          "statement_ids": [
-            "statement-2"
-          ]
-        },
-        {
-          "kind": "factual",
-          "text": "In the earlier stages of keratoconus, vision correction might be achieved with glasses or soft contact lenses. However, as the corneal shape becomes more irregular, specialist contact lenses may become necessary to help improve vision.",
-          "statement_ids": [
-            "statement-3"
-          ]
-        },
-        {
-          "kind": "factual",
-          "text": "For progressive keratoconus, a procedure called cross-linking may be recommended. This aims to help stabilize the cornea and prevent further deterioration, though patients might still need glasses or contact lenses for vision correction afterward.",
-          "statement_ids": [
-            "statement-5"
-          ]
-        },
-        {
-          "kind": "cta",
-          "text": "Call +91 8247710054 to book an appointment",
-          "statement_ids": []
-        }
-      ],
-      "review_notes": [
-        "Unresolved evidence limitations: Expert medical advice comparing scleral lenses, ICL, and LASIK for different stages and severities of keratoconus, including eligibility criteria, outcomes, and potential risks.",
-        "Unresolved evidence limitations: Clarification on what \"permanent solution\" means in the context of keratoconus.",
-        "Source review status: Draft material; review pending"
-      ],
-      "statements": [
-        {
-          "text": "Keratoconus is a condition where the cornea, the clear front surface of the eye, thins and protrudes into a cone-like shape, which can lead to distorted or blurred vision.",
-          "citations": [
-            {
-              "source_id": "source-1",
-              "excerpt": "Keratoconus changes the shape of the cornea, the clear front surface of the eye. The cornea becomes thinner and protrudes into a cone-like shape, affecting how it focuses light. Both eyes are usually affected, but not equally. Symptoms can include distorted or blurred vision, sensitivity to light and glare, and frequent prescription changes."
-            }
-          ],
-          "id": "statement-1"
-        },
-        {
-          "text": "Treatment for keratoconus has two main goals: to improve vision and to limit the progression of the condition.",
-          "citations": [
-            {
-              "source_id": "source-3",
-              "excerpt": "Treatment has two distinct goals: improve vision and limit progression."
-            }
-          ],
-          "id": "statement-2"
-        },
-        {
-          "text": "In earlier stages of keratoconus, glasses or soft contact lenses may be sufficient for vision correction, but as the corneal shape becomes more irregular, specialist contact lenses may be necessary.",
-          "citations": [
-            {
-              "source_id": "source-6",
-              "excerpt": "Glasses or soft contact lenses may help in earlier keratoconus. Specialist contact lenses may be needed as corneal shape becomes more irregular."
-            }
-          ],
-          "id": "statement-3"
-        },
-        {
-          "text": "Cross-linking is a procedure that may be recommended for progressive keratoconus to help stabilize the cornea and prevent further deterioration, though patients may still require glasses or contact lenses afterward.",
-          "citations": [
-            {
-              "source_id": "source-3",
-              "excerpt": "Cross-linking may be recommended for progressive disease to help stabilize the cornea."
-            },
-            {
-              "source_id": "source-4",
-              "excerpt": "Cross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward."
-            }
-          ],
-          "id": "statement-5"
-        }
-      ],
-      "brief": {
-        "business": "Nexus Vision Eye Care",
-        "audience": "Patients seeking information about keratoconus and scleral lenses",
-        "goal": "Help patients understand their options and encourage an eye-clinic appointment. Prioritise long-term scleral lens use and monitoring if supported by the audience evidence.",
-        "formats": [
-          "LinkedIn post",
-          "Blog",
-          "Google Business Profile post"
-        ],
-        "call_to_action": "Call +91 8247710054 to book an appointment",
-        "language": "English",
-        "tone": "Warm and reassuring",
-        "source_review_status": "Draft material; review pending"
-      },
-      "reviewed_title": "Keratoconus care: improving vision and limiting progression",
-      "format": "LinkedIn post",
-      "editor_notes": "Explain the two treatment goals using only the selected facts. Do not compare ICL or LASIK, recommend an individual treatment, claim permanent correction, or imply Nexus Vision performs procedures. Keep this an English, warm and reassuring educational test draft.",
-      "model": "gemini-2.5-flash",
-      "created_at": "2026-10-02T13:32:09.113250+00:00",
-      "input_fingerprint": "b41382a6c7699a12bc4f529d94fb6f4f0d8cfb89b085b631c94d9bb7abc1f9ef",
-      "status": "Draft for human review; not approved for publication"
-    },
-    "Blog": {
-      "headline": "Understanding Keratoconus: Improving Vision and Limiting Progression",
-      "blocks": [
-        {
-          "kind": "factual",
-          "text": "Keratoconus is an eye condition where the cornea, the clear front surface of the eye, thins and begins to protrude into a cone-like shape. This change in shape can lead to distorted or blurred vision. Understanding this condition is the first step towards managing it effectively.",
-          "statement_ids": [
-            "statement-1"
-          ]
-        },
-        {
-          "kind": "factual",
-          "text": "### Improving Vision with Keratoconus\n\nFor those with keratoconus, treatment typically focuses on two main goals: improving vision and limiting the progression of the condition. In the earlier stages, vision correction may be achieved with glasses or soft contact lenses. However, as the cornea's shape becomes more irregular, specialist contact lenses may become necessary to achieve clearer vision.",
-          "statement_ids": [
+            "statement-1",
             "statement-2",
             "statement-3"
           ]
         },
         {
           "kind": "factual",
-          "text": "### Limiting Progression of Keratoconus\n\nTo help stabilize the cornea and prevent further deterioration, a procedure called cross-linking may be recommended for progressive keratoconus. While cross-linking aims to limit the condition's progression, patients may still need glasses or contact lenses afterward to correct their vision.",
+          "text": "Several reasons may lead to a scleral lens needing replacement. These include the accumulation of deposits, damage like surface cracking or breakage, or changes in the lens fit or prescription power. The surfaces of gas-permeable scleral lenses can deteriorate due to repeated wearing and handling, though careful handling can help preserve the lens surface. Re-polishing a lens is not always a viable option.",
           "statement_ids": [
-            "statement-5"
+            "statement-4",
+            "statement-5",
+            "statement-6",
+            "statement-7"
+          ]
+        },
+        {
+          "kind": "factual",
+          "text": "If a scleral lens needs replacement, it may not be an identical copy. The existing design might be duplicated, adjusted, or a new fitting may be required. It is recommended to inform an eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift, or lenses that become difficult to remove.",
+          "statement_ids": [
+            "statement-8",
+            "statement-10"
           ]
         },
         {
@@ -309,60 +184,104 @@
         }
       ],
       "review_notes": [
-        "Unresolved evidence limitations: Expert medical advice comparing scleral lenses, ICL, and LASIK for different stages and severities of keratoconus, including eligibility criteria, outcomes, and potential risks.",
-        "Unresolved evidence limitations: Clarification on what \"permanent solution\" means in the context of keratoconus.",
-        "Source review status: Draft material; review pending"
+        "Draft material; review pending"
       ],
       "statements": [
         {
-          "text": "Keratoconus is a condition where the cornea, the clear front surface of the eye, thins and protrudes into a cone-like shape, which can lead to distorted or blurred vision.",
+          "text": "Scleral lenses generally have an expected lifespan of one to two years, though some lenses may last longer.",
           "citations": [
             {
-              "source_id": "source-1",
-              "excerpt": "Keratoconus changes the shape of the cornea, the clear front surface of the eye. The cornea becomes thinner and protrudes into a cone-like shape, affecting how it focuses light. Both eyes are usually affected, but not equally. Symptoms can include distorted or blurred vision, sensitivity to light and glare, and frequent prescription changes."
+              "source_id": "source-3",
+              "excerpt": "Cleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer."
             }
           ],
           "id": "statement-1"
         },
         {
-          "text": "Treatment for keratoconus has two main goals: to improve vision and to limit the progression of the condition.",
+          "text": "The expected lifespan of an individual's scleral lenses can vary based on factors such as the lens brand, material, and personal circumstances.",
           "citations": [
             {
               "source_id": "source-3",
-              "excerpt": "Treatment has two distinct goals: improve vision and limit progression."
+              "excerpt": "An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances."
             }
           ],
           "id": "statement-2"
         },
         {
-          "text": "In earlier stages of keratoconus, glasses or soft contact lenses may be sufficient for vision correction, but as the corneal shape becomes more irregular, specialist contact lenses may be necessary.",
+          "text": "There is no fixed replacement deadline for every patient.",
           "citations": [
             {
-              "source_id": "source-6",
-              "excerpt": "Glasses or soft contact lenses may help in earlier keratoconus. Specialist contact lenses may be needed as corneal shape becomes more irregular."
+              "source_id": "source-3",
+              "excerpt": "This is general information, not a fixed replacement deadline for every patient."
             }
           ],
           "id": "statement-3"
         },
         {
-          "text": "Cross-linking is a procedure that may be recommended for progressive keratoconus to help stabilize the cornea and prevent further deterioration, though patients may still require glasses or contact lenses afterward.",
+          "text": "Reasons a scleral lens may need replacement include the accumulation of deposits, damage like surface cracking or breakage, or changes in the lens fit or prescription power.",
           "citations": [
             {
-              "source_id": "source-3",
-              "excerpt": "Cross-linking may be recommended for progressive disease to help stabilize the cornea."
-            },
+              "source_id": "source-2",
+              "excerpt": "The clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing."
+            }
+          ],
+          "id": "statement-4"
+        },
+        {
+          "text": "The surfaces of gas-permeable scleral lenses can deteriorate due to repeated wearing and handling.",
+          "citations": [
             {
-              "source_id": "source-4",
-              "excerpt": "Cross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward."
+              "source_id": "source-1",
+              "excerpt": "Moorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling."
             }
           ],
           "id": "statement-5"
+        },
+        {
+          "text": "Careful handling can help preserve the lens surface.",
+          "citations": [
+            {
+              "source_id": "source-1",
+              "excerpt": "Careful handling helps preserve the lens surface."
+            }
+          ],
+          "id": "statement-6"
+        },
+        {
+          "text": "Re-polishing a lens is not always a viable option.",
+          "citations": [
+            {
+              "source_id": "source-1",
+              "excerpt": "Re-polishing a lens is not always an option."
+            }
+          ],
+          "id": "statement-7"
+        },
+        {
+          "text": "If a scleral lens needs replacement, it may not be an identical copy; the existing design might be duplicated, adjusted, or a new fitting may be required.",
+          "citations": [
+            {
+              "source_id": "source-2",
+              "excerpt": "A replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting."
+            }
+          ],
+          "id": "statement-8"
+        },
+        {
+          "text": "It is recommended to inform an eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift, or lenses that become difficult to remove.",
+          "citations": [
+            {
+              "source_id": "source-3",
+              "excerpt": "Cleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove."
+            }
+          ],
+          "id": "statement-10"
         }
       ],
       "brief": {
         "business": "Nexus Vision Eye Care",
-        "audience": "Patients seeking information about keratoconus and scleral lenses",
-        "goal": "Help patients understand their options and encourage an eye-clinic appointment. Prioritise long-term scleral lens use and monitoring if supported by the audience evidence.",
+        "audience": "Patients considering or using scleral lenses for keratoconus",
+        "goal": "Answer the audience concern about needing to replace scleral lenses over time: explain supported reasons for replacement and whether there is one deadline for everyone. Encourage patients to visit the eye clinic for individual advice.",
         "formats": [
           "LinkedIn post",
           "Blog",
@@ -373,31 +292,54 @@
         "tone": "Warm and reassuring",
         "source_review_status": "Draft material; review pending"
       },
-      "reviewed_title": "Keratoconus care: improving vision and limiting progression",
-      "format": "Blog",
-      "editor_notes": "Write a short blog article, not a social post. Use an introduction and three concise sections with headings about the condition, improving vision, and limiting progression. Put each section heading inside its source-cited factual block using Markdown. Explain only the four selected facts without padding to meet a word count. Do not compare ICL or LASIK, recommend an individual treatment, claim permanent correction, add care instructions, or imply Nexus Vision performs procedures. Use English with a warm and reassuring tone. Keep the exact campaign CTA as the final block.",
+      "reviewed_title": "Understanding Scleral Lens Replacement: When and Why",
+      "format": "LinkedIn post",
+      "editor_notes": "Answer the replacement question directly. Attribute the general one-to-two-year lifespan to Cleveland Clinic and keep it together with the qualifications that some lenses last longer and timing depends on the individual. Explain deposits, surface wear, damage and changed fit or prescription. Tell readers to contact their eye-care provider about changes in fit or vision, shifting lenses or difficulty removing them. Do not give a universal deadline or imply Nexus offers specific services. No em dashes. Keep explanations concise and avoid claims about improved outcomes or guaranteed comfort.",
       "model": "gemini-2.5-flash",
-      "created_at": "2026-10-02T14:06:14.765898+00:00",
-      "input_fingerprint": "1c61eacea30dd9f6e45ace9df809f1d07ed362b217090e99bcf707c1056fbf25",
+      "created_at": "2026-10-03T16:29:29.301970+00:00",
+      "input_fingerprint": "897820f3062694e3433054faee038836dccc697710315b83f558eca4d404818a",
       "status": "Draft for human review; not approved for publication"
     },
-    "Google Business Profile": {
-      "headline": "Understanding Keratoconus and Vision Care",
+    "Blog": {
+      "headline": "Understanding Scleral Lens Replacement: When and Why",
       "blocks": [
         {
           "kind": "factual",
-          "text": "Keratoconus is a condition where the cornea, the clear front surface of the eye, thins and protrudes into a cone-like shape. This can lead to distorted or blurred vision. The main goals of treatment are to improve vision and to limit the progression of the condition.",
+          "text": "Scleral lenses generally have an expected lifespan of one to two years, though some lenses may last longer. The expected lifespan of an individual's scleral lenses can vary based on factors such as the lens brand, material, and personal circumstances. There is no fixed replacement deadline for every patient.",
           "statement_ids": [
             "statement-1",
-            "statement-2"
+            "statement-2",
+            "statement-3"
           ]
         },
         {
           "kind": "factual",
-          "text": "In earlier stages, glasses or soft contact lenses might correct vision. However, as the corneal shape becomes more irregular, specialist contact lenses may be needed. For progressive keratoconus, cross-linking may be recommended to help stabilize the cornea and prevent further deterioration, though glasses or contact lenses may still be required afterward.",
+          "text": "Several factors can lead to the need for scleral lens replacement. These include the accumulation of deposits, damage such as surface cracking or breakage, or changes in the lens fit or prescription power.",
           "statement_ids": [
-            "statement-3",
-            "statement-5"
+            "statement-4"
+          ]
+        },
+        {
+          "kind": "factual",
+          "text": "The surfaces of gas-permeable scleral lenses can deteriorate due to repeated wearing and handling. Careful handling can help preserve the lens surface, but re-polishing a lens is not always a viable option.",
+          "statement_ids": [
+            "statement-5",
+            "statement-6",
+            "statement-7"
+          ]
+        },
+        {
+          "kind": "factual",
+          "text": "If a scleral lens needs replacement, the new lens may not be an identical copy. The existing design might be duplicated, adjusted, or a new fitting may be required.",
+          "statement_ids": [
+            "statement-8"
+          ]
+        },
+        {
+          "kind": "factual",
+          "text": "It is recommended to inform an eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift, or lenses that become difficult to remove.",
+          "statement_ids": [
+            "statement-10"
           ]
         },
         {
@@ -407,60 +349,104 @@
         }
       ],
       "review_notes": [
-        "Unresolved evidence limitations: Expert medical advice comparing scleral lenses, ICL, and LASIK for different stages and severities of keratoconus, including eligibility criteria, outcomes, and potential risks.",
-        "Unresolved evidence limitations: Clarification on what \"permanent solution\" means in the context of keratoconus.",
-        "Source review status: Draft material; review pending"
+        "Draft material; review pending"
       ],
       "statements": [
         {
-          "text": "Keratoconus is a condition where the cornea, the clear front surface of the eye, thins and protrudes into a cone-like shape, which can lead to distorted or blurred vision.",
+          "text": "Scleral lenses generally have an expected lifespan of one to two years, though some lenses may last longer.",
           "citations": [
             {
-              "source_id": "source-1",
-              "excerpt": "Keratoconus changes the shape of the cornea, the clear front surface of the eye. The cornea becomes thinner and protrudes into a cone-like shape, affecting how it focuses light. Both eyes are usually affected, but not equally. Symptoms can include distorted or blurred vision, sensitivity to light and glare, and frequent prescription changes."
+              "source_id": "source-3",
+              "excerpt": "Cleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer."
             }
           ],
           "id": "statement-1"
         },
         {
-          "text": "Treatment for keratoconus has two main goals: to improve vision and to limit the progression of the condition.",
+          "text": "The expected lifespan of an individual's scleral lenses can vary based on factors such as the lens brand, material, and personal circumstances.",
           "citations": [
             {
               "source_id": "source-3",
-              "excerpt": "Treatment has two distinct goals: improve vision and limit progression."
+              "excerpt": "An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances."
             }
           ],
           "id": "statement-2"
         },
         {
-          "text": "In earlier stages of keratoconus, glasses or soft contact lenses may be sufficient for vision correction, but as the corneal shape becomes more irregular, specialist contact lenses may be necessary.",
+          "text": "There is no fixed replacement deadline for every patient.",
           "citations": [
             {
-              "source_id": "source-6",
-              "excerpt": "Glasses or soft contact lenses may help in earlier keratoconus. Specialist contact lenses may be needed as corneal shape becomes more irregular."
+              "source_id": "source-3",
+              "excerpt": "This is general information, not a fixed replacement deadline for every patient."
             }
           ],
           "id": "statement-3"
         },
         {
-          "text": "Cross-linking is a procedure that may be recommended for progressive keratoconus to help stabilize the cornea and prevent further deterioration, though patients may still require glasses or contact lenses afterward.",
+          "text": "Reasons a scleral lens may need replacement include the accumulation of deposits, damage like surface cracking or breakage, or changes in the lens fit or prescription power.",
           "citations": [
             {
-              "source_id": "source-3",
-              "excerpt": "Cross-linking may be recommended for progressive disease to help stabilize the cornea."
-            },
+              "source_id": "source-2",
+              "excerpt": "The clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing."
+            }
+          ],
+          "id": "statement-4"
+        },
+        {
+          "text": "The surfaces of gas-permeable scleral lenses can deteriorate due to repeated wearing and handling.",
+          "citations": [
             {
-              "source_id": "source-4",
-              "excerpt": "Cross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward."
+              "source_id": "source-1",
+              "excerpt": "Moorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling."
             }
           ],
           "id": "statement-5"
+        },
+        {
+          "text": "Careful handling can help preserve the lens surface.",
+          "citations": [
+            {
+              "source_id": "source-1",
+              "excerpt": "Careful handling helps preserve the lens surface."
+            }
+          ],
+          "id": "statement-6"
+        },
+        {
+          "text": "Re-polishing a lens is not always a viable option.",
+          "citations": [
+            {
+              "source_id": "source-1",
+              "excerpt": "Re-polishing a lens is not always an option."
+            }
+          ],
+          "id": "statement-7"
+        },
+        {
+          "text": "If a scleral lens needs replacement, it may not be an identical copy; the existing design might be duplicated, adjusted, or a new fitting may be required.",
+          "citations": [
+            {
+              "source_id": "source-2",
+              "excerpt": "A replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting."
+            }
+          ],
+          "id": "statement-8"
+        },
+        {
+          "text": "It is recommended to inform an eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift, or lenses that become difficult to remove.",
+          "citations": [
+            {
+              "source_id": "source-3",
+              "excerpt": "Cleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove."
+            }
+          ],
+          "id": "statement-10"
         }
       ],
       "brief": {
         "business": "Nexus Vision Eye Care",
-        "audience": "Patients seeking information about keratoconus and scleral lenses",
-        "goal": "Help patients understand their options and encourage an eye-clinic appointment. Prioritise long-term scleral lens use and monitoring if supported by the audience evidence.",
+        "audience": "Patients considering or using scleral lenses for keratoconus",
+        "goal": "Answer the audience concern about needing to replace scleral lenses over time: explain supported reasons for replacement and whether there is one deadline for everyone. Encourage patients to visit the eye clinic for individual advice.",
         "formats": [
           "LinkedIn post",
           "Blog",
@@ -471,15 +457,166 @@
         "tone": "Warm and reassuring",
         "source_review_status": "Draft material; review pending"
       },
-      "reviewed_title": "Keratoconus care: improving vision and limiting progression",
-      "format": "Google Business Profile post",
-      "editor_notes": "Write a concise Google Business Profile educational post, around 70-100 words, using only the selected facts. Use plain English and a warm, reassuring tone. Do not add clinic capabilities, promotional claims, prices, treatment advice or a comparison with ICL/LASIK. Do not say understanding something improves management. Use the exact campaign CTA as the final block.",
+      "reviewed_title": "Understanding Scleral Lens Replacement: When and Why",
+      "format": "Blog",
+      "editor_notes": "Answer the replacement question directly. Attribute the general one-to-two-year lifespan to Cleveland Clinic and keep it together with the qualifications that some lenses last longer and timing depends on the individual. Explain deposits, surface wear, damage and changed fit or prescription. Tell readers to contact their eye-care provider about changes in fit or vision, shifting lenses or difficulty removing them. Do not give a universal deadline or imply Nexus offers specific services. No em dashes. Keep explanations concise and avoid claims about improved outcomes or guaranteed comfort.",
       "model": "gemini-2.5-flash",
-      "created_at": "2026-10-02T14:10:39.959265+00:00",
-      "input_fingerprint": "6814480c460b3f3c933bcb86914bf0e0899c73489c0425a90e54af7c353bbdc9",
+      "created_at": "2026-10-03T16:31:25.801209+00:00",
+      "input_fingerprint": "138baf7693b266e19993c0afba75757f9aee6694b7f18ca2d2bd3b9cc8e490b9",
+      "status": "Draft for human review; not approved for publication"
+    },
+    "Google Business Profile": {
+      "headline": "Scleral Lens Replacement: What to Expect",
+      "blocks": [
+        {
+          "kind": "factual",
+          "text": "Scleral lenses generally have an expected lifespan of one to two years, though some may last longer. There is no fixed replacement deadline for every patient, as the lifespan can vary based on factors like lens brand, material, and individual circumstances.",
+          "statement_ids": [
+            "statement-1",
+            "statement-2",
+            "statement-3"
+          ]
+        },
+        {
+          "kind": "factual",
+          "text": "Reasons a scleral lens might need replacement include the accumulation of deposits, damage such as surface cracking or breakage, or changes in the lens fit or prescription power. The surfaces of gas-permeable scleral lenses can also deteriorate due to repeated wearing and handling.",
+          "statement_ids": [
+            "statement-4",
+            "statement-5"
+          ]
+        },
+        {
+          "kind": "factual",
+          "text": "It is recommended to inform your eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift, or lenses that become difficult to remove.",
+          "statement_ids": [
+            "statement-10"
+          ]
+        },
+        {
+          "kind": "cta",
+          "text": "Call +91 8247710054 to book an appointment",
+          "statement_ids": []
+        }
+      ],
+      "review_notes": [
+        "Draft material; review pending"
+      ],
+      "statements": [
+        {
+          "text": "Scleral lenses generally have an expected lifespan of one to two years, though some lenses may last longer.",
+          "citations": [
+            {
+              "source_id": "source-3",
+              "excerpt": "Cleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer."
+            }
+          ],
+          "id": "statement-1"
+        },
+        {
+          "text": "The expected lifespan of an individual's scleral lenses can vary based on factors such as the lens brand, material, and personal circumstances.",
+          "citations": [
+            {
+              "source_id": "source-3",
+              "excerpt": "An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances."
+            }
+          ],
+          "id": "statement-2"
+        },
+        {
+          "text": "There is no fixed replacement deadline for every patient.",
+          "citations": [
+            {
+              "source_id": "source-3",
+              "excerpt": "This is general information, not a fixed replacement deadline for every patient."
+            }
+          ],
+          "id": "statement-3"
+        },
+        {
+          "text": "Reasons a scleral lens may need replacement include the accumulation of deposits, damage like surface cracking or breakage, or changes in the lens fit or prescription power.",
+          "citations": [
+            {
+              "source_id": "source-2",
+              "excerpt": "The clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing."
+            }
+          ],
+          "id": "statement-4"
+        },
+        {
+          "text": "The surfaces of gas-permeable scleral lenses can deteriorate due to repeated wearing and handling.",
+          "citations": [
+            {
+              "source_id": "source-1",
+              "excerpt": "Moorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling."
+            }
+          ],
+          "id": "statement-5"
+        },
+        {
+          "text": "Careful handling can help preserve the lens surface.",
+          "citations": [
+            {
+              "source_id": "source-1",
+              "excerpt": "Careful handling helps preserve the lens surface."
+            }
+          ],
+          "id": "statement-6"
+        },
+        {
+          "text": "Re-polishing a lens is not always a viable option.",
+          "citations": [
+            {
+              "source_id": "source-1",
+              "excerpt": "Re-polishing a lens is not always an option."
+            }
+          ],
+          "id": "statement-7"
+        },
+        {
+          "text": "If a scleral lens needs replacement, it may not be an identical copy; the existing design might be duplicated, adjusted, or a new fitting may be required.",
+          "citations": [
+            {
+              "source_id": "source-2",
+              "excerpt": "A replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting."
+            }
+          ],
+          "id": "statement-8"
+        },
+        {
+          "text": "It is recommended to inform an eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift, or lenses that become difficult to remove.",
+          "citations": [
+            {
+              "source_id": "source-3",
+              "excerpt": "Cleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove."
+            }
+          ],
+          "id": "statement-10"
+        }
+      ],
+      "brief": {
+        "business": "Nexus Vision Eye Care",
+        "audience": "Patients considering or using scleral lenses for keratoconus",
+        "goal": "Answer the audience concern about needing to replace scleral lenses over time: explain supported reasons for replacement and whether there is one deadline for everyone. Encourage patients to visit the eye clinic for individual advice.",
+        "formats": [
+          "LinkedIn post",
+          "Blog",
+          "Google Business Profile post"
+        ],
+        "call_to_action": "Call +91 8247710054 to book an appointment",
+        "language": "English",
+        "tone": "Warm and reassuring",
+        "source_review_status": "Draft material; review pending"
+      },
+      "reviewed_title": "Understanding Scleral Lens Replacement: When and Why",
+      "format": "Google Business Profile post",
+      "editor_notes": "Google Business Profile post: maximum 140 words including CTA. Answer why replacement may be needed and why there is no universal deadline. Mention general one-to-two-year lifespan with qualifications, deposit buildup, damage, surface wear, changed fit or power, and when to contact an eye-care provider. Omit repolishing, careful handling and replacement design details to stay concise. Do not invent benefits or services. No em dashes.",
+      "model": "gemini-2.5-flash",
+      "created_at": "2026-10-03T16:34:58.115165+00:00",
+      "input_fingerprint": "dc469d348af9b15d96f53c42bdb6c9cec9047507466c4f842ec1c5ca941c5110",
       "status": "Draft for human review; not approved for publication"
     }
   },
   "collected_at": "2026-10-01T16:01:26.424181+00:00",
-  "sample_date": "2 October 2026"
+  "sample_date": "3 October 2026",
+  "collection_date": "1 October 2026"
 }

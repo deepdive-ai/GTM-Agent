@@ -1,0 +1,150 @@
+{
+  "headline": "Scleral Lens Replacement: What to Expect",
+  "blocks": [
+    {
+      "kind": "factual",
+      "text": "Scleral lenses generally have an expected lifespan of one to two years, though some may last longer. There is no fixed replacement deadline for every patient, as the lifespan can vary based on factors like lens brand, material, and individual circumstances.",
+      "statement_ids": [
+        "statement-1",
+        "statement-2",
+        "statement-3"
+      ]
+    },
+    {
+      "kind": "factual",
+      "text": "Reasons a scleral lens might need replacement include the accumulation of deposits, damage such as surface cracking or breakage, or changes in the lens fit or prescription power. The surfaces of gas-permeable scleral lenses can also deteriorate due to repeated wearing and handling.",
+      "statement_ids": [
+        "statement-4",
+        "statement-5"
+      ]
+    },
+    {
+      "kind": "factual",
+      "text": "It is recommended to inform your eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift, or lenses that become difficult to remove.",
+      "statement_ids": [
+        "statement-10"
+      ]
+    },
+    {
+      "kind": "cta",
+      "text": "Call +91 8247710054 to book an appointment",
+      "statement_ids": []
+    }
+  ],
+  "review_notes": [
+    "Draft material; review pending"
+  ],
+  "statements": [
+    {
+      "text": "Scleral lenses generally have an expected lifespan of one to two years, though some lenses may last longer.",
+      "citations": [
+        {
+          "source_id": "source-3",
+          "excerpt": "Cleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer."
+        }
+      ],
+      "id": "statement-1"
+    },
+    {
+      "text": "The expected lifespan of an individual's scleral lenses can vary based on factors such as the lens brand, material, and personal circumstances.",
+      "citations": [
+        {
+          "source_id": "source-3",
+          "excerpt": "An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances."
+        }
+      ],
+      "id": "statement-2"
+    },
+    {
+      "text": "There is no fixed replacement deadline for every patient.",
+      "citations": [
+        {
+          "source_id": "source-3",
+          "excerpt": "This is general information, not a fixed replacement deadline for every patient."
+        }
+      ],
+      "id": "statement-3"
+    },
+    {
+      "text": "Reasons a scleral lens may need replacement include the accumulation of deposits, damage like surface cracking or breakage, or changes in the lens fit or prescription power.",
+      "citations": [
+        {
+          "source_id": "source-2",
+          "excerpt": "The clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing."
+        }
+      ],
+      "id": "statement-4"
+    },
+    {
+      "text": "The surfaces of gas-permeable scleral lenses can deteriorate due to repeated wearing and handling.",
+      "citations": [
+        {
+          "source_id": "source-1",
+          "excerpt": "Moorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling."
+        }
+      ],
+      "id": "statement-5"
+    },
+    {
+      "text": "Careful handling can help preserve the lens surface.",
+      "citations": [
+        {
+          "source_id": "source-1",
+          "excerpt": "Careful handling helps preserve the lens surface."
+        }
+      ],
+      "id": "statement-6"
+    },
+    {
+      "text": "Re-polishing a lens is not always a viable option.",
+      "citations": [
+        {
+          "source_id": "source-1",
+          "excerpt": "Re-polishing a lens is not always an option."
+        }
+      ],
+      "id": "statement-7"
+    },
+    {
+      "text": "If a scleral lens needs replacement, it may not be an identical copy; the existing design might be duplicated, adjusted, or a new fitting may be required.",
+      "citations": [
+        {
+          "source_id": "source-2",
+          "excerpt": "A replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting."
+        }
+      ],
+      "id": "statement-8"
+    },
+    {
+      "text": "It is recommended to inform an eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift, or lenses that become difficult to remove.",
+      "citations": [
+        {
+          "source_id": "source-3",
+          "excerpt": "Cleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove."
+        }
+      ],
+      "id": "statement-10"
+    }
+  ],
+  "brief": {
+    "business": "Nexus Vision Eye Care",
+    "audience": "Patients considering or using scleral lenses for keratoconus",
+    "goal": "Answer the audience concern about needing to replace scleral lenses over time: explain supported reasons for replacement and whether there is one deadline for everyone. Encourage patients to visit the eye clinic for individual advice.",
+    "formats": [
+      "LinkedIn post",
+      "Blog",
+      "Google Business Profile post"
+    ],
+    "call_to_action": "Call +91 8247710054 to book an appointment",
+    "language": "English",
+    "tone": "Warm and reassuring",
+    "source_review_status": "Draft material; review pending"
+  },
+  "reviewed_title": "Understanding Scleral Lens Replacement: When and Why",
+  "format": "Google Business Profile post",
+  "editor_notes": "Google Business Profile post: maximum 140 words including CTA. Answer why replacement may be needed and why there is no universal deadline. Mention general one-to-two-year lifespan with qualifications, deposit buildup, damage, surface wear, changed fit or power, and when to contact an eye-care provider. Omit repolishing, careful handling and replacement design details to stay concise. Do not invent benefits or services. No em dashes.",
+  "model": "gemini-2.5-flash",
+  "created_at": "2026-10-03T16:34:58.115165+00:00",
+  "input_fingerprint": "dc469d348af9b15d96f53c42bdb6c9cec9047507466c4f842ec1c5ca941c5110",
+  "status": "Draft for human review; not approved for publication"
+}
