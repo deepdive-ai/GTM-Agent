@@ -3,6 +3,7 @@ import os
 import sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).parent / ".deps"))
+sys.path.append(str(Path(__file__).parent / ".rag-deps"))
 import streamlit as st
 from analyzer import AnalysisError, analyze, fingerprint
 from writer import write_content, prepare_statements, draft_fingerprint, plain_text, FORMATS
@@ -203,15 +204,21 @@ question_choice=st.selectbox('Audience question',list(question_choices),format_f
 question_key=report_id[:12]+'_'+question_choice
 retrieval_query=st.text_input('Research question (use the language of your documents)',value=question_choices[question_choice],key='research_question_'+question_key).strip()
 st.caption('Select an audience comment or enter a question. Its AI interpretation is editable. Evidence search runs locally without an API key.')
+retrieval_mode=st.selectbox('Evidence search method',['bm25','hybrid'],format_func=lambda value: 'Keyword (BM25)' if value=='bm25' else 'Hybrid (experimental, local semantic + keyword)')
+if retrieval_mode=='hybrid':
+    st.caption('First use downloads a public embedding model. Document text stays local. This experimental English model can still return irrelevant passages.')
 retrieval=None
 if sources and retrieval_query:
     try:
-        retrieval=retrieve(sources,retrieval_query)
+        with st.spinner('Searching document passages...'):
+            retrieval=retrieve(sources,retrieval_query,mode=retrieval_mode)
+        st.success('Results updated for: '+retrieval_query)
+        st.caption('Search method: '+('Hybrid semantic + keyword' if retrieval_mode=='hybrid' else 'Keyword (BM25)')+'. This updates evidence only; topic generation requires the review step below.')
         st.caption(str(retrieval['indexed_documents'])+' documents indexed into '+str(retrieval['indexed_passages'])+' passages. Showing '+str(len(retrieval['passages']))+' candidate passages.')
         if not retrieval['passages']:
             st.warning('No matching evidence found. Add relevant sources or revise the question. Content generation is blocked for this search.')
         else:
-            st.info('These are keyword matches, not a finding that the question is answered. Check relevance, qualifications and missing details before continuing.')
+            st.info('These are candidate passages, not a finding that the question is answered. Check relevance, qualifications and missing details before continuing.')
             for passage in retrieval['passages']:
                 with st.expander(passage['name']+' · lines '+str(passage['line_start'])+'–'+str(passage['line_end']),expanded=True):
                     st.text(passage['text'])
@@ -223,23 +230,25 @@ if sources and retrieval_query:
             st.write('Question terms absent from retrieved passages: '+(', '.join(retrieval['unmatched_query_terms']) or 'None'))
         st.download_button('Download retrieved evidence (JSON)',json.dumps(retrieval,indent=2,ensure_ascii=False),file_name='retrieved-evidence.json',mime='application/json')
     except AnalysisError as error: st.error(str(error))
-evidence_id=plan_fingerprint(report,analysis,sources,brief,retrieval_query) if sources else 'empty'
+evidence_id=plan_fingerprint(report,analysis,sources,brief,retrieval_query,retrieval_mode) if sources else 'empty'
 evidence_reviewed=st.checkbox('I reviewed the retrieved passages for relevance. Check for missing evidence when proposing the topic.',key='evidence_review_'+evidence_id[:16],disabled=not(retrieval and retrieval['passages']))
 
 planning_analysis=dict(analysis,video_research=video_research) if analysis else None
-plan_id=plan_fingerprint(report,planning_analysis,sources,brief,retrieval_query) if planning_analysis and sources else None
+plan_id=plan_fingerprint(report,planning_analysis,sources,brief,retrieval_query,retrieval_mode) if planning_analysis and sources else None
 if st.session_state.get('topic_brief',{}).get('input_fingerprint')!=plan_id or not evidence_reviewed:
     st.session_state.pop('topic_brief',None)
 ready=bool(analysis and analysis['themes'] and sources and business.strip() and audience.strip() and goal.strip() and formats and gemini_key and not source_error and retrieval and retrieval['passages'] and evidence_reviewed)
 if st.button('Generate source-grounded topics',type='primary',disabled=not ready):
     try:
-        with st.spinner('Connecting audience evidence to your source material...'):
-            st.session_state.topic_brief=recommend(report,planning_analysis,documents,brief,gemini_key,model,retrieval_query=retrieval_query)
+        with st.spinner('Planning from retrieved evidence, then checking question scope...'):
+            st.session_state.topic_brief=recommend(report,planning_analysis,documents,brief,gemini_key,model,retrieval_query=retrieval_query,retrieval_mode=retrieval_mode)
     except AnalysisError as error: st.error(str(error))
 if not ready:
     st.caption('Analyze the audience sample, upload sources, review retrieved evidence, and complete the campaign fields to generate a brief.')
 topic_brief=st.session_state.get('topic_brief')
 if topic_brief:
+    if topic_brief.get('scope_review'):
+        st.caption('Question-scope review: '+topic_brief['scope_review']['reason']+' This is a model check, not factual approval.')
     st.info('These are proposed topics and draft statements. Citation checks confirm IDs and exact excerpts; you must review whether each excerpt supports the statement and whether the source is trustworthy.')
     comment_lookup={c['id']:c for c in report['comments']}
     source_lookup={s['id']:s for s in topic_brief['sources']}

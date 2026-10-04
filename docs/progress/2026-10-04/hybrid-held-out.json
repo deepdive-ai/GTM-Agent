@@ -1,0 +1,735 @@
+{
+  "method": "hybrid",
+  "held_out": true,
+  "scope": "Small hand-labelled retrieval evaluation; software documents are synthetic. No live model calls. Missing-answer labels are evaluator judgments, not automated abstention results. Rank is by first occurrence of a document among up to six returned passages.",
+  "cases": [
+    {
+      "campaign": "software",
+      "query": "Can I take a copy of my task list into Excel?",
+      "expected_document": "export.md",
+      "expected_answer_available": true,
+      "retrieved_documents": [
+        "export.md"
+      ],
+      "expected_rank": 1,
+      "assessment": "found",
+      "retrieval": {
+        "method": "hybrid-passages-v2",
+        "query": "Can I take a copy of my task list into Excel?",
+        "corpus_fingerprint": "e583018ebe30a7ad1dfafe92e867fcfe421e47ad21723b8b2b5b0e36a45745d5",
+        "indexed_documents": 3,
+        "indexed_passages": 3,
+        "top_k": 6,
+        "passages": [
+          {
+            "id": "passage-757886396e5b0629",
+            "document_id": "source-1",
+            "name": "export.md",
+            "text": "Synthetic test company: TaskNest. Workspace owners can export tasks as CSV from Settings > Export. Export includes task titles, due dates and completion status. Attachments are not included.",
+            "start": 0,
+            "end": 190,
+            "line_start": 1,
+            "line_end": 1,
+            "source_urls": [],
+            "review_metadata": [],
+            "score": 0.032787,
+            "matched_terms": [
+              "task"
+            ],
+            "semantic_similarity": 0.51183,
+            "keyword_rank": 1,
+            "semantic_rank": 1
+          }
+        ],
+        "unmatched_query_terms": [
+          "copy",
+          "excel",
+          "into",
+          "list",
+          "my",
+          "take"
+        ],
+        "status": "Candidate evidence; review relevance and completeness",
+        "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "semantic_cutoff": 0.35,
+        "limitations": "Experimental hybrid retrieval uses local English embeddings and rank fusion. The similarity cutoff is provisional; matching does not establish evidence sufficiency. The encoder reads up to 256 tokens per passage. Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+      }
+    },
+    {
+      "campaign": "software",
+      "query": "Will the downloaded task file contain attachments?",
+      "expected_document": "export.md",
+      "expected_answer_available": true,
+      "retrieved_documents": [
+        "export.md"
+      ],
+      "expected_rank": 1,
+      "assessment": "found",
+      "retrieval": {
+        "method": "hybrid-passages-v2",
+        "query": "Will the downloaded task file contain attachments?",
+        "corpus_fingerprint": "e583018ebe30a7ad1dfafe92e867fcfe421e47ad21723b8b2b5b0e36a45745d5",
+        "indexed_documents": 3,
+        "indexed_passages": 3,
+        "top_k": 6,
+        "passages": [
+          {
+            "id": "passage-757886396e5b0629",
+            "document_id": "source-1",
+            "name": "export.md",
+            "text": "Synthetic test company: TaskNest. Workspace owners can export tasks as CSV from Settings > Export. Export includes task titles, due dates and completion status. Attachments are not included.",
+            "start": 0,
+            "end": 190,
+            "line_start": 1,
+            "line_end": 1,
+            "source_urls": [],
+            "review_metadata": [],
+            "score": 0.032787,
+            "matched_terms": [
+              "attachment",
+              "task"
+            ],
+            "semantic_similarity": 0.57558,
+            "keyword_rank": 1,
+            "semantic_rank": 1
+          }
+        ],
+        "unmatched_query_terms": [
+          "contain",
+          "downloaded",
+          "file"
+        ],
+        "status": "Candidate evidence; review relevance and completeness",
+        "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "semantic_cutoff": 0.35,
+        "limitations": "Experimental hybrid retrieval uses local English embeddings and rank fusion. The similarity cutoff is provisional; matching does not establish evidence sufficiency. The encoder reads up to 256 tokens per passage. Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+      }
+    },
+    {
+      "campaign": "software",
+      "query": "Who is allowed to erase the entire workspace?",
+      "expected_document": "access.md",
+      "expected_answer_available": true,
+      "retrieved_documents": [
+        "access.md",
+        "export.md"
+      ],
+      "expected_rank": 1,
+      "assessment": "found",
+      "retrieval": {
+        "method": "hybrid-passages-v2",
+        "query": "Who is allowed to erase the entire workspace?",
+        "corpus_fingerprint": "e583018ebe30a7ad1dfafe92e867fcfe421e47ad21723b8b2b5b0e36a45745d5",
+        "indexed_documents": 3,
+        "indexed_passages": 3,
+        "top_k": 6,
+        "passages": [
+          {
+            "id": "passage-20282b0c352bc084",
+            "document_id": "source-3",
+            "name": "access.md",
+            "text": "Synthetic test company: TaskNest. Administrators invite team members by email. Members can edit assigned tasks; only administrators can delete a workspace.",
+            "start": 0,
+            "end": 155,
+            "line_start": 1,
+            "line_end": 1,
+            "source_urls": [],
+            "review_metadata": [],
+            "score": 0.032787,
+            "matched_terms": [
+              "workspace"
+            ],
+            "semantic_similarity": 0.40145,
+            "keyword_rank": 1,
+            "semantic_rank": 1
+          },
+          {
+            "id": "passage-757886396e5b0629",
+            "document_id": "source-1",
+            "name": "export.md",
+            "text": "Synthetic test company: TaskNest. Workspace owners can export tasks as CSV from Settings > Export. Export includes task titles, due dates and completion status. Attachments are not included.",
+            "start": 0,
+            "end": 190,
+            "line_start": 1,
+            "line_end": 1,
+            "source_urls": [],
+            "review_metadata": [],
+            "score": 0.016129,
+            "matched_terms": [
+              "workspace"
+            ],
+            "semantic_similarity": null,
+            "keyword_rank": 2
+          }
+        ],
+        "unmatched_query_terms": [
+          "allowed",
+          "entire",
+          "erase"
+        ],
+        "status": "Candidate evidence; review relevance and completeness",
+        "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "semantic_cutoff": 0.35,
+        "limitations": "Experimental hybrid retrieval uses local English embeddings and rank fusion. The similarity cutoff is provisional; matching does not establish evidence sufficiency. The encoder reads up to 256 tokens per passage. Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+      }
+    },
+    {
+      "campaign": "software",
+      "query": "When can our account move to a yearly payment schedule?",
+      "expected_document": "billing.md",
+      "expected_answer_available": true,
+      "retrieved_documents": [
+        "billing.md"
+      ],
+      "expected_rank": 1,
+      "assessment": "found",
+      "retrieval": {
+        "method": "hybrid-passages-v2",
+        "query": "When can our account move to a yearly payment schedule?",
+        "corpus_fingerprint": "e583018ebe30a7ad1dfafe92e867fcfe421e47ad21723b8b2b5b0e36a45745d5",
+        "indexed_documents": 3,
+        "indexed_passages": 3,
+        "top_k": 6,
+        "passages": [
+          {
+            "id": "passage-5a9d02062aa90d12",
+            "document_id": "source-2",
+            "name": "billing.md",
+            "text": "Synthetic test company: TaskNest. Billing administrators can switch from monthly to annual billing at renewal. No price or discount is supplied in this fixture.",
+            "start": 0,
+            "end": 160,
+            "line_start": 1,
+            "line_end": 1,
+            "source_urls": [],
+            "review_metadata": [],
+            "score": 0.016393,
+            "matched_terms": [],
+            "semantic_similarity": 0.45978,
+            "semantic_rank": 1
+          }
+        ],
+        "unmatched_query_terms": [
+          "account",
+          "move",
+          "payment",
+          "schedule",
+          "yearly"
+        ],
+        "status": "Candidate evidence; review relevance and completeness",
+        "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "semantic_cutoff": 0.35,
+        "limitations": "Experimental hybrid retrieval uses local English embeddings and rank fusion. The similarity cutoff is provisional; matching does not establish evidence sufficiency. The encoder reads up to 256 tokens per passage. Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+      }
+    },
+    {
+      "campaign": "medical",
+      "query": "My contacts keep moving and are harder to take out. Who should I tell?",
+      "expected_document": "scleral_lens_lifespan_and_review.md",
+      "expected_answer_available": true,
+      "retrieved_documents": [
+        "scleral_lens_lifespan_and_review.md",
+        "scleral_lens_surface_wear.md",
+        "keratoconus_vision_correction_and_monitoring.md",
+        "scleral_lens_replacement_reasons.md",
+        "keratoconus_cross_linking_expectations.md"
+      ],
+      "expected_rank": 1,
+      "assessment": "found",
+      "retrieval": {
+        "method": "hybrid-passages-v2",
+        "query": "My contacts keep moving and are harder to take out. Who should I tell?",
+        "corpus_fingerprint": "856539b6df7eef6c7ac7e607342dc5fb53421168ebb3fc4cbf099ee516cb1ab7",
+        "indexed_documents": 9,
+        "indexed_passages": 11,
+        "top_k": 6,
+        "passages": [
+          {
+            "id": "passage-e1b13fe47558215d",
+            "document_id": "source-7",
+            "name": "scleral_lens_lifespan_and_review.md",
+            "text": "fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.\n\nSource: Cleveland Clinic, Scleral Lenses, sections How long do scleral lenses last? and When should I see my healthcare provider? Page medically reviewed; last updated 28 May 2024.\nhttps://my.clevelandclinic.org/health/treatments/scleral-lenses\n\nScope: Supports general lifespan and follow-up information. It does not establish the replacement schedule, price, warranty or services of Nexus Vision.",
+            "start": 612,
+            "end": 1190,
+            "line_start": 8,
+            "line_end": 13,
+            "source_urls": [
+              "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+            ],
+            "review_metadata": [
+              "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+            ],
+            "score": 0.032787,
+            "matched_terms": [
+              "my",
+              "out"
+            ],
+            "semantic_similarity": 0.39815,
+            "keyword_rank": 1,
+            "semantic_rank": 1
+          },
+          {
+            "id": "passage-b670405340388622",
+            "document_id": "source-9",
+            "name": "scleral_lens_surface_wear.md",
+            "text": "# Scleral lens surface wear\n\nStatus: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending.\nPrepared and source accessed: 3 October 2026.\n\nMoorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling. Re-polishing a lens is not always an option. Careful handling helps preserve the lens surface.\n\nSource: Moorfields Eye Hospital, Care of your scleral contact lenses, section Taking care of your contact lenses.\nhttps://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses\n\nScope: Explains surface wear. This source does not establish an individual replacement date or a clinic's replacement policy.",
+            "start": 0,
+            "end": 749,
+            "line_start": 1,
+            "line_end": 11,
+            "source_urls": [
+              "https://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses"
+            ],
+            "review_metadata": [
+              "Status: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending."
+            ],
+            "score": 0.032002,
+            "matched_terms": [
+              "contact"
+            ],
+            "semantic_similarity": 0.37051,
+            "keyword_rank": 3,
+            "semantic_rank": 2
+          },
+          {
+            "id": "passage-7038763015271ae9",
+            "document_id": "source-6",
+            "name": "keratoconus_vision_correction_and_monitoring.md",
+            "text": "# Keratoconus: vision correction and monitoring\n\nGlasses or soft contact lenses may help in earlier keratoconus. Specialist contact lenses may be needed as corneal shape becomes more irregular. Advanced cases with inadequate vision despite lenses may require consideration of transplantation. Follow-up examinations and scans help clinicians assess changes and decide whether additional treatment is appropriate.\n\nSource: Moorfields Eye Hospital, “Keratoconus diagnosis and treatment.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/diagnosis-and-treatment\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+            "start": 0,
+            "end": 649,
+            "line_start": 1,
+            "line_end": 8,
+            "source_urls": [
+              "https://www.moorfields.nhs.uk/eye-conditions/keratoconus/diagnosis-and-treatment"
+            ],
+            "review_metadata": [
+              "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+            ],
+            "score": 0.016129,
+            "matched_terms": [
+              "contact"
+            ],
+            "semantic_similarity": null,
+            "keyword_rank": 2
+          },
+          {
+            "id": "passage-efe1739feddd8395",
+            "document_id": "source-7",
+            "name": "scleral_lens_lifespan_and_review.md",
+            "text": "# Scleral lens lifespan and follow-up\n\nStatus: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending.\nPrepared and source accessed: 3 October 2026.\n\nCleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer. An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances. This is general information, not a fixed replacement deadline for every patient.\n\nCleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.",
+            "start": 0,
+            "end": 790,
+            "line_start": 1,
+            "line_end": 8,
+            "source_urls": [
+              "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+            ],
+            "review_metadata": [
+              "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+            ],
+            "score": 0.015625,
+            "matched_terms": [
+              "out"
+            ],
+            "semantic_similarity": null,
+            "keyword_rank": 4
+          },
+          {
+            "id": "passage-14173920941cda30",
+            "document_id": "source-8",
+            "name": "scleral_lens_replacement_reasons.md",
+            "text": "# Reasons a scleral lens may need replacement\n\nStatus: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study.\nPrepared and source accessed: 3 October 2026.\n\nThe clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing.\n\nA replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting. Changes in an ectatic cornea can alter the clearance beneath a scleral lens.\n\nSource: Dr. DeNaeyer, Replacing and Refitting Scleral Contact Lenses, Contact Lens Spectrum, 1 November 2018.\nhttps://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/\n\nSource caveat: The article dates from 2018 and discloses the author's commercial interests in lens-related companies.",
+            "start": 0,
+            "end": 974,
+            "line_start": 1,
+            "line_end": 13,
+            "source_urls": [
+              "https://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/"
+            ],
+            "review_metadata": [
+              "Status: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study."
+            ],
+            "score": 0.015385,
+            "matched_terms": [
+              "contact"
+            ],
+            "semantic_similarity": null,
+            "keyword_rank": 5
+          },
+          {
+            "id": "passage-b95286ca4466691c",
+            "document_id": "source-3",
+            "name": "keratoconus_cross_linking_expectations.md",
+            "text": "# Keratoconus: cross-linking expectations\n\nCross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward. Temporary discomfort and hazy vision can occur, and the procedure carries risks, including possible reduced vision. Suitability, technique, recovery, and expected benefit require an individual clinical discussion.\n\nSource: Moorfields Eye Hospital, “Corneal cross linking.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+            "start": 0,
+            "end": 607,
+            "line_start": 1,
+            "line_end": 8,
+            "source_urls": [
+              "https://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking"
+            ],
+            "review_metadata": [
+              "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+            ],
+            "score": 0.015152,
+            "matched_terms": [
+              "contact"
+            ],
+            "semantic_similarity": null,
+            "keyword_rank": 6
+          }
+        ],
+        "unmatched_query_terms": [
+          "harder",
+          "keep",
+          "moving",
+          "take",
+          "tell"
+        ],
+        "status": "Candidate evidence; review relevance and completeness",
+        "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "semantic_cutoff": 0.35,
+        "limitations": "Experimental hybrid retrieval uses local English embeddings and rank fusion. The similarity cutoff is provisional; matching does not establish evidence sufficiency. The encoder reads up to 256 tokens per passage. Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+      }
+    },
+    {
+      "campaign": "medical",
+      "query": "Can daily handling wear out a scleral lens surface?",
+      "expected_document": "scleral_lens_surface_wear.md",
+      "expected_answer_available": true,
+      "retrieved_documents": [
+        "scleral_lens_surface_wear.md",
+        "scleral_lens_lifespan_and_review.md",
+        "scleral_lens_replacement_reasons.md",
+        "keratoconus_condition_and_symptoms.md"
+      ],
+      "expected_rank": 1,
+      "assessment": "found",
+      "retrieval": {
+        "method": "hybrid-passages-v2",
+        "query": "Can daily handling wear out a scleral lens surface?",
+        "corpus_fingerprint": "856539b6df7eef6c7ac7e607342dc5fb53421168ebb3fc4cbf099ee516cb1ab7",
+        "indexed_documents": 9,
+        "indexed_passages": 11,
+        "top_k": 6,
+        "passages": [
+          {
+            "id": "passage-b670405340388622",
+            "document_id": "source-9",
+            "name": "scleral_lens_surface_wear.md",
+            "text": "# Scleral lens surface wear\n\nStatus: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending.\nPrepared and source accessed: 3 October 2026.\n\nMoorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling. Re-polishing a lens is not always an option. Careful handling helps preserve the lens surface.\n\nSource: Moorfields Eye Hospital, Care of your scleral contact lenses, section Taking care of your contact lenses.\nhttps://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses\n\nScope: Explains surface wear. This source does not establish an individual replacement date or a clinic's replacement policy.",
+            "start": 0,
+            "end": 749,
+            "line_start": 1,
+            "line_end": 11,
+            "source_urls": [
+              "https://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses"
+            ],
+            "review_metadata": [
+              "Status: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending."
+            ],
+            "score": 0.032787,
+            "matched_terms": [
+              "handling",
+              "lens",
+              "scleral",
+              "surface",
+              "wear"
+            ],
+            "semantic_similarity": 0.78244,
+            "keyword_rank": 1,
+            "semantic_rank": 1
+          },
+          {
+            "id": "passage-efe1739feddd8395",
+            "document_id": "source-7",
+            "name": "scleral_lens_lifespan_and_review.md",
+            "text": "# Scleral lens lifespan and follow-up\n\nStatus: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending.\nPrepared and source accessed: 3 October 2026.\n\nCleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer. An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances. This is general information, not a fixed replacement deadline for every patient.\n\nCleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.",
+            "start": 0,
+            "end": 790,
+            "line_start": 1,
+            "line_end": 8,
+            "source_urls": [
+              "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+            ],
+            "review_metadata": [
+              "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+            ],
+            "score": 0.032002,
+            "matched_terms": [
+              "lens",
+              "out",
+              "scleral"
+            ],
+            "semantic_similarity": 0.67376,
+            "keyword_rank": 3,
+            "semantic_rank": 2
+          },
+          {
+            "id": "passage-14173920941cda30",
+            "document_id": "source-8",
+            "name": "scleral_lens_replacement_reasons.md",
+            "text": "# Reasons a scleral lens may need replacement\n\nStatus: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study.\nPrepared and source accessed: 3 October 2026.\n\nThe clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing.\n\nA replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting. Changes in an ectatic cornea can alter the clearance beneath a scleral lens.\n\nSource: Dr. DeNaeyer, Replacing and Refitting Scleral Contact Lenses, Contact Lens Spectrum, 1 November 2018.\nhttps://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/\n\nSource caveat: The article dates from 2018 and discloses the author's commercial interests in lens-related companies.",
+            "start": 0,
+            "end": 974,
+            "line_start": 1,
+            "line_end": 13,
+            "source_urls": [
+              "https://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/"
+            ],
+            "review_metadata": [
+              "Status: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study."
+            ],
+            "score": 0.032002,
+            "matched_terms": [
+              "lens",
+              "scleral",
+              "surface"
+            ],
+            "semantic_similarity": 0.65433,
+            "keyword_rank": 2,
+            "semantic_rank": 3
+          },
+          {
+            "id": "passage-e1b13fe47558215d",
+            "document_id": "source-7",
+            "name": "scleral_lens_lifespan_and_review.md",
+            "text": "fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.\n\nSource: Cleveland Clinic, Scleral Lenses, sections How long do scleral lenses last? and When should I see my healthcare provider? Page medically reviewed; last updated 28 May 2024.\nhttps://my.clevelandclinic.org/health/treatments/scleral-lenses\n\nScope: Supports general lifespan and follow-up information. It does not establish the replacement schedule, price, warranty or services of Nexus Vision.",
+            "start": 612,
+            "end": 1190,
+            "line_start": 8,
+            "line_end": 13,
+            "source_urls": [
+              "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+            ],
+            "review_metadata": [
+              "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+            ],
+            "score": 0.03125,
+            "matched_terms": [
+              "out",
+              "scleral"
+            ],
+            "semantic_similarity": 0.64203,
+            "keyword_rank": 4,
+            "semantic_rank": 4
+          },
+          {
+            "id": "passage-66519a85662b0cd9",
+            "document_id": "source-8",
+            "name": "scleral_lens_replacement_reasons.md",
+            "text": "Source caveat: The article dates from 2018 and discloses the author's commercial interests in lens-related companies. Use it for the stated replacement reasons, not promises about current products, superiority or outcomes.",
+            "start": 857,
+            "end": 1079,
+            "line_start": 13,
+            "line_end": 13,
+            "source_urls": [
+              "https://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/"
+            ],
+            "review_metadata": [
+              "Status: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study."
+            ],
+            "score": 0.030769,
+            "matched_terms": [
+              "lens"
+            ],
+            "semantic_similarity": 0.47111,
+            "keyword_rank": 5,
+            "semantic_rank": 5
+          },
+          {
+            "id": "passage-68aeae14574df1ae",
+            "document_id": "source-2",
+            "name": "keratoconus_condition_and_symptoms.md",
+            "text": "# Keratoconus: condition and symptoms\n\nKeratoconus changes the shape of the cornea, the clear front surface of the eye. The cornea becomes thinner and protrudes into a cone-like shape, affecting how it focuses light. Both eyes are usually affected, but not equally. Symptoms can include distorted or blurred vision, sensitivity to light and glare, and frequent prescription changes. Rapid worsening of eyesight warrants assessment by an eye doctor. Symptoms alone do not establish a diagnosis.\n\nSource: Mayo Clinic, “Keratoconus — Symptoms and causes.”\nhttps://www.mayoclinic.org/diseases-conditions/keratoconus/symptoms-causes/syc-20351352\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+            "start": 0,
+            "end": 723,
+            "line_start": 1,
+            "line_end": 8,
+            "source_urls": [
+              "https://www.mayoclinic.org/diseases-conditions/keratoconus/symptoms-causes/syc-20351352"
+            ],
+            "review_metadata": [
+              "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+            ],
+            "score": 0.029857,
+            "matched_terms": [
+              "surface"
+            ],
+            "semantic_similarity": 0.36537,
+            "keyword_rank": 6,
+            "semantic_rank": 8
+          }
+        ],
+        "unmatched_query_terms": [
+          "daily"
+        ],
+        "status": "Candidate evidence; review relevance and completeness",
+        "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "semantic_cutoff": 0.35,
+        "limitations": "Experimental hybrid retrieval uses local English embeddings and rank fusion. The similarity cutoff is provisional; matching does not establish evidence sufficiency. The encoder reads up to 256 tokens per passage. Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+      }
+    },
+    {
+      "campaign": "software",
+      "query": "What refund amount does TaskNest promise?",
+      "expected_document": null,
+      "expected_answer_available": false,
+      "retrieved_documents": [
+        "billing.md",
+        "access.md",
+        "export.md"
+      ],
+      "expected_rank": null,
+      "assessment": "background_matches_only_missing_answer",
+      "retrieval": {
+        "method": "hybrid-passages-v2",
+        "query": "What refund amount does TaskNest promise?",
+        "corpus_fingerprint": "e583018ebe30a7ad1dfafe92e867fcfe421e47ad21723b8b2b5b0e36a45745d5",
+        "indexed_documents": 3,
+        "indexed_passages": 3,
+        "top_k": 6,
+        "passages": [
+          {
+            "id": "passage-5a9d02062aa90d12",
+            "document_id": "source-2",
+            "name": "billing.md",
+            "text": "Synthetic test company: TaskNest. Billing administrators can switch from monthly to annual billing at renewal. No price or discount is supplied in this fixture.",
+            "start": 0,
+            "end": 160,
+            "line_start": 1,
+            "line_end": 1,
+            "source_urls": [],
+            "review_metadata": [],
+            "score": 0.016393,
+            "matched_terms": [
+              "tasknest"
+            ],
+            "semantic_similarity": null,
+            "keyword_rank": 1
+          },
+          {
+            "id": "passage-20282b0c352bc084",
+            "document_id": "source-3",
+            "name": "access.md",
+            "text": "Synthetic test company: TaskNest. Administrators invite team members by email. Members can edit assigned tasks; only administrators can delete a workspace.",
+            "start": 0,
+            "end": 155,
+            "line_start": 1,
+            "line_end": 1,
+            "source_urls": [],
+            "review_metadata": [],
+            "score": 0.016129,
+            "matched_terms": [
+              "tasknest"
+            ],
+            "semantic_similarity": null,
+            "keyword_rank": 2
+          },
+          {
+            "id": "passage-757886396e5b0629",
+            "document_id": "source-1",
+            "name": "export.md",
+            "text": "Synthetic test company: TaskNest. Workspace owners can export tasks as CSV from Settings > Export. Export includes task titles, due dates and completion status. Attachments are not included.",
+            "start": 0,
+            "end": 190,
+            "line_start": 1,
+            "line_end": 1,
+            "source_urls": [],
+            "review_metadata": [],
+            "score": 0.015873,
+            "matched_terms": [
+              "tasknest"
+            ],
+            "semantic_similarity": null,
+            "keyword_rank": 3
+          }
+        ],
+        "unmatched_query_terms": [
+          "amount",
+          "promise",
+          "refund"
+        ],
+        "status": "Candidate evidence; review relevance and completeness",
+        "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "semantic_cutoff": 0.35,
+        "limitations": "Experimental hybrid retrieval uses local English embeddings and rank fusion. The similarity cutoff is provisional; matching does not establish evidence sufficiency. The encoder reads up to 256 tokens per passage. Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+      }
+    },
+    {
+      "campaign": "software",
+      "query": "banana bread baking temperature",
+      "expected_document": null,
+      "expected_answer_available": false,
+      "retrieved_documents": [],
+      "expected_rank": null,
+      "assessment": "no_matches",
+      "retrieval": {
+        "method": "hybrid-passages-v2",
+        "query": "banana bread baking temperature",
+        "corpus_fingerprint": "e583018ebe30a7ad1dfafe92e867fcfe421e47ad21723b8b2b5b0e36a45745d5",
+        "indexed_documents": 3,
+        "indexed_passages": 3,
+        "top_k": 6,
+        "passages": [],
+        "unmatched_query_terms": [
+          "baking",
+          "banana",
+          "bread",
+          "temperature"
+        ],
+        "status": "No matching evidence",
+        "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "semantic_cutoff": 0.35,
+        "limitations": "Experimental hybrid retrieval uses local English embeddings and rank fusion. The similarity cutoff is provisional; matching does not establish evidence sufficiency. The encoder reads up to 256 tokens per passage. Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+      }
+    },
+    {
+      "campaign": "medical",
+      "query": "How do I export tasks as CSV?",
+      "expected_document": null,
+      "expected_answer_available": false,
+      "retrieved_documents": [],
+      "expected_rank": null,
+      "assessment": "no_matches",
+      "retrieval": {
+        "method": "hybrid-passages-v2",
+        "query": "How do I export tasks as CSV?",
+        "corpus_fingerprint": "856539b6df7eef6c7ac7e607342dc5fb53421168ebb3fc4cbf099ee516cb1ab7",
+        "indexed_documents": 9,
+        "indexed_passages": 11,
+        "top_k": 6,
+        "passages": [],
+        "unmatched_query_terms": [
+          "csv",
+          "export",
+          "tasks"
+        ],
+        "status": "No matching evidence",
+        "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "semantic_cutoff": 0.35,
+        "limitations": "Experimental hybrid retrieval uses local English embeddings and rank fusion. The similarity cutoff is provisional; matching does not establish evidence sufficiency. The encoder reads up to 256 tokens per passage. Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+      }
+    }
+  ],
+  "answerable_cases": 6,
+  "answerable_found_in_top_6_passages": 6,
+  "answerable_ranked_first": 6,
+  "synthetic_software_sources": [
+    {
+      "id": "source-1",
+      "name": "export.md",
+      "text": "Synthetic test company: TaskNest. Workspace owners can export tasks as CSV from Settings > Export. Export includes task titles, due dates and completion status. Attachments are not included."
+    },
+    {
+      "id": "source-2",
+      "name": "billing.md",
+      "text": "Synthetic test company: TaskNest. Billing administrators can switch from monthly to annual billing at renewal. No price or discount is supplied in this fixture."
+    },
+    {
+      "id": "source-3",
+      "name": "access.md",
+      "text": "Synthetic test company: TaskNest. Administrators invite team members by email. Members can edit assigned tasks; only administrators can delete a workspace."
+    }
+  ]
+}

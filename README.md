@@ -2,7 +2,7 @@
 
 A general-purpose content agent prototype that uses audience research to suggest topics and supplied reference documents to support explanations. A guided review step turns a selected topic into a draft with paragraph-level source references. Business, audience, goal, tone and documents are campaign inputs; Nexus Vision is the first example.
 
-**Current stage:** The local Streamlit workflow covers YouTube comment analysis, optional video research, source-grounded topic briefs and reviewed content drafting. Local BM25 passage retrieval now connects uploaded documents to topic planning and drafting. A separate review subagent is not implemented.
+**Current stage:** The local Streamlit workflow covers YouTube comment analysis, optional video research, source-grounded topic briefs and reviewed content drafting. Local BM25 retrieval and optional experimental hybrid retrieval connect uploaded documents to topic planning and drafting. A separate Gemini scope check screens for topic drift; factual review remains human.
 
 **Last progress update:** 4 October 2026.
 
@@ -64,17 +64,18 @@ The six medical starter summaries and three later lens-replacement summaries wer
 | Guided topic review and content writer | Implemented; all three formats generated in the live example |
 | JSON and text exports | Implemented; selected sample exports published as development evidence |
 | Factual guardrails | Documented with partial runtime checks; human semantic review required |
-| Indexed document RAG | Local BM25 keyword retrieval with passage IDs, offsets and source metadata |
-| LangChain/LangGraph, Deep Agents, embeddings/vector store | Planned; not integrated |
+| Indexed document RAG | Default BM25 plus optional experimental local semantic + keyword retrieval |
+| Local embeddings | Optional FastEmbed all-MiniLM-L6-v2; no hosted vector store |
+| LangChain/LangGraph and Deep Agents | Not integrated |
 | Separate review subagent, publishing and monitoring | Not implemented |
 
 ## Retrieval and grounding
 
 Uploaded documents are split into overlapping passages and indexed locally with BM25. An editable audience question retrieves up to six candidate passages. The reviewer inspects them before the planner receives those passages, comments and the campaign brief. The writer receives selected statements and their cited evidence. Exports retain passage IDs, document names, offsets, links and source review status.
 
-This is lexical RAG. It adds no embedding API or hosted vector database. It can miss synonyms and cross-language matches; an English interpretation can seed a search of English documents. No matches block generation. Partial matches do not prove the question is answered: the planner and reviewer must identify missing support. Changing the question or documents invalidates old outputs.
+The default is lexical RAG. Optional experimental hybrid search adds local English all-MiniLM-L6-v2 embeddings and reciprocal rank fusion. It adds no embedding API or hosted vector database. It can miss synonyms and cross-language matches; an English interpretation can seed a search of English documents. No matches block generation. Partial matches do not prove the question is answered: the planner and reviewer must identify missing support. Changing the question or documents invalidates old outputs.
 
-RAG selects evidence; it does not verify whether a source is correct or whether a draft follows it faithfully. The first live RAG draft still added an unsupported generic introduction, which was caught in review and removed through regeneration. Semantic/vector retrieval, reranking and broader evaluation remain future work.
+RAG selects evidence; it does not verify whether a source is correct or whether a draft follows it faithfully. The first live RAG draft still added an unsupported generic introduction, which was caught in review and removed through regeneration. A separate model scope check now reviews the proposed topic before acceptance. Broader retrieval and factual-support evaluation remain necessary.
 
 ## Evidence and limits
 
@@ -100,6 +101,8 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 
 ### 4 October 2026: Passage retrieval connected to generation
 
+**Follow-up:** Added optional local hybrid retrieval and a visible “Results updated for” message. Hybrid found the expected document for 9/9 original answerable questions versus BM25's 7/9, and 6/6 additional questions versus 5/6. These small hand-labelled tests include synthetic software data. Added a single-question planner and a separate Gemini scope check; 57 automated tests pass. [Comparison and live scope-review findings](docs/progress/2026-10-04/HYBRID.md).
+
 - Added local BM25 indexing and retrieval over uploaded documents, with exact offsets, stable passage IDs, original source links and review metadata.
 - Added question selection, editable search, retrieved-evidence inspection and JSON export in Streamlit. Topic planning now receives retrieved passages instead of whole documents.
 - Added no-match blocking and invalidation when questions or documents change. Partial matches still require human assessment.
@@ -109,7 +112,7 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 
 [Review the retrieval evaluation and live evidence](docs/progress/2026-10-04/).
 
-Next: evaluate paraphrases, incomplete evidence and a nonmedical campaign before choosing a semantic retrieval backend.
+Next: broaden independent retrieval and scope evaluations, test real nonmedical campaign documents and improve factual review. Hybrid remains experimental; BM25 is still the default.
 
 ### 3 October 2026: An audience replacement question connected to supported drafts
 

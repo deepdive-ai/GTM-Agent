@@ -1,0 +1,16 @@
+ [active]:
+  - paragraph: Generate source-grounded topics
+- alert:
+  - paragraph: "Topic scope check failed: The proposed topic includes 'insurance coverage options' and 'how to check eligibility' in the missing evidence, which expands beyond the original research question about 'price and warranty'. The research question does not ask about insurance. No brief was accepted."
+- heading "Review a topic and create content" [level=3]: Review a topic and create content
+- alert:
+  - paragraph: Generate a source-grounded topic brief first. Topics without source-backed statements need more evidence before content generation.
+- generic "keyboard_arrow_right Basic keyword comparison (not AI analysis)":
+  - generic: keyboard_arrow_right
+  - paragraph: Basic keyword comparison (not AI analysis)
+- generic "keyboard_arrow_right All collected comments and video context":
+  - generic: keyboard_arrow_right
+  - paragraph: All collected comments and video context
+- button "Download evidence report (JSON)":
+  - paragraph: Download evidence report (JSON)
+- paragraph: API keys are not saved. Local snapshots expire on app access after 29 days. Delete exported reports separately when no longer needed. Analysis is sent to Gemini only when you click Analyze. AI results are held in this session and included in your download; they are not saved to collection history. No content is published.

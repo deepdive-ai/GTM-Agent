@@ -74,6 +74,8 @@ class RagPipelineTests(unittest.TestCase):
     def test_only_retrieved_passages_sent_then_writer_keeps_provenance(self):
         def planner_transport(req,timeout):
             payload=json.loads(json.loads(req.data)['contents'][0]['parts'][0]['text'])
+            if payload.get('task')=='check_question_scope':
+                return self.response({'in_scope':True,'reason':'Matches the question.'})
             self.assertEqual(len(payload['sources']),1)
             self.assertNotIn('Invoice',json.dumps(payload))
             p=payload['sources'][0]
@@ -95,6 +97,8 @@ class RagPipelineTests(unittest.TestCase):
             recommend(self.report,self.analysis,self.docs,self.brief,'test',transport=transport,retrieval_query='replacement')
     def test_missing_answer_can_be_flagged_despite_keyword_matches(self):
         def transport(req,timeout):
+            if json.loads(json.loads(req.data)['contents'][0]['parts'][0]['text']).get('task')=='check_question_scope':
+                return self.response({'in_scope':True,'reason':'Requests missing warranty evidence.'})
             return self.response({'topics':[{'title':'Lens warranty','theme_index':0,'audience_ids':['demo-0'],'rationale':'Question','format':'Blog','statements':[],'missing_evidence':['Provide the approved lens warranty.']}]})
         result=recommend(self.report,self.analysis,self.docs,self.brief,'test',transport=transport,retrieval_query='lens warranty')
         self.assertEqual(result['topics'][0]['status'],'Needs source evidence')

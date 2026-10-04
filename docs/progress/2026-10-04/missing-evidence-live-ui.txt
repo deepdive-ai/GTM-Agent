@@ -1,0 +1,142 @@
+ [active]:
+  - paragraph: Generate source-grounded topics
+- alert:
+  - paragraph: These are proposed topics and draft statements. Citation checks confirm IDs and exact excerpts; you must review whether each excerpt supports the statement and whether the source is trustworthy.
+- generic "keyboard_arrow_down Understanding Scleral Lens Lifespan and When Replacement May Be Needed":
+  - generic: keyboard_arrow_down
+  - paragraph: Understanding Scleral Lens Lifespan and When Replacement May Be Needed
+- paragraph: "Draft for human review · Suggested format: Blog"
+- paragraph: "Why this topic: This topic directly addresses a commenter's question about changing lenses after an interval of time, providing general information about scleral lens lifespan and reasons for replacement. It also aligns with the 'Practical Aspects of Scleral Lens Use' theme."
+- paragraph: Audience evidence
+- generic: Will have to change lens after interval of time
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=6K87YX7qsoo&lc=UgyXlHOpj2gfQKDpOQN4AaABAg
+  - paragraph: View audience evidence
+- paragraph: Draft explanation with source support
+- paragraph: The general expected lifespan for scleral lenses is one to two years, though some lenses may last longer.
+- paragraph: scleral_lens_lifespan_and_review.md · passage-efe1739feddd8395
+- generic: Cleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer.
+- paragraph: The individual lifespan of a scleral lens can vary based on factors such as the lens brand, material, and personal circumstances.
+- paragraph: scleral_lens_lifespan_and_review.md · passage-efe1739feddd8395
+- generic: An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances.
+- paragraph: Reasons a scleral lens might need replacement include accumulation of deposits, damage like surface cracking or breakage, or changes in the lens fit or prescription power.
+- paragraph: scleral_lens_replacement_reasons.md · passage-14173920941cda30
+- generic: The clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing.
+- paragraph: The surfaces of gas-permeable scleral lenses can deteriorate over time due to repeated wearing and handling.
+- paragraph: scleral_lens_surface_wear.md · passage-b670405340388622
+- generic: Moorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling.
+- paragraph: If a scleral lens needs replacement, it may involve duplicating the existing design, adjusting it, or a new fitting, as changes in an ectatic cornea can alter the clearance beneath the lens.
+- paragraph: scleral_lens_replacement_reasons.md · passage-14173920941cda30
+- generic: A replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting. Changes in an ectatic cornea can alter the clearance beneath a scleral lens.
+- paragraph: It is recommended to inform an eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove.
+- paragraph: scleral_lens_lifespan_and_review.md · passage-efe1739feddd8395
+- generic: Cleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove.
+- paragraph: Questions to resolve before publishing
+- paragraph: • Specific replacement schedule for scleral lenses at Nexus Vision.
+- paragraph: • Nexus Vision's policy on lens replacement or warranty.
+- generic "keyboard_arrow_down Scleral Lens Pricing and Insurance Coverage at Nexus Vision":
+  - generic: keyboard_arrow_down
+  - paragraph: Scleral Lens Pricing and Insurance Coverage at Nexus Vision
+- paragraph: "Needs source evidence · Suggested format: LinkedIn post"
+- paragraph: "Why this topic: This topic directly addresses the primary research question regarding price and insurance coverage, which is a major concern for multiple commenters. It aligns with the 'Cost and Insurance Coverage' theme."
+- paragraph: Audience evidence
+- generic: Is is covered under insurance?
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=hBFQk0CvkIM&lc=UgwoMiE0t9OntEkT42B4AaABAg
+  - paragraph: View audience evidence
+- generic: Price?
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=hBFQk0CvkIM&lc=UgxMnTCFErvOK-oDmtF4AaABAg
+  - paragraph: View audience evidence
+- generic: Price
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=yGE57_3S_ug&lc=UgwftK6aE6ksileRJR54AaABAg
+  - paragraph: View audience evidence
+- generic: Enka price kitna hai
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=yGE57_3S_ug&lc=UgyoDGB9gPV5ffxCvVl4AaABAg
+  - paragraph: View audience evidence
+- generic: One eye ka 45
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=6K87YX7qsoo&lc=Ugx9e4V7Pxt0sEOE4EV4AaABAg
+  - paragraph: View audience evidence
+- generic: Tjis cost is for pair or for single
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=6K87YX7qsoo&lc=UgzRpJO5wpPczRAarxx4AaABAg
+  - paragraph: View audience evidence
+- generic: Mujhe high keretokornus he -11left -13 right kya sceral lens best for me or what is the price of lens
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=6K87YX7qsoo&lc=UgxgKYEGZ7nYaQV8_RN4AaABAg
+  - paragraph: View audience evidence
+- generic: I have corneal opacity+thinning in both eyes post Lasik surgery (2years). I’ve been prescribed SCLERAL Contact lenses, what should be the cost?
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=tKmcSN6skt4&lc=UgyQvaArMcfXUB2w4Gt4AaABAg
+  - paragraph: View audience evidence
+- generic: 35 to 45k for one eye or for pair?
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=tKmcSN6skt4&lc=Ugzvb0XdoD6ws-WUZY54AaABAg
+  - paragraph: View audience evidence
+- generic: Dont trust do use they don't tell about its complications and high risk.. They only want to sell there lense... Per lense 40000 rs.... Contact lenses are dangerous.... Problem like cornea whitness cornea ulcers.. Dryness vision lost cornea transplant so b safe before using
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=KkmnKWJ2CbA&lc=Ugx8_EJexh4Te7EjL954AaABAg
+  - paragraph: View audience evidence
+- paragraph: Draft explanation with source support
+- alert:
+  - paragraph: The uploaded sources do not support an explanation yet.
+- paragraph: Questions to resolve before publishing
+- paragraph: • Specific pricing details for scleral lenses at Nexus Vision (per eye/pair).
+- paragraph: • Information on factors affecting the cost of scleral lenses at Nexus Vision.
+- paragraph: • Details on insurance coverage options for scleral lenses at Nexus Vision.
+- paragraph: • Information regarding any warranty provided for scleral lenses at Nexus Vision.
+- button "Download topic brief (JSON)":
+  - paragraph: Download topic brief (JSON)
+- heading "Review a topic and create content" [level=3]: Review a topic and create content
+- paragraph: Topic to review
+- generic: Understanding Scleral Lens Lifespan and When Replacement May Be Needed
+- combobox "Selected Understanding Scleral Lens Lifespan and When Replacement May Be Needed. Topic to review"
+- img "open"
+- paragraph: Reviewed topic title
+- textbox "Reviewed topic title":
+  - /placeholder: ""
+  - text: Understanding Scleral Lens Lifespan and When Replacement May Be Needed
+- paragraph: Statements to use
+- button "The general expected lifespan for scleral lenses is one to two years, though some lenses may last longer., close by backspace":
+  - generic "The general expected lifespan for scleral lenses is one to two years, though some lenses may last longer."
+- button "The individual lifespan of a scleral lens can vary based on factors such as the lens brand, material, and personal circumstances., close by backspace":
+  - generic "The individual lifespan of a scleral lens can vary based on factors such as the lens brand, material, and personal circumstances."
+- button "Reasons a scleral lens might need replacement include accumulation of deposits, damage like surface cracking or breakage, or changes in the lens fit or prescription power., close by backspace":
+  - generic "Reasons a scleral lens might need replacement include accumulation of deposits, damage like surface cracking or breakage, or changes in the lens fit or prescription power."
+- button "The surfaces of gas-permeable scleral lenses can deteriorate over time due to repeated wearing and handling., close by backspace":
+  - generic "The surfaces of gas-permeable scleral lenses can deteriorate over time due to repeated wearing and handling."
+- button "If a scleral lens needs replacement, it may involve duplicating the existing design, adjusting it, or a new fitting, as changes in an ectatic cornea can alter the clearance beneath the lens., close by backspace":
+  - generic "If a scleral lens needs replacement, it may involve duplicating the existing design, adjusting it, or a new fitting, as changes in an ectatic cornea can alter the clearance beneath the lens."
+- button "It is recommended to inform an eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove., close by backspace":
+  - generic "It is recommended to inform an eye-care provider about any changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove."
+- combobox
+- button "Clear all"
+- img "open"
+- alert:
+  - paragraph: Unresolved questions remain. The draft must omit answers that these sources cannot support.
+- paragraph: • Specific replacement schedule for scleral lenses at Nexus Vision.
+- paragraph: • Nexus Vision's policy on lens replacement or warranty.
+- paragraph: Draft format
+- generic: LinkedIn post
+- combobox "Selected LinkedIn post. Draft format"
+- img "open"
+- paragraph: Editorial direction (adds no factual evidence)
+- textbox "Editorial direction (adds no factual evidence)":
+  - /placeholder: ""
+- checkbox "I reviewed the selected statements and topic scope. Generate a draft for review, with source approval status retained."
+- paragraph: I reviewed the selected statements and topic scope. Generate a draft for review, with source approval status retained.
+- paragraph: "Source status: Draft material; review pending. This review step does not certify clinical accuracy or approve publication. On Generate, selected statements, source excerpts and the brief are sent to Gemini."
+- button "Generate complete content draft" [disabled]:
+  - paragraph: Generate complete content draft
+- generic "keyboard_arrow_right Basic keyword comparison (not AI analysis)":
+  - generic: keyboard_arrow_right
+  - paragraph: Basic keyword comparison (not AI analysis)
+- generic "keyboard_arrow_right All collected comments and video context":
+  - generic: keyboard_arrow_right
+  - paragraph: All collected comments and video context
+- button "Download evidence report (JSON)":
+  - paragraph: Download evidence report (JSON)
+- paragraph: API keys are not saved. Local snapshots expire on app access after 29 days. Delete exported reports separately when no longer needed. Analysis is sent to Gemini only when you click Analyze. AI results are held in this session and included in your download; they are not saved to collection history. No content is published.

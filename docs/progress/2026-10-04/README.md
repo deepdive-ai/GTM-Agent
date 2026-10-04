@@ -29,3 +29,7 @@ This is one retrieval-assisted draft, not a cross-industry benchmark or clinical
 - [Source summaries](sources/).
 
 Next: evaluate paraphrased questions, incomplete evidence and a nonmedical campaign; improve semantic support review before public campaign use.
+
+## Follow-up
+
+[Hybrid comparison, scope check and live rejection evidence](HYBRID.md) records the later implementation and 57-test verification. Earlier results above describe the initial lexical version.

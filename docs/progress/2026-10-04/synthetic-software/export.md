@@ -1,0 +1,1 @@
+Synthetic test company: TaskNest. Workspace owners can export tasks as CSV from Settings > Export. Export includes task titles, due dates and completion status. Attachments are not included.

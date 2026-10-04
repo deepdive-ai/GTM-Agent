@@ -1,0 +1,1 @@
+Synthetic test company: TaskNest. Administrators invite team members by email. Members can edit assigned tasks; only administrators can delete a workspace.

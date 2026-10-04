@@ -5,7 +5,8 @@ import re
 from collections import Counter, defaultdict
 from analyzer import AnalysisError
 
-VERSION = 'bm25-passages-v1'
+VERSION = 'passages-v2'
+MODES = ('bm25', 'hybrid')
 STOP = set('a an and are as at be been but by can could do does for from had has have how i if in is it its may of on or our should that the their them there these they this those to was we were what when where which who why will with would you your'.split())
 
 def tokens(text):
@@ -79,13 +80,29 @@ class PassageIndex:
         ranked = sorted(scores, key=lambda i: (-scores[i], self.passages[i]['id']))[:top_k]
         return [dict(self.passages[i], score=round(scores[i], 5), matched_terms=sorted(query_terms & set(tokens(self.passages[i]['text'])))) for i in ranked]
 
-def retrieve(sources, query, top_k=6):
+def retrieve(sources, query, top_k=6, mode="bm25"):
+    if mode not in MODES:
+        raise AnalysisError("Unknown retrieval method.")
     if not query.strip() or len(query) > 1500:
         raise AnalysisError('Enter a research question of 1-1,500 characters.')
     if not 1 <= top_k <= 12:
         raise AnalysisError('Retrieve between 1 and 12 passages.')
     index = PassageIndex(sources)
     passages = index.search(query, top_k)
+    if mode == 'hybrid' and index.passages and tokens(query):
+        from semantic_retriever import semantic_candidates
+        semantic = semantic_candidates(index.passages, query)
+        # Reciprocal rank fusion: avoid adding incomparable BM25/cosine scores.
+        lexical = index.search(query, len(index.passages))
+        by_id = {p['id']:i for i,p in enumerate(index.passages)}
+        ranks = {}
+        for rank,p in enumerate(lexical,1):
+            i=by_id[p['id']]; ranks.setdefault(i,{})['keyword_rank']=rank
+        for rank,i in enumerate(sorted(semantic,key=lambda i:(-semantic[i],index.passages[i]['id'])),1):
+            ranks.setdefault(i,{})['semantic_rank']=rank
+        fused={i:sum(1/(60+r) for r in values.values()) for i,values in ranks.items()}
+        order=sorted(fused,key=lambda i:(-fused[i],-semantic.get(i,-1),index.passages[i]['id']))[:top_k]
+        passages=[dict(index.passages[i],score=round(fused[i],6),matched_terms=sorted(set(tokens(query)) & set(tokens(index.passages[i]['text']))),semantic_similarity=round(semantic[i],5) if i in semantic else None,**ranks[i]) for i in order]
     matched = {term for p in passages for term in p['matched_terms']}
     corpus_id = hashlib.sha256(repr([(s['id'], s['name'], s['text']) for s in sources]).encode()).hexdigest()
-    return {'method': VERSION, 'query': query.strip(), 'corpus_fingerprint': corpus_id, 'indexed_documents': len(sources), 'indexed_passages': len(index.passages), 'top_k': top_k, 'passages': passages, 'unmatched_query_terms': sorted(set(tokens(query)) - matched), 'status': 'Candidate evidence; review relevance and completeness' if passages else 'No matching evidence', 'limitations': 'Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority.'}
+    return {'method': mode+'-'+VERSION, 'query': query.strip(), 'corpus_fingerprint': corpus_id, 'indexed_documents': len(sources), 'indexed_passages': len(index.passages), 'top_k': top_k, 'passages': passages, 'unmatched_query_terms': sorted(set(tokens(query)) - matched), 'status': 'Candidate evidence; review relevance and completeness' if passages else 'No matching evidence', 'semantic_model': 'sentence-transformers/all-MiniLM-L6-v2' if mode == 'hybrid' else None, 'semantic_cutoff': 0.35 if mode == 'hybrid' else None, 'limitations': ('Experimental hybrid retrieval uses local English embeddings and rank fusion. The similarity cutoff is provisional; matching does not establish evidence sufficiency. The encoder reads up to 256 tokens per passage. ' if mode == 'hybrid' else '') + 'Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority.'}

@@ -1,0 +1,1 @@
+Synthetic test company: TaskNest. Billing administrators can switch from monthly to annual billing at renewal. No price or discount is supplied in this fixture.

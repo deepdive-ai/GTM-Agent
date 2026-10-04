@@ -36,6 +36,9 @@ class PlannerTests(unittest.TestCase):
         def transport(req,timeout):
             self.assertNotIn('secret',req.full_url)
             body=json.loads(req.data)
+            data=json.loads(body['contents'][0]['parts'][0]['text'])
+            if data.get('task')=='check_question_scope':
+                return io.BytesIO(json.dumps({'candidates':[{'finishReason':'STOP','content':{'parts':[{'text':json.dumps({'in_scope':True,'reason':'Directly addresses lens pricing.'})}]}}]}).encode())
             self.assertIn('only authority',body['systemInstruction']['parts'][0]['text'])
             data=json.loads(body['contents'][0]['parts'][0]['text'])
             self.assertEqual(data['research_question'],'lens pricing')

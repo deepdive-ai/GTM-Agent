@@ -1,0 +1,103 @@
+ [active]:
+  - paragraph: Generate source-grounded topics
+- paragraph: "Question-scope review: The proposed topic directly addresses the research question by focusing on 'Scleral Lens Pricing and Warranty at Nexus Vision' and explicitly lists missing evidence related to pricing, factors affecting cost, insurance coverage, and warranty policy at Nexus Vision. This is a model check, not factual approval."
+- alert:
+  - paragraph: These are proposed topics and draft statements. Citation checks confirm IDs and exact excerpts; you must review whether each excerpt supports the statement and whether the source is trustworthy.
+- generic "keyboard_arrow_down Scleral Lens Pricing and Warranty at Nexus Vision":
+  - generic: keyboard_arrow_down
+  - paragraph: Scleral Lens Pricing and Warranty at Nexus Vision
+- paragraph: "Needs source evidence · Suggested format: Blog"
+- paragraph: "Why this topic: This topic directly addresses the audience's primary concern about the cost of scleral lenses and whether they are covered by insurance, as evidenced by numerous comments asking about price and insurance coverage. It also addresses the specific request for information about warranty."
+- paragraph: Audience evidence
+- generic: Is is covered under insurance?
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=hBFQk0CvkIM&lc=UgwoMiE0t9OntEkT42B4AaABAg
+  - paragraph: View audience evidence
+- generic: Price?
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=hBFQk0CvkIM&lc=UgxMnTCFErvOK-oDmtF4AaABAg
+  - paragraph: View audience evidence
+- generic: Price
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=yGE57_3S_ug&lc=UgwftK6aE6ksileRJR54AaABAg
+  - paragraph: View audience evidence
+- generic: Enka price kitna hai
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=yGE57_3S_ug&lc=UgyoDGB9gPV5ffxCvVl4AaABAg
+  - paragraph: View audience evidence
+- generic: One eye ka 45
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=6K87YX7qsoo&lc=Ugx9e4V7Pxt0sEOE4EV4AaABAg
+  - paragraph: View audience evidence
+- generic: Tjis cost is for pair or for single
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=6K87YX7qsoo&lc=UgzRpJO5wpPczRAarxx4AaABAg
+  - paragraph: View audience evidence
+- generic: Mujhe high keretokornus he -11left -13 right kya sceral lens best for me or what is the price of lens
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=6K87YX7qsoo&lc=UgxgKYEGZ7nYaQV8_RN4AaABAg
+  - paragraph: View audience evidence
+- generic: I have corneal opacity+thinning in both eyes post Lasik surgery (2years). I’ve been prescribed SCLERAL Contact lenses, what should be the cost?
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=tKmcSN6skt4&lc=UgyQvaArMcfXUB2w4Gt4AaABAg
+  - paragraph: View audience evidence
+- generic: 35 to 45k for one eye or for pair?
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=tKmcSN6skt4&lc=Ugzvb0XdoD6ws-WUZY54AaABAg
+  - paragraph: View audience evidence
+- generic: Dont trust do use they don't tell about its complications and high risk.. They only want to sell there lense... Per lense 40000 rs.... Contact lenses are dangerous.... Problem like cornea whitness cornea ulcers.. Dryness vision lost cornea transplant so b safe before using
+- link "View audience evidence":
+  - /url: https://www.youtube.com/watch?v=KkmnKWJ2CbA&lc=Ugx8_EJexh4Te7EjL954AaABAg
+  - paragraph: View audience evidence
+- paragraph: Draft explanation with source support
+- alert:
+  - paragraph: The uploaded sources do not support an explanation yet.
+- paragraph: Questions to resolve before publishing
+- paragraph: • Specific pricing details for scleral lenses (per eye/pair) at Nexus Vision.
+- paragraph: • Information on factors affecting the cost of scleral lenses at Nexus Vision.
+- paragraph: • General information on insurance coverage options for scleral lenses and how to check eligibility at Nexus Vision.
+- paragraph: • Details regarding the warranty policy for scleral lenses at Nexus Vision.
+- button "Download topic brief (JSON)":
+  - paragraph: Download topic brief (JSON)
+- heading "Review a topic and create content" [level=3]: Review a topic and create content
+- paragraph: Topic to review
+- generic: Scleral Lens Pricing and Warranty at Nexus Vision
+- combobox "Selected Scleral Lens Pricing and Warranty at Nexus Vision. Topic to review"
+- img "open"
+- paragraph: Reviewed topic title
+- textbox "Reviewed topic title":
+  - /placeholder: ""
+  - text: Scleral Lens Pricing and Warranty at Nexus Vision
+- paragraph: Statements to use
+- combobox "Statements to use" [disabled]
+- generic: No options to select
+- img "open"
+- alert:
+  - paragraph: Unresolved questions remain. The draft must omit answers that these sources cannot support.
+- paragraph: • Specific pricing details for scleral lenses (per eye/pair) at Nexus Vision.
+- paragraph: • Information on factors affecting the cost of scleral lenses at Nexus Vision.
+- paragraph: • General information on insurance coverage options for scleral lenses and how to check eligibility at Nexus Vision.
+- paragraph: • Details regarding the warranty policy for scleral lenses at Nexus Vision.
+- paragraph: Draft format
+- generic: LinkedIn post
+- combobox "Selected LinkedIn post. Draft format"
+- img "open"
+- paragraph: Editorial direction (adds no factual evidence)
+- textbox "Editorial direction (adds no factual evidence)":
+  - /placeholder: ""
+- checkbox "I reviewed the selected statements and topic scope. Generate a draft for review, with source approval status retained."
+- paragraph: I reviewed the selected statements and topic scope. Generate a draft for review, with source approval status retained.
+- paragraph: "Source status: Draft material; review pending. This review step does not certify clinical accuracy or approve publication. On Generate, selected statements, source excerpts and the brief are sent to Gemini."
+- button "Generate complete content draft" [disabled]:
+  - paragraph: Generate complete content draft
+- alert:
+  - paragraph: This topic has no supported explanation yet. Upload further source material or choose a supported topic.
+- generic "keyboard_arrow_right Basic keyword comparison (not AI analysis)":
+  - generic: keyboard_arrow_right
+  - paragraph: Basic keyword comparison (not AI analysis)
+- generic "keyboard_arrow_right All collected comments and video context":
+  - generic: keyboard_arrow_right
+  - paragraph: All collected comments and video context
+- button "Download evidence report (JSON)":
+  - paragraph: Download evidence report (JSON)
+- paragraph: API keys are not saved. Local snapshots expire on app access after 29 days. Delete exported reports separately when no longer needed. Analysis is sent to Gemini only when you click Analyze. AI results are held in this session and included in your download; they are not saved to collection history. No content is published.

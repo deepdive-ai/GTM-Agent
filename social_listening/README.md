@@ -43,7 +43,11 @@ The index is rebuilt from the current upload set, with no shared cross-campaign 
 
 Generated citations must reference a retrieved passage ID and an exact excerpt within that passage. The writer exports the used passages and their provenance. Changing the research question, sources or brief invalidates existing topic and draft outputs. No matches block a generation request. Partial or irrelevant matches still require a missing-evidence assessment by the planner and a human reviewer.
 
-This is lexical RAG, not semantic/vector or hybrid retrieval. It can miss synonyms, paraphrases and cross-language matches. Scores measure word overlap relevance, not confidence, factual accuracy or evidence completeness. English interpretations of Hindi/Hinglish comments can seed searches of English documents. Embeddings, reranking, LangGraph and a separate review subagent remain future work.
+Keyword (BM25) remains the default. An optional experimental Hybrid search combines BM25 with local all-MiniLM-L6-v2 embeddings through FastEmbed and reciprocal rank fusion. Install it with `python -m pip install -r requirements-hybrid.txt`, then select Hybrid in the UI. First use downloads roughly 90 MB of public model weights into `.model-cache`; document text stays local during retrieval. Only model weights are cached between requests. There is no embedding API fee or hosted vector database. Gemini generation still uses the configured account quota.
+
+Hybrid semantic candidates require cosine similarity of at least 0.35, a provisional cutoff rather than a confidence score. The English encoder reads up to 256 tokens per passage; unusually token-dense chunks can be truncated by the encoder while full passage text remains available to BM25 and the planner. This is a small-corpus experiment, not calibrated cross-language retrieval. Missing optional dependencies or model failures are explicit errors, never silent fallback. Keyword mode remains available.
+
+Topic planning now requests one topic scoped to the research question. A second Gemini call checks title, rationale, statements and evidence requests for scope drift. Failed, invalid or unfinished checks block acceptance. A model scope check can still miss errors and is not factual verification. Changing the search method or scope-check version invalidates prior approvals and outputs. LangGraph, a separate factual review agent and automatic publication remain unimplemented.
 
 ## Limits and storage
 
@@ -78,3 +82,7 @@ Six assistant-prepared, clinically unreviewed source summaries were uploaded. A 
 Known issues include ambiguous-number interpretation, overly broad topic framing and excerpts that may not support an entire finding. Clinical review remains pending. No campaign content was published.
 
 [View today's PDF, screenshots and draft evidence](https://gtm-content-progress-20261002.netlify.app/)
+
+## Hybrid retrieval follow-up on 4 October 2026
+
+57 automated tests pass, with mocked model responses and semantic candidate fixtures. Actual local-model evaluation found the expected document for 9/9 answerable questions in the original set (BM25: 7/9), and 6/6 additional answerable questions (BM25: 5/6). Every successful expected document ranked first. These are small hand-labelled examples, including synthetic software documents, not a general accuracy estimate or evidence-sufficiency benchmark. See the dated HYBRID report for live scope-check findings and limits.
