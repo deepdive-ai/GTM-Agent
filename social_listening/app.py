@@ -8,6 +8,7 @@ from analyzer import AnalysisError, analyze, fingerprint
 from writer import write_content, prepare_statements, draft_fingerprint, plain_text, FORMATS
 from video_research import fetch_transcript, research, research_fingerprint
 from planner import recommend, prepare_sources, plan_fingerprint
+from retriever import retrieve
 from listener import THEMES, CollectionError, collect, connect, demo, previous_ids, save, themes
 
 st.set_page_config(page_title='Audience Listening Lab', page_icon='🔎', layout='wide')
@@ -173,7 +174,7 @@ if video_research:
 st.subheader('Topics grounded in your sources')
 st.write('Connect audience questions to explanations your business can support.')
 uploads=st.file_uploader('Upload source documents (.md or .txt)',type=['md','txt'],accept_multiple_files=True)
-st.caption('Use approved material. On Generate, the supplied documents, campaign brief and relevant comments are sent to Gemini. Documents and topic briefs stay in this session and can be downloaded.')
+st.caption('Use approved material. On Generate, retrieved passages, the campaign brief and relevant comments are sent to Gemini. Documents and topic briefs stay in this session and can be downloaded.')
 business=st.text_input('Business or product',key='brief_business')
 audience=st.text_input('Target audience',key='brief_audience')
 goal=st.text_input('Campaign goal',key='brief_goal')
@@ -190,18 +191,53 @@ try:
 except (UnicodeDecodeError,AnalysisError) as error:
     source_error='Upload UTF-8 Markdown or plain text.' if isinstance(error,UnicodeDecodeError) else str(error)
     st.error(source_error)
+st.subheader('Find evidence for an audience question')
+question_choices={'Write my own question': ''}
+if analysis:
+    supported_ids={eid for group in analysis['themes'] for eid in group['evidence_ids']}
+    for comment in analysis.get('comments',[]):
+        if comment['id'] in supported_ids:
+            question_choices[comment['id']]=comment.get('interpretation','')
+comment_text={c['id']:c['text'] for c in report['comments']}
+question_choice=st.selectbox('Audience question',list(question_choices),format_func=lambda x:comment_text.get(x,x),key='question_choice_'+report_id[:12])
+question_key=report_id[:12]+'_'+question_choice
+retrieval_query=st.text_input('Research question (use the language of your documents)',value=question_choices[question_choice],key='research_question_'+question_key).strip()
+st.caption('Select an audience comment or enter a question. Its AI interpretation is editable. Evidence search runs locally without an API key.')
+retrieval=None
+if sources and retrieval_query:
+    try:
+        retrieval=retrieve(sources,retrieval_query)
+        st.caption(str(retrieval['indexed_documents'])+' documents indexed into '+str(retrieval['indexed_passages'])+' passages. Showing '+str(len(retrieval['passages']))+' candidate passages.')
+        if not retrieval['passages']:
+            st.warning('No matching evidence found. Add relevant sources or revise the question. Content generation is blocked for this search.')
+        else:
+            st.info('These are keyword matches, not a finding that the question is answered. Check relevance, qualifications and missing details before continuing.')
+            for passage in retrieval['passages']:
+                with st.expander(passage['name']+' · lines '+str(passage['line_start'])+'–'+str(passage['line_end']),expanded=True):
+                    st.text(passage['text'])
+                    st.caption(passage['id']+' · Relevance score '+str(passage['score'])+' (not confidence)')
+                    for url in passage['source_urls']: st.link_button('Original source',url)
+                    for note in passage['review_metadata']: st.caption(note)
+        with st.expander('Search coverage and limitations'):
+            st.write(retrieval['limitations'])
+            st.write('Question terms absent from retrieved passages: '+(', '.join(retrieval['unmatched_query_terms']) or 'None'))
+        st.download_button('Download retrieved evidence (JSON)',json.dumps(retrieval,indent=2,ensure_ascii=False),file_name='retrieved-evidence.json',mime='application/json')
+    except AnalysisError as error: st.error(str(error))
+evidence_id=plan_fingerprint(report,analysis,sources,brief,retrieval_query) if sources else 'empty'
+evidence_reviewed=st.checkbox('I reviewed the retrieved passages for relevance. Check for missing evidence when proposing the topic.',key='evidence_review_'+evidence_id[:16],disabled=not(retrieval and retrieval['passages']))
+
 planning_analysis=dict(analysis,video_research=video_research) if analysis else None
-plan_id=plan_fingerprint(report,planning_analysis,sources,brief) if planning_analysis and sources else None
-if st.session_state.get('topic_brief',{}).get('input_fingerprint')!=plan_id:
+plan_id=plan_fingerprint(report,planning_analysis,sources,brief,retrieval_query) if planning_analysis and sources else None
+if st.session_state.get('topic_brief',{}).get('input_fingerprint')!=plan_id or not evidence_reviewed:
     st.session_state.pop('topic_brief',None)
-ready=bool(analysis and analysis['themes'] and sources and business.strip() and audience.strip() and goal.strip() and formats and gemini_key and not source_error)
+ready=bool(analysis and analysis['themes'] and sources and business.strip() and audience.strip() and goal.strip() and formats and gemini_key and not source_error and retrieval and retrieval['passages'] and evidence_reviewed)
 if st.button('Generate source-grounded topics',type='primary',disabled=not ready):
     try:
         with st.spinner('Connecting audience evidence to your source material...'):
-            st.session_state.topic_brief=recommend(report,planning_analysis,documents,brief,gemini_key,model)
+            st.session_state.topic_brief=recommend(report,planning_analysis,documents,brief,gemini_key,model,retrieval_query=retrieval_query)
     except AnalysisError as error: st.error(str(error))
 if not ready:
-    st.caption('Analyze the audience sample, upload sources, and fill in the business, audience, goal and formats to generate a brief.')
+    st.caption('Analyze the audience sample, upload sources, review retrieved evidence, and complete the campaign fields to generate a brief.')
 topic_brief=st.session_state.get('topic_brief')
 if topic_brief:
     st.info('These are proposed topics and draft statements. Citation checks confirm IDs and exact excerpts; you must review whether each excerpt supports the statement and whether the source is trustworthy.')
@@ -283,6 +319,6 @@ with st.expander('Basic keyword comparison (not AI analysis)'):
     st.caption(str(unmatched)+' distinct texts did not match a configured keyword.')
 with st.expander('All collected comments and video context'):
     st.json({'videos':report['videos'],'comments':report['comments']})
-export=dict(report,keyword_candidates=groups,ai_analysis=analysis,video_research=video_research,transcripts=transcripts,topic_brief=topic_brief,content_draft=st.session_state.get('content_draft'))
+export=dict(report,keyword_candidates=groups,ai_analysis=analysis,video_research=video_research,transcripts=transcripts,topic_brief=topic_brief,content_draft=st.session_state.get('content_draft'),retrieval=retrieval)
 st.download_button('Download evidence report (JSON)',json.dumps(export,indent=2),file_name='audience-evidence.json',mime='application/json')
 st.caption('API keys are not saved. Local snapshots expire on app access after 29 days. Delete exported reports separately when no longer needed. Analysis is sent to Gemini only when you click Analyze. AI results are held in this session and included in your download; they are not saved to collection history. No content is published.')

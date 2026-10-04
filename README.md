@@ -2,9 +2,9 @@
 
 A general-purpose content agent prototype that uses audience research to suggest topics and supplied reference documents to support explanations. A guided review step turns a selected topic into a draft with paragraph-level source references. Business, audience, goal, tone and documents are campaign inputs; Nexus Vision is the first example.
 
-**Current stage:** The local Streamlit workflow covers YouTube comment analysis, optional video research, source-grounded topic briefs and reviewed content drafting. Indexed RAG retrieval and a separate review subagent are not implemented yet.
+**Current stage:** The local Streamlit workflow covers YouTube comment analysis, optional video research, source-grounded topic briefs and reviewed content drafting. Local BM25 passage retrieval now connects uploaded documents to topic planning and drafting. A separate review subagent is not implemented.
 
-**Last progress update:** 3 October 2026.
+**Last progress update:** 4 October 2026.
 
 [Try the interactive saved sample](https://gtm-campaign-sample.netlify.app/). No installation or API keys needed. This browser sample lets visitors inspect saved research, review drafts and download test notes; it does not run fresh AI generation or the Python application.
 
@@ -21,6 +21,10 @@ Audience themes + optional video research
           |
 Campaign brief + uploaded reference documents
           |
+Chunk and index documents; retrieve passages for the question
+          |
+Review retrieved evidence
+          |
 Proposed topics + cited statements + missing evidence
           |
 Human reviews topic scope and selects statements
@@ -32,7 +36,7 @@ Human review before publication
 
 Comments help identify questions worth addressing. Uploaded documents supply explanatory material. Titles and descriptions support positioning analysis; spoken-content analysis requires available captions. Speaker claims are attributed research context, not automatically verified facts.
 
-The prototype supports LinkedIn posts, blogs and Google Business Profile posts as selectable formats. It generates one selected format per request. LinkedIn, a short blog and Google Business Profile drafts were generated separately in today's live demonstration. This is one sample, not a format-quality benchmark. Video generation, scheduling, publishing and conversion tracking are future work.
+The prototype supports LinkedIn posts, blogs and Google Business Profile posts as selectable formats. It generates one selected format per request. LinkedIn, a short blog and Google Business Profile drafts were generated separately in the 3 October live demonstration. This is one sample, not a format-quality benchmark. Video generation, scheduling, publishing and conversion tracking are future work.
 
 ## Campaign inputs
 
@@ -60,17 +64,17 @@ The six medical starter summaries and three later lens-replacement summaries wer
 | Guided topic review and content writer | Implemented; all three formats generated in the live example |
 | JSON and text exports | Implemented; selected sample exports published as development evidence |
 | Factual guardrails | Documented with partial runtime checks; human semantic review required |
-| Indexed document RAG | Next milestone; not implemented |
+| Indexed document RAG | Local BM25 keyword retrieval with passage IDs, offsets and source metadata |
 | LangChain/LangGraph, Deep Agents, embeddings/vector store | Planned; not integrated |
 | Separate review subagent, publishing and monitoring | Not implemented |
 
-## Grounding today and planned RAG
+## Retrieval and grounding
 
-Today the planner sends the complete uploaded documents to Gemini. After topic review, the writer receives selected statements, original excerpts, campaign inputs and unresolved gaps. That provides source-grounded drafting without indexed retrieval.
+Uploaded documents are split into overlapping passages and indexed locally with BM25. An editable audience question retrieves up to six candidate passages. The reviewer inspects them before the planner receives those passages, comments and the campaign brief. The writer receives selected statements and their cited evidence. Exports retain passage IDs, document names, offsets, links and source review status.
 
-Next, documents will be loaded and chunked with source metadata, indexed and searched for passages relevant to each topic. Retrieval will be evaluated before replacing the current whole-document input. The earlier proposed stack included Hugging Face embeddings and Pinecone; a retrieval backend is not yet implemented or finalized. Source attribution and campaign isolation must survive retrieval.
+This is lexical RAG. It adds no embedding API or hosted vector database. It can miss synonyms and cross-language matches; an English interpretation can seed a search of English documents. No matches block generation. Partial matches do not prove the question is answered: the planner and reviewer must identify missing support. Changing the question or documents invalidates old outputs.
 
-RAG selects evidence; it does not verify whether a source is correct or whether a draft follows it faithfully. Those checks remain necessary.
+RAG selects evidence; it does not verify whether a source is correct or whether a draft follows it faithfully. The first live RAG draft still added an unsupported generic introduction, which was caught in review and removed through regeneration. Semantic/vector retrieval, reranking and broader evaluation remain future work.
 
 ## Evidence and limits
 
@@ -85,13 +89,27 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 | Location | Contents |
 | --- | --- |
 | [social_listening/](social_listening/) | Streamlit app, collector, analyzers, planner, writer, tests and setup |
-| [docs/progress/2026-10-02/](docs/progress/2026-10-02/) | Today's PDF, screenshots, LinkedIn draft and source catalog |
+| [docs/progress/2026-10-04/](docs/progress/2026-10-04/) | Retrieval evaluation, live RAG evidence and review record |
+| [docs/progress/2026-10-02/](docs/progress/2026-10-02/) | Earlier PDF, screenshots, drafts and source catalog |
 | [guidelines/factual_guardrails.md](guidelines/factual_guardrails.md) | Reusable content and research rules |
 | [data/raw/products/](data/raw/products/) | Cited keratoconus and lens-replacement summaries, plus clinic profile |
 | [Campaign brief](data/raw/campaigns/keratoconus_campaign_brief.md) | First example's campaign decisions |
 | [Editorial guidance](data/raw/campaigns/keratoconus_editorial_guidance.md) | First example's wording, tone and factual constraints |
 
 ## Daily progress
+
+### 4 October 2026: Passage retrieval connected to generation
+
+- Added local BM25 indexing and retrieval over uploaded documents, with exact offsets, stable passage IDs, original source links and review metadata.
+- Added question selection, editable search, retrieved-evidence inspection and JSON export in Streamlit. Topic planning now receives retrieved passages instead of whole documents.
+- Added no-match blocking and invalidation when questions or documents change. Partial matches still require human assessment.
+- All 48 automated tests passed. API responses in automated tests are mocked; tests cover retrieval isolation, provenance, absent evidence and the planner-to-writer path.
+- Live-tested nine existing summaries, indexed into eleven passages. The replacement query retrieved six candidates and Gemini generated a topic linked to the original audience comment, followed by a LinkedIn draft. Review excluded one inferred statement and corrected an unsupported introductory generalization through regeneration.
+- This is one lexical retrieval example, not a broad accuracy benchmark. Clinical review remains pending. The public browser sample still shows the saved 3 October outputs.
+
+[Review the retrieval evaluation and live evidence](docs/progress/2026-10-04/).
+
+Next: evaluate paraphrases, incomplete evidence and a nonmedical campaign before choosing a semantic retrieval backend.
 
 ### 3 October 2026: An audience replacement question connected to supported drafts
 

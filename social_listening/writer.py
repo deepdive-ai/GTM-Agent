@@ -71,7 +71,7 @@ def write_content(topic,sources,selected,brief,title,format_name,notes,key,model
         if candidate.get('finishReason')!='STOP': raise AnalysisError('Gemini did not finish the content draft. Retry with fewer selected statements.')
         text=''.join(p.get('text','') for p in candidate['content']['parts'] if not p.get('thought'))
         raw=validate_draft(json.loads(text),statements,brief)
-        return dict(raw,statements=statements,brief=brief,reviewed_title=title,format=format_name,editor_notes=notes,model=model,created_at=dt.datetime.now(dt.timezone.utc).isoformat(),input_fingerprint=draft_fingerprint(topic,statements,brief,title,format_name,notes),status='Draft for human review; not approved for publication')
+        return dict(raw,statements=statements,sources=[s for s in sources if s["id"] in {c["source_id"] for item in statements for c in item["citations"]}],brief=brief,reviewed_title=title,format=format_name,editor_notes=notes,model=model,created_at=dt.datetime.now(dt.timezone.utc).isoformat(),input_fingerprint=draft_fingerprint(topic,statements,brief,title,format_name,notes),status='Draft for human review; not approved for publication')
     except urllib.error.HTTPError as error:
         message='Google is temporarily unavailable. Your brief is retained; retry shortly.' if error.code in (500,502,503,504) else 'Check API access and quota.'
         raise AnalysisError('Gemini HTTP '+str(error.code)+'. '+message) from None

@@ -1,0 +1,582 @@
+{
+  "date": "2026-10-04",
+  "kind": "Local retrieval evaluation on saved reference summaries; no Gemini call",
+  "cases": [
+    {
+      "method": "bm25-passages-v1",
+      "query": "Why do scleral lenses need replacement over time?",
+      "corpus_fingerprint": "4d01c8785f1100e3177b7f3ab014c053a4b0ead10a733cb15919d17bb5acc17f",
+      "indexed_documents": 9,
+      "indexed_passages": 11,
+      "top_k": 6,
+      "passages": [
+        {
+          "id": "passage-14173920941cda30",
+          "document_id": "source-7",
+          "name": "scleral_lens_replacement_reasons.md",
+          "text": "# Reasons a scleral lens may need replacement\n\nStatus: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study.\nPrepared and source accessed: 3 October 2026.\n\nThe clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing.\n\nA replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting. Changes in an ectatic cornea can alter the clearance beneath a scleral lens.\n\nSource: Dr. DeNaeyer, Replacing and Refitting Scleral Contact Lenses, Contact Lens Spectrum, 1 November 2018.\nhttps://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/\n\nSource caveat: The article dates from 2018 and discloses the author's commercial interests in lens-related companies.",
+          "start": 0,
+          "end": 974,
+          "line_start": 1,
+          "line_end": 13,
+          "source_urls": [
+            "https://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study."
+          ],
+          "score": 4.96331,
+          "matched_terms": [
+            "lense",
+            "need",
+            "replacement",
+            "scleral"
+          ]
+        },
+        {
+          "id": "passage-b670405340388622",
+          "document_id": "source-9",
+          "name": "scleral_lens_surface_wear.md",
+          "text": "# Scleral lens surface wear\n\nStatus: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending.\nPrepared and source accessed: 3 October 2026.\n\nMoorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling. Re-polishing a lens is not always an option. Careful handling helps preserve the lens surface.\n\nSource: Moorfields Eye Hospital, Care of your scleral contact lenses, section Taking care of your contact lenses.\nhttps://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses\n\nScope: Explains surface wear. This source does not establish an individual replacement date or a clinic's replacement policy.",
+          "start": 0,
+          "end": 749,
+          "line_start": 1,
+          "line_end": 11,
+          "source_urls": [
+            "https://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending."
+          ],
+          "score": 3.60253,
+          "matched_terms": [
+            "lense",
+            "replacement",
+            "scleral"
+          ]
+        },
+        {
+          "id": "passage-e1b13fe47558215d",
+          "document_id": "source-8",
+          "name": "scleral_lens_lifespan_and_review.md",
+          "text": "fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.\n\nSource: Cleveland Clinic, Scleral Lenses, sections How long do scleral lenses last? and When should I see my healthcare provider? Page medically reviewed; last updated 28 May 2024.\nhttps://my.clevelandclinic.org/health/treatments/scleral-lenses\n\nScope: Supports general lifespan and follow-up information. It does not establish the replacement schedule, price, warranty or services of Nexus Vision.",
+          "start": 612,
+          "end": 1190,
+          "line_start": 8,
+          "line_end": 13,
+          "source_urls": [
+            "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+          ],
+          "score": 3.37539,
+          "matched_terms": [
+            "lense",
+            "replacement",
+            "scleral"
+          ]
+        },
+        {
+          "id": "passage-efe1739feddd8395",
+          "document_id": "source-8",
+          "name": "scleral_lens_lifespan_and_review.md",
+          "text": "# Scleral lens lifespan and follow-up\n\nStatus: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending.\nPrepared and source accessed: 3 October 2026.\n\nCleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer. An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances. This is general information, not a fixed replacement deadline for every patient.\n\nCleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.",
+          "start": 0,
+          "end": 790,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+          ],
+          "score": 2.80181,
+          "matched_terms": [
+            "lense",
+            "replacement",
+            "scleral"
+          ]
+        },
+        {
+          "id": "passage-b95286ca4466691c",
+          "document_id": "source-4",
+          "name": "keratoconus_cross_linking_expectations.md",
+          "text": "# Keratoconus: cross-linking expectations\n\nCross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward. Temporary discomfort and hazy vision can occur, and the procedure carries risks, including possible reduced vision. Suitability, technique, recovery, and expected benefit require an individual clinical discussion.\n\nSource: Moorfields Eye Hospital, “Corneal cross linking.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 607,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 2.258,
+          "matched_terms": [
+            "lense",
+            "need"
+          ]
+        },
+        {
+          "id": "passage-66519a85662b0cd9",
+          "document_id": "source-7",
+          "name": "scleral_lens_replacement_reasons.md",
+          "text": "Source caveat: The article dates from 2018 and discloses the author's commercial interests in lens-related companies. Use it for the stated replacement reasons, not promises about current products, superiority or outcomes.",
+          "start": 857,
+          "end": 1079,
+          "line_start": 13,
+          "line_end": 13,
+          "source_urls": [
+            "https://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study."
+          ],
+          "score": 1.08213,
+          "matched_terms": [
+            "replacement"
+          ]
+        }
+      ],
+      "unmatched_query_terms": [
+        "over",
+        "time"
+      ],
+      "status": "Candidate evidence; review relevance and completeness",
+      "limitations": "Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+    },
+    {
+      "method": "bm25-passages-v1",
+      "query": "What symptoms occur in keratoconus?",
+      "corpus_fingerprint": "4d01c8785f1100e3177b7f3ab014c053a4b0ead10a733cb15919d17bb5acc17f",
+      "indexed_documents": 9,
+      "indexed_passages": 11,
+      "top_k": 6,
+      "passages": [
+        {
+          "id": "passage-68aeae14574df1ae",
+          "document_id": "source-1",
+          "name": "keratoconus_condition_and_symptoms.md",
+          "text": "# Keratoconus: condition and symptoms\n\nKeratoconus changes the shape of the cornea, the clear front surface of the eye. The cornea becomes thinner and protrudes into a cone-like shape, affecting how it focuses light. Both eyes are usually affected, but not equally. Symptoms can include distorted or blurred vision, sensitivity to light and glare, and frequent prescription changes. Rapid worsening of eyesight warrants assessment by an eye doctor. Symptoms alone do not establish a diagnosis.\n\nSource: Mayo Clinic, “Keratoconus — Symptoms and causes.”\nhttps://www.mayoclinic.org/diseases-conditions/keratoconus/symptoms-causes/syc-20351352\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 723,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.mayoclinic.org/diseases-conditions/keratoconus/symptoms-causes/syc-20351352"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 4.69543,
+          "matched_terms": [
+            "keratoconus",
+            "symptom"
+          ]
+        },
+        {
+          "id": "passage-b95286ca4466691c",
+          "document_id": "source-4",
+          "name": "keratoconus_cross_linking_expectations.md",
+          "text": "# Keratoconus: cross-linking expectations\n\nCross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward. Temporary discomfort and hazy vision can occur, and the procedure carries risks, including possible reduced vision. Suitability, technique, recovery, and expected benefit require an individual clinical discussion.\n\nSource: Moorfields Eye Hospital, “Corneal cross linking.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 607,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 3.04967,
+          "matched_terms": [
+            "keratoconus",
+            "occur"
+          ]
+        },
+        {
+          "id": "passage-96cee777c957ef57",
+          "document_id": "source-5",
+          "name": "keratoconus_eye_rubbing.md",
+          "text": "# Keratoconus: eye rubbing\n\nEye rubbing is associated with keratoconus and its progression. Educational material can encourage avoiding rubbing and discussing irritation or allergies with an eye-care professional.\n\nSource: American Academy of Ophthalmology EyeWiki, “Keratoconus,” reviewed 26 August 2026.\nhttps://eyewiki.aao.org/Keratoconus\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 424,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://eyewiki.aao.org/Keratoconus"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 1.12162,
+          "matched_terms": [
+            "keratoconus"
+          ]
+        },
+        {
+          "id": "passage-a5b68647a6a288e0",
+          "document_id": "source-2",
+          "name": "keratoconus_causes_and_progression.md",
+          "text": "# Keratoconus: causes and progression\n\nThe exact cause of keratoconus is not fully understood; genetic and environmental influences are implicated. The condition often develops in adolescence or early adulthood. Its severity and speed of progression differ between people. Family history and allergic conditions can be relevant to the clinical history.\n\nSource: Moorfields Eye Hospital, “Keratoconus.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 541,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.moorfields.nhs.uk/eye-conditions/keratoconus"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 1.08238,
+          "matched_terms": [
+            "keratoconus"
+          ]
+        },
+        {
+          "id": "passage-7038763015271ae9",
+          "document_id": "source-6",
+          "name": "keratoconus_vision_correction_and_monitoring.md",
+          "text": "# Keratoconus: vision correction and monitoring\n\nGlasses or soft contact lenses may help in earlier keratoconus. Specialist contact lenses may be needed as corneal shape becomes more irregular. Advanced cases with inadequate vision despite lenses may require consideration of transplantation. Follow-up examinations and scans help clinicians assess changes and decide whether additional treatment is appropriate.\n\nSource: Moorfields Eye Hospital, “Keratoconus diagnosis and treatment.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/diagnosis-and-treatment\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 649,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.moorfields.nhs.uk/eye-conditions/keratoconus/diagnosis-and-treatment"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 1.0284,
+          "matched_terms": [
+            "keratoconus"
+          ]
+        },
+        {
+          "id": "passage-28ad6d668a871e63",
+          "document_id": "source-3",
+          "name": "keratoconus_diagnosis_and_treatment_goals.md",
+          "text": "# Keratoconus: diagnosis and treatment goals\n\nAssessment of keratoconus can include medical and family history, a vision/refraction examination, slit-lamp examination, and corneal imaging. Topography maps corneal shape; tomography can also assess thickness. Treatment has two distinct goals: improve vision and limit progression. The approach depends on severity and whether the condition is changing. Cross-linking may be recommended for progressive disease to help stabilize the cornea. It is not a promise of perfect vision.\n\nSource: Mayo Clinic, “Keratoconus — Diagnosis and treatment.”\nhttps://www.mayoclinic.org/diseases-conditions/keratoconus/diagnosis-treatment/drc-20351357\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 765,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.mayoclinic.org/diseases-conditions/keratoconus/diagnosis-treatment/drc-20351357"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 0.99133,
+          "matched_terms": [
+            "keratoconus"
+          ]
+        }
+      ],
+      "unmatched_query_terms": [],
+      "status": "Candidate evidence; review relevance and completeness",
+      "limitations": "Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+    },
+    {
+      "method": "bm25-passages-v1",
+      "query": "Does cross-linking guarantee perfect vision?",
+      "corpus_fingerprint": "4d01c8785f1100e3177b7f3ab014c053a4b0ead10a733cb15919d17bb5acc17f",
+      "indexed_documents": 9,
+      "indexed_passages": 11,
+      "top_k": 6,
+      "passages": [
+        {
+          "id": "passage-b95286ca4466691c",
+          "document_id": "source-4",
+          "name": "keratoconus_cross_linking_expectations.md",
+          "text": "# Keratoconus: cross-linking expectations\n\nCross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward. Temporary discomfort and hazy vision can occur, and the procedure carries risks, including possible reduced vision. Suitability, technique, recovery, and expected benefit require an individual clinical discussion.\n\nSource: Moorfields Eye Hospital, “Corneal cross linking.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 607,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 6.22626,
+          "matched_terms": [
+            "cross",
+            "linking",
+            "vision"
+          ]
+        },
+        {
+          "id": "passage-28ad6d668a871e63",
+          "document_id": "source-3",
+          "name": "keratoconus_diagnosis_and_treatment_goals.md",
+          "text": "# Keratoconus: diagnosis and treatment goals\n\nAssessment of keratoconus can include medical and family history, a vision/refraction examination, slit-lamp examination, and corneal imaging. Topography maps corneal shape; tomography can also assess thickness. Treatment has two distinct goals: improve vision and limit progression. The approach depends on severity and whether the condition is changing. Cross-linking may be recommended for progressive disease to help stabilize the cornea. It is not a promise of perfect vision.\n\nSource: Mayo Clinic, “Keratoconus — Diagnosis and treatment.”\nhttps://www.mayoclinic.org/diseases-conditions/keratoconus/diagnosis-treatment/drc-20351357\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 765,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.mayoclinic.org/diseases-conditions/keratoconus/diagnosis-treatment/drc-20351357"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 5.93414,
+          "matched_terms": [
+            "cross",
+            "linking",
+            "perfect",
+            "vision"
+          ]
+        },
+        {
+          "id": "passage-e1b13fe47558215d",
+          "document_id": "source-8",
+          "name": "scleral_lens_lifespan_and_review.md",
+          "text": "fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.\n\nSource: Cleveland Clinic, Scleral Lenses, sections How long do scleral lenses last? and When should I see my healthcare provider? Page medically reviewed; last updated 28 May 2024.\nhttps://my.clevelandclinic.org/health/treatments/scleral-lenses\n\nScope: Supports general lifespan and follow-up information. It does not establish the replacement schedule, price, warranty or services of Nexus Vision.",
+          "start": 612,
+          "end": 1190,
+          "line_start": 8,
+          "line_end": 13,
+          "source_urls": [
+            "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+          ],
+          "score": 0.89752,
+          "matched_terms": [
+            "vision"
+          ]
+        },
+        {
+          "id": "passage-7038763015271ae9",
+          "document_id": "source-6",
+          "name": "keratoconus_vision_correction_and_monitoring.md",
+          "text": "# Keratoconus: vision correction and monitoring\n\nGlasses or soft contact lenses may help in earlier keratoconus. Specialist contact lenses may be needed as corneal shape becomes more irregular. Advanced cases with inadequate vision despite lenses may require consideration of transplantation. Follow-up examinations and scans help clinicians assess changes and decide whether additional treatment is appropriate.\n\nSource: Moorfields Eye Hospital, “Keratoconus diagnosis and treatment.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/diagnosis-and-treatment\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 649,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.moorfields.nhs.uk/eye-conditions/keratoconus/diagnosis-and-treatment"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 0.88311,
+          "matched_terms": [
+            "vision"
+          ]
+        },
+        {
+          "id": "passage-68aeae14574df1ae",
+          "document_id": "source-1",
+          "name": "keratoconus_condition_and_symptoms.md",
+          "text": "# Keratoconus: condition and symptoms\n\nKeratoconus changes the shape of the cornea, the clear front surface of the eye. The cornea becomes thinner and protrudes into a cone-like shape, affecting how it focuses light. Both eyes are usually affected, but not equally. Symptoms can include distorted or blurred vision, sensitivity to light and glare, and frequent prescription changes. Rapid worsening of eyesight warrants assessment by an eye doctor. Symptoms alone do not establish a diagnosis.\n\nSource: Mayo Clinic, “Keratoconus — Symptoms and causes.”\nhttps://www.mayoclinic.org/diseases-conditions/keratoconus/symptoms-causes/syc-20351352\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 723,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.mayoclinic.org/diseases-conditions/keratoconus/symptoms-causes/syc-20351352"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 0.58504,
+          "matched_terms": [
+            "vision"
+          ]
+        },
+        {
+          "id": "passage-efe1739feddd8395",
+          "document_id": "source-8",
+          "name": "scleral_lens_lifespan_and_review.md",
+          "text": "# Scleral lens lifespan and follow-up\n\nStatus: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending.\nPrepared and source accessed: 3 October 2026.\n\nCleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer. An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances. This is general information, not a fixed replacement deadline for every patient.\n\nCleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.",
+          "start": 0,
+          "end": 790,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+          ],
+          "score": 0.51236,
+          "matched_terms": [
+            "vision"
+          ]
+        }
+      ],
+      "unmatched_query_terms": [
+        "guarantee"
+      ],
+      "status": "Candidate evidence; review relevance and completeness",
+      "limitations": "Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+    },
+    {
+      "method": "bm25-passages-v1",
+      "query": "What does Nexus charge for scleral lenses?",
+      "corpus_fingerprint": "4d01c8785f1100e3177b7f3ab014c053a4b0ead10a733cb15919d17bb5acc17f",
+      "indexed_documents": 9,
+      "indexed_passages": 11,
+      "top_k": 6,
+      "passages": [
+        {
+          "id": "passage-e1b13fe47558215d",
+          "document_id": "source-8",
+          "name": "scleral_lens_lifespan_and_review.md",
+          "text": "fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.\n\nSource: Cleveland Clinic, Scleral Lenses, sections How long do scleral lenses last? and When should I see my healthcare provider? Page medically reviewed; last updated 28 May 2024.\nhttps://my.clevelandclinic.org/health/treatments/scleral-lenses\n\nScope: Supports general lifespan and follow-up information. It does not establish the replacement schedule, price, warranty or services of Nexus Vision.",
+          "start": 612,
+          "end": 1190,
+          "line_start": 8,
+          "line_end": 13,
+          "source_urls": [
+            "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+          ],
+          "score": 4.7201,
+          "matched_terms": [
+            "lense",
+            "nexus",
+            "scleral"
+          ]
+        },
+        {
+          "id": "passage-b670405340388622",
+          "document_id": "source-9",
+          "name": "scleral_lens_surface_wear.md",
+          "text": "# Scleral lens surface wear\n\nStatus: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending.\nPrepared and source accessed: 3 October 2026.\n\nMoorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling. Re-polishing a lens is not always an option. Careful handling helps preserve the lens surface.\n\nSource: Moorfields Eye Hospital, Care of your scleral contact lenses, section Taking care of your contact lenses.\nhttps://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses\n\nScope: Explains surface wear. This source does not establish an individual replacement date or a clinic's replacement policy.",
+          "start": 0,
+          "end": 749,
+          "line_start": 1,
+          "line_end": 11,
+          "source_urls": [
+            "https://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending."
+          ],
+          "score": 2.54662,
+          "matched_terms": [
+            "lense",
+            "scleral"
+          ]
+        },
+        {
+          "id": "passage-efe1739feddd8395",
+          "document_id": "source-8",
+          "name": "scleral_lens_lifespan_and_review.md",
+          "text": "# Scleral lens lifespan and follow-up\n\nStatus: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending.\nPrepared and source accessed: 3 October 2026.\n\nCleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer. An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances. This is general information, not a fixed replacement deadline for every patient.\n\nCleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.",
+          "start": 0,
+          "end": 790,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+          ],
+          "score": 2.14984,
+          "matched_terms": [
+            "lense",
+            "scleral"
+          ]
+        },
+        {
+          "id": "passage-14173920941cda30",
+          "document_id": "source-7",
+          "name": "scleral_lens_replacement_reasons.md",
+          "text": "# Reasons a scleral lens may need replacement\n\nStatus: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study.\nPrepared and source accessed: 3 October 2026.\n\nThe clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing.\n\nA replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting. Changes in an ectatic cornea can alter the clearance beneath a scleral lens.\n\nSource: Dr. DeNaeyer, Replacing and Refitting Scleral Contact Lenses, Contact Lens Spectrum, 1 November 2018.\nhttps://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/\n\nSource caveat: The article dates from 2018 and discloses the author's commercial interests in lens-related companies.",
+          "start": 0,
+          "end": 974,
+          "line_start": 1,
+          "line_end": 13,
+          "source_urls": [
+            "https://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/"
+          ],
+          "review_metadata": [
+            "Status: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study."
+          ],
+          "score": 2.10107,
+          "matched_terms": [
+            "lense",
+            "scleral"
+          ]
+        },
+        {
+          "id": "passage-7038763015271ae9",
+          "document_id": "source-6",
+          "name": "keratoconus_vision_correction_and_monitoring.md",
+          "text": "# Keratoconus: vision correction and monitoring\n\nGlasses or soft contact lenses may help in earlier keratoconus. Specialist contact lenses may be needed as corneal shape becomes more irregular. Advanced cases with inadequate vision despite lenses may require consideration of transplantation. Follow-up examinations and scans help clinicians assess changes and decide whether additional treatment is appropriate.\n\nSource: Moorfields Eye Hospital, “Keratoconus diagnosis and treatment.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/diagnosis-and-treatment\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 649,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.moorfields.nhs.uk/eye-conditions/keratoconus/diagnosis-and-treatment"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 1.0284,
+          "matched_terms": [
+            "lense"
+          ]
+        },
+        {
+          "id": "passage-b95286ca4466691c",
+          "document_id": "source-4",
+          "name": "keratoconus_cross_linking_expectations.md",
+          "text": "# Keratoconus: cross-linking expectations\n\nCross-linking for keratoconus aims to prevent further deterioration. Patients may still need glasses or contact lenses afterward. Temporary discomfort and hazy vision can occur, and the procedure carries risks, including possible reduced vision. Suitability, technique, recovery, and expected benefit require an individual clinical discussion.\n\nSource: Moorfields Eye Hospital, “Corneal cross linking.”\nhttps://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking\n\nCompiled: 27 September 2026. Paraphrased source summary; clinical review pending.",
+          "start": 0,
+          "end": 607,
+          "line_start": 1,
+          "line_end": 8,
+          "source_urls": [
+            "https://www.moorfields.nhs.uk/eye-conditions/keratoconus/corneal-cross-linking"
+          ],
+          "review_metadata": [
+            "Compiled: 27 September 2026. Paraphrased source summary; clinical review pending."
+          ],
+          "score": 0.63454,
+          "matched_terms": [
+            "lense"
+          ]
+        }
+      ],
+      "unmatched_query_terms": [
+        "charge"
+      ],
+      "status": "Candidate evidence; review relevance and completeness",
+      "limitations": "Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+    },
+    {
+      "method": "bm25-passages-v1",
+      "query": "orchid irrigation",
+      "corpus_fingerprint": "4d01c8785f1100e3177b7f3ab014c053a4b0ead10a733cb15919d17bb5acc17f",
+      "indexed_documents": 9,
+      "indexed_passages": 11,
+      "top_k": 6,
+      "passages": [],
+      "unmatched_query_terms": [
+        "irrigation",
+        "orchid"
+      ],
+      "status": "No matching evidence",
+      "limitations": "Keyword retrieval can miss paraphrases and cross-language matches. Matching passages do not establish that the question is answered. Review qualifications and source authority."
+    }
+  ]
+}
