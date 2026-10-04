@@ -1,0 +1,33 @@
+[
+  {
+    "format": "LinkedIn",
+    "changes": [
+      "Added explicit Cleveland Clinic attribution to the general lifespan estimate."
+    ]
+  },
+  {
+    "format": "Blog",
+    "changes": [
+      "Removed unsupported introductory management claim.",
+      "Removed inferred extension of lens life; retained only source-supported surface preservation."
+    ]
+  },
+  {
+    "format": "Blog",
+    "changes": [
+      "Added explicit Cleveland Clinic attribution to the general lifespan estimate."
+    ]
+  },
+  {
+    "format": "Google Business Profile",
+    "changes": [
+      "Added explicit Cleveland Clinic attribution to the general lifespan estimate."
+    ]
+  },
+  {
+    "format": "Topic rationale",
+    "changes": [
+      "Replaced unsupported frequency wording with an explicit one-comment description."
+    ]
+  }
+]

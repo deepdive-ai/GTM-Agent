@@ -36,7 +36,7 @@ Human review before publication
 
 Comments help identify questions worth addressing. Uploaded documents supply explanatory material. Titles and descriptions support positioning analysis; spoken-content analysis requires available captions. Speaker claims are attributed research context, not automatically verified facts.
 
-The prototype supports LinkedIn posts, blogs and Google Business Profile posts as selectable formats. It generates one selected format per request. LinkedIn, a short blog and Google Business Profile drafts were generated separately in the 3 October live demonstration. This is one sample, not a format-quality benchmark. Video generation, scheduling, publishing and conversion tracking are future work.
+The prototype supports LinkedIn posts, blogs and Google Business Profile posts as selectable formats. It generates one selected format per request. All three formats were generated separately in the 4 October hybrid demonstration and editorially reviewed before display. This is one sample, not a format-quality benchmark. Video generation, scheduling, publishing and conversion tracking are future work.
 
 ## Campaign inputs
 
@@ -101,6 +101,8 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 
 ### 4 October 2026: Passage retrieval connected to generation
 
+**Full workflow verified:** A new live hybrid run passed the topic-scope check and generated LinkedIn, a short blog and Google Business Profile drafts through Streamlit. Codex editorial review corrected unsupported wording and added explicit source attribution; original outputs and the correction log are preserved. Reviewed drafts contain 143, 167 and 144 words. The [public sample](https://gtm-campaign-sample.netlify.app/) now displays these 4 October drafts and retrieved passages. [Inspect the full-run evidence](docs/progress/2026-10-04/hybrid-campaign/). Clinical approval remains pending.
+
 **Follow-up:** Added optional local hybrid retrieval and a visible “Results updated for” message. Hybrid found the expected document for 9/9 original answerable questions versus BM25's 7/9, and 6/6 additional questions versus 5/6. These small hand-labelled tests include synthetic software data. Added a single-question planner and a separate Gemini scope check; 57 automated tests pass. [Comparison and live scope-review findings](docs/progress/2026-10-04/HYBRID.md).
 
 - Added local BM25 indexing and retrieval over uploaded documents, with exact offsets, stable passage IDs, original source links and review metadata.
@@ -108,7 +110,7 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 - Added no-match blocking and invalidation when questions or documents change. Partial matches still require human assessment.
 - All 48 automated tests passed. API responses in automated tests are mocked; tests cover retrieval isolation, provenance, absent evidence and the planner-to-writer path.
 - Live-tested nine existing summaries, indexed into eleven passages. The replacement query retrieved six candidates and Gemini generated a topic linked to the original audience comment, followed by a LinkedIn draft. Review excluded one inferred statement and corrected an unsupported introductory generalization through regeneration.
-- This is one lexical retrieval example, not a broad accuracy benchmark. Clinical review remains pending. The public browser sample still shows the saved 3 October outputs.
+- This is one lexical retrieval example, not a broad accuracy benchmark. Clinical review remains pending. The public browser sample was subsequently updated with the reviewed 4 October hybrid outputs.
 
 [Review the retrieval evaluation and live evidence](docs/progress/2026-10-04/).
 

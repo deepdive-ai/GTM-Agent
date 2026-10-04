@@ -1,0 +1,243 @@
+{
+  "headline": "Understanding the Lifespan of Scleral Lenses",
+  "blocks": [
+    {
+      "kind": "factual",
+      "text": "According to Cleveland Clinic, scleral lenses typically have an expected lifespan of one to two years, though some may last longer. This is general information and not a fixed replacement deadline for every patient.",
+      "statement_ids": [
+        "statement-1",
+        "statement-3"
+      ]
+    },
+    {
+      "kind": "factual",
+      "text": "The actual lifespan of an individual's scleral lenses can vary based on factors such as the lens brand, material, and personal circumstances. The surfaces of gas-permeable scleral lenses can deteriorate over time due to repeated wearing and handling, but careful handling can help preserve their surface.",
+      "statement_ids": [
+        "statement-2",
+        "statement-5",
+        "statement-6"
+      ]
+    },
+    {
+      "kind": "factual",
+      "text": "Reasons a scleral lens might need replacement include the accumulation of deposits, damage like surface cracking or breakage, or changes in lens fit or prescription power. It is advisable to inform an eye-care provider if there are changes in lens fit or vision, if lenses repeatedly shift out of place, or if they become difficult to remove.",
+      "statement_ids": [
+        "statement-4",
+        "statement-7"
+      ]
+    },
+    {
+      "kind": "cta",
+      "text": "Call +91 8247710054 to book an appointment",
+      "statement_ids": []
+    }
+  ],
+  "review_notes": [
+    "Draft material; review pending"
+  ],
+  "statements": [
+    {
+      "text": "Scleral lenses generally have an expected lifespan of one to two years, though some may last longer.",
+      "citations": [
+        {
+          "source_id": "passage-efe1739feddd8395",
+          "excerpt": "Cleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer."
+        }
+      ],
+      "id": "statement-1"
+    },
+    {
+      "text": "The actual lifespan of an individual's scleral lenses can vary based on factors such as the lens brand, material, and personal circumstances.",
+      "citations": [
+        {
+          "source_id": "passage-efe1739feddd8395",
+          "excerpt": "An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances."
+        }
+      ],
+      "id": "statement-2"
+    },
+    {
+      "text": "This general lifespan information is not a fixed replacement deadline for every patient.",
+      "citations": [
+        {
+          "source_id": "passage-efe1739feddd8395",
+          "excerpt": "This is general information, not a fixed replacement deadline for every patient."
+        }
+      ],
+      "id": "statement-3"
+    },
+    {
+      "text": "Reasons a scleral lens might need replacement include the accumulation of deposits, damage like surface cracking or breakage, or changes in lens fit or prescription power.",
+      "citations": [
+        {
+          "source_id": "passage-14173920941cda30",
+          "excerpt": "The clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing."
+        }
+      ],
+      "id": "statement-4"
+    },
+    {
+      "text": "The surfaces of gas-permeable scleral lenses can deteriorate over time due to repeated wearing and handling.",
+      "citations": [
+        {
+          "source_id": "passage-b670405340388622",
+          "excerpt": "Moorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling."
+        }
+      ],
+      "id": "statement-5"
+    },
+    {
+      "text": "Careful handling of scleral lenses can help preserve their surface.",
+      "citations": [
+        {
+          "source_id": "passage-b670405340388622",
+          "excerpt": "Careful handling helps preserve the lens surface."
+        }
+      ],
+      "id": "statement-6"
+    },
+    {
+      "text": "It is advisable to inform an eye-care provider if there are changes in lens fit or vision, if lenses repeatedly shift out of place, or if they become difficult to remove.",
+      "citations": [
+        {
+          "source_id": "passage-efe1739feddd8395",
+          "excerpt": "Cleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove."
+        },
+        {
+          "source_id": "passage-e1b13fe47558215d",
+          "excerpt": "fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove."
+        }
+      ],
+      "id": "statement-7"
+    }
+  ],
+  "sources": [
+    {
+      "id": "passage-efe1739feddd8395",
+      "document_id": "source-9",
+      "name": "scleral_lens_lifespan_and_review.md",
+      "text": "# Scleral lens lifespan and follow-up\n\nStatus: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending.\nPrepared and source accessed: 3 October 2026.\n\nCleveland Clinic gives one to two years as a general expected lifespan for scleral lenses, while noting that some last longer. An individual's expected lifespan depends on factors such as lens brand, material and personal circumstances. This is general information, not a fixed replacement deadline for every patient.\n\nCleveland Clinic advises telling an eye-care provider about changes in lens fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.",
+      "start": 0,
+      "end": 790,
+      "line_start": 1,
+      "line_end": 8,
+      "source_urls": [
+        "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+      ],
+      "review_metadata": [
+        "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+      ],
+      "score": 0.032522,
+      "matched_terms": [
+        "last",
+        "lense"
+      ],
+      "semantic_similarity": 0.62638,
+      "keyword_rank": 2,
+      "semantic_rank": 1
+    },
+    {
+      "id": "passage-e1b13fe47558215d",
+      "document_id": "source-9",
+      "name": "scleral_lens_lifespan_and_review.md",
+      "text": "fit or vision, lenses that repeatedly shift out of place, or lenses that become difficult to remove. Follow-up visits and their schedule are recommended by the eye-care provider.\n\nSource: Cleveland Clinic, Scleral Lenses, sections How long do scleral lenses last? and When should I see my healthcare provider? Page medically reviewed; last updated 28 May 2024.\nhttps://my.clevelandclinic.org/health/treatments/scleral-lenses\n\nScope: Supports general lifespan and follow-up information. It does not establish the replacement schedule, price, warranty or services of Nexus Vision.",
+      "start": 612,
+      "end": 1190,
+      "line_start": 8,
+      "line_end": 13,
+      "source_urls": [
+        "https://my.clevelandclinic.org/health/treatments/scleral-lenses"
+      ],
+      "review_metadata": [
+        "Status: Assistant-prepared paraphrase of medically reviewed hospital patient information; clinical review of this summary pending."
+      ],
+      "score": 0.032522,
+      "matched_terms": [
+        "last",
+        "lense",
+        "long",
+        "my"
+      ],
+      "semantic_similarity": 0.61132,
+      "keyword_rank": 1,
+      "semantic_rank": 2
+    },
+    {
+      "id": "passage-b670405340388622",
+      "document_id": "source-7",
+      "name": "scleral_lens_surface_wear.md",
+      "text": "# Scleral lens surface wear\n\nStatus: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending.\nPrepared and source accessed: 3 October 2026.\n\nMoorfields Eye Hospital explains that the surfaces of gas-permeable scleral lenses can deteriorate through repeated wearing and handling. Re-polishing a lens is not always an option. Careful handling helps preserve the lens surface.\n\nSource: Moorfields Eye Hospital, Care of your scleral contact lenses, section Taking care of your contact lenses.\nhttps://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses\n\nScope: Explains surface wear. This source does not establish an individual replacement date or a clinic's replacement policy.",
+      "start": 0,
+      "end": 749,
+      "line_start": 1,
+      "line_end": 11,
+      "source_urls": [
+        "https://www.moorfields.nhs.uk/for-patients/visual-aids/contact-lenses/care-of-your-scleral-contact-lenses"
+      ],
+      "review_metadata": [
+        "Status: Assistant-prepared paraphrase of hospital patient guidance; clinical review pending."
+      ],
+      "score": 0.031498,
+      "matched_terms": [
+        "lense"
+      ],
+      "semantic_similarity": 0.52326,
+      "keyword_rank": 4,
+      "semantic_rank": 3
+    },
+    {
+      "id": "passage-14173920941cda30",
+      "document_id": "source-8",
+      "name": "scleral_lens_replacement_reasons.md",
+      "text": "# Reasons a scleral lens may need replacement\n\nStatus: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study.\nPrepared and source accessed: 3 October 2026.\n\nThe clinical article identifies deposit accumulation, damage such as surface cracking or breakage, and altered lens fit or prescription power as reasons a scleral lens may need replacing.\n\nA replacement is not necessarily an identical copy. Depending on the case, the existing design may be duplicated, adjusted, or replaced through a new fitting. Changes in an ectatic cornea can alter the clearance beneath a scleral lens.\n\nSource: Dr. DeNaeyer, Replacing and Refitting Scleral Contact Lenses, Contact Lens Spectrum, 1 November 2018.\nhttps://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/\n\nSource caveat: The article dates from 2018 and discloses the author's commercial interests in lens-related companies.",
+      "start": 0,
+      "end": 974,
+      "line_start": 1,
+      "line_end": 13,
+      "source_urls": [
+        "https://www.clspectrum.com/issues/2018/november/the-scleral-lens-vault/"
+      ],
+      "review_metadata": [
+        "Status: Assistant-prepared paraphrase of a professional clinical article; clinical review pending. This is professional guidance, not a randomized study."
+      ],
+      "score": 0.030536,
+      "matched_terms": [
+        "lense"
+      ],
+      "semantic_similarity": 0.46129,
+      "keyword_rank": 6,
+      "semantic_rank": 5
+    }
+  ],
+  "brief": {
+    "business": "Nexus Vision Eye Care",
+    "audience": "Patients considering or using scleral lenses for keratoconus",
+    "goal": "Explain the general lifespan of scleral lenses and why there is no fixed replacement deadline for everyone. Encourage an appointment for individual advice.",
+    "formats": [
+      "LinkedIn post",
+      "Blog"
+    ],
+    "call_to_action": "Call +91 8247710054 to book an appointment",
+    "language": "English",
+    "tone": "Warm and reassuring",
+    "source_review_status": "Draft material; review pending"
+  },
+  "reviewed_title": "Understanding the Lifespan of Scleral Lenses for Keratoconus",
+  "format": "Google Business Profile post",
+  "editor_notes": "Answer how long scleral lenses last. Attribute the one-to-two-year estimate to Cleveland Clinic and immediately retain that some last longer and it is not a fixed deadline. Use only selected factual statements. Do not add benefits, emotional assumptions, assurances, consequences, clinic service promises, or claims that follow-up ensures an outcome. Do not describe this as a frequent question: only one cited comment asks about replacement. For Blog, keep it short if the evidence does not support 400 words.",
+  "model": "gemini-2.5-flash",
+  "created_at": "2026-10-04T16:33:17.695829+00:00",
+  "status": "Editorially reviewed demonstration draft; clinical approval pending",
+  "generation_input_fingerprint": "0e7ae3b39370808f027ed217982fdee7b8892a7a2fcd9fd8c81015f863d0bda6",
+  "review": {
+    "reviewer": "Codex assistant editorial review",
+    "clinical_approval": false,
+    "date": "2026-10-04",
+    "raw_output_file": "gbp-raw.json",
+    "changes": [
+      "Added explicit Cleveland Clinic attribution to the general lifespan estimate."
+    ]
+  },
+  "reviewed_content_sha256": "e12d21a3c4376318833ad853c210d6df9e4bde9c75ef72f688ecb696ec54b970",
+  "review_issue": "Gemini draft with documented Codex editorial corrections. Clinical review is pending."
+}

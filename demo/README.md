@@ -1,11 +1,5 @@
-# Interactive saved campaign sample
+# Public saved campaign sample
 
-Public URL: https://gtm-campaign-sample.netlify.app/
+Updated 4 October 2026 with a completed hybrid retrieval, scope-check and three-format generation run. This static browser sample displays saved Gemini outputs with explicitly documented Codex editorial corrections; it does not run fresh generation. Clinical review remains pending.
 
-This browser sample follows one real audience comment about replacing scleral lenses through a reviewed topic brief and saved Gemini drafts for LinkedIn, a short blog and Google Business Profile. The collection dates from 1 October 2026; these outputs were generated in the local Streamlit application on 3 October 2026.
-
-Three assistant-prepared summaries retain original-source links and source limitations. The summaries and medical drafts await clinical approval. The public sample performs no new research or AI generation and is not an indexed RAG demonstration.
-
-Visitors can inspect paragraph support, review the scope, download saved drafts and keep feedback notes. A changed statement set cannot reuse an existing draft. Feedback stays on the visitor's device until they choose to share it.
-
-Original outputs and the review record are in docs/progress/2026-10-03/lens-replacement/. The blog is a short explanation, not a long-form article. Independent user testing remains pending.
+`sample.json` holds the reviewed display copies and retrieval trace. `campaign-evidence.json` preserves the original topic and three raw model outputs with the correction log. Only the relevant audience comment is included. `progress-oct4.html` explains verification and limits. No campaign posts were published.
