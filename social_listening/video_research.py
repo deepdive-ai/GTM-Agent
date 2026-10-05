@@ -124,8 +124,8 @@ def research(report,transcripts,key,model='gemini-2.5-flash',transport=None):
         raw=validate_research(json.loads(text),report,transcripts)
         return dict(raw,input_fingerprint=research_fingerprint(report,transcripts),created_at=dt.datetime.now(dt.timezone.utc).isoformat(),model=model,status='Sample research and proposed opportunities; human review required')
     except urllib.error.HTTPError as error:
-        message='Google Gemini is temporarily unavailable. Wait a moment and retry; your collected evidence is retained.' if error.code in (500,502,503,504) else 'Check API access and quota.'
-        raise AnalysisError('Gemini HTTP '+str(error.code)+'. '+message) from None
+        from gemini_errors import describe_http_error
+        raise AnalysisError(describe_http_error(error)) from None
     except (urllib.error.URLError,TimeoutError,OSError):
         raise AnalysisError('Gemini connection failed. Retry.') from None
     except (KeyError,ValueError,TypeError,IndexError):

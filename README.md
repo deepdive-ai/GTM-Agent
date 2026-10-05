@@ -1,10 +1,12 @@
 # GTM Agent
 
-A general-purpose content agent prototype that uses audience research to suggest topics and supplied reference documents to support explanations. A guided review step turns a selected topic into a draft with paragraph-level source references. Business, audience, goal, tone and documents are campaign inputs; Nexus Vision is the first example.
+A general-purpose content agent prototype that turns audience questions or a user-selected topic into source-grounded content. Supplied documents support explanations; LangGraph coordinates drafting, source-support checks, bounded revision and human review. Business, audience, goal, tone and documents are campaign inputs; Nexus Vision is the first example.
 
-**Current stage:** The local Streamlit workflow covers YouTube comment analysis, optional video research, source-grounded topic briefs and reviewed content drafting. Local BM25 retrieval and optional experimental hybrid retrieval connect uploaded documents to topic planning and drafting. A separate Gemini scope check screens for topic drift; factual review remains human.
+**Current stage:** Local Streamlit prototype with hybrid retrieval, topic-scope review, automated draft-support checks and per-format campaign packages. A live standalone blog completed automatic revision and review. The later package is incomplete: LinkedIn passed, while blog and Google Business Profile reviews hit Gemini HTTP 429. A diagnostic confirmed daily quota exhaustion. Human and clinical approval remain required.
 
-**Last progress update:** 4 October 2026.
+**Last progress update:** 5 October 2026.
+
+[Inspect the 5 October automatic review and campaign-package evidence](https://gtm-campaign-sample.netlify.app/progress-oct5). Includes passing and blocked outcomes, original drafts, revisions and quota diagnosis. The page displays saved results, not a live AI service.
 
 [Try the interactive saved sample](https://gtm-campaign-sample.netlify.app/). No installation or API keys needed. This browser sample lets visitors inspect saved research, review drafts and download test notes; it does not run fresh AI generation or the Python application.
 
@@ -15,28 +17,28 @@ These public pages contain saved development evidence, not a live interactive ap
 ## Working workflow
 
 ```text
-YouTube videos + comments
+Audience research OR a user-selected topic
           |
-Audience themes + optional video research
+Campaign brief + source documents
           |
-Campaign brief + uploaded reference documents
+Hybrid or keyword retrieval + evidence review
           |
-Chunk and index documents; retrieve passages for the question
+Source-grounded topic + scope check
           |
-Review retrieved evidence
+Human reviews topic and selected statements
           |
-Proposed topics + cited statements + missing evidence
+One draft OR LinkedIn / blog / Google Business Profile package
           |
-Human reviews topic scope and selects statements
+Source-support checks -> at most two revisions -> recheck
           |
-Draft in one selected format + paragraph references
+Pass: pause for individual human review | Fail: block and retain audit
           |
-Human review before publication
+Display and export; no automatic publication
 ```
 
 Comments help identify questions worth addressing. Uploaded documents supply explanatory material. Titles and descriptions support positioning analysis; spoken-content analysis requires available captions. Speaker claims are attributed research context, not automatically verified facts.
 
-The prototype supports LinkedIn posts, blogs and Google Business Profile posts as selectable formats. It generates one selected format per request. All three formats were generated separately in the 4 October hybrid demonstration and editorially reviewed before display. This is one sample, not a format-quality benchmark. Video generation, scheduling, publishing and conversion tracking are future work.
+The prototype supports LinkedIn posts, blogs and Google Business Profile posts, individually or as a campaign package. Each format has its own review, acceptance and retry; previous failed runs are retained. Package Markdown excludes blocked/rejected drafts, while JSON preserves the audit. All three formats were generated separately in the October 4 demonstration with manual editorial review. A complete three-format live pass through the new automated package workflow remains pending quota availability. Video generation, scheduling, publishing and conversion tracking are future work.
 
 ## Campaign inputs
 
@@ -62,26 +64,29 @@ The six medical starter summaries and three later lens-replacement summaries wer
 | Campaign inputs and document upload | Implemented for UTF-8 Markdown/plain text |
 | Source-grounded topic briefs | Implemented with exact-excerpt and evidence-ID checks |
 | Guided topic review and content writer | Implemented; all three formats generated in the live example |
-| JSON and text exports | Implemented; selected sample exports published as development evidence |
-| Factual guardrails | Documented with partial runtime checks; human semantic review required |
+| JSON, text and campaign Markdown exports | Implemented; per-format statuses and audit history retained |
+| Factual guardrails | Exact-reference checks plus model-assisted support review; human review still required |
 | Indexed document RAG | Default BM25 plus optional experimental local semantic + keyword retrieval |
 | Local embeddings | Optional FastEmbed all-MiniLM-L6-v2; no hosted vector store |
-| LangChain/LangGraph and Deep Agents | Not integrated |
-| Separate review subagent, publishing and monitoring | Not implemented |
+| LangGraph | Integrated for retrieval/planning and bounded draft/review/revision workflows |
+| Deep Agents | Not integrated |
+| Direct-topic entry and campaign packages | Implemented locally; new package live validation incomplete |
+| Automated draft review | Separate Gemini support-check call; not an autonomous subagent |
+| Publishing and performance monitoring | Not implemented |
 
 ## Retrieval and grounding
 
-Uploaded documents are split into overlapping passages and indexed locally with BM25. An editable audience question retrieves up to six candidate passages. The reviewer inspects them before the planner receives those passages, comments and the campaign brief. The writer receives selected statements and their cited evidence. Exports retain passage IDs, document names, offsets, links and source review status.
+Uploaded documents are split into overlapping passages and indexed locally with BM25. An editable audience question or user-selected topic retrieves up to six candidate passages. The reviewer inspects them before the planner receives those passages, comments and the campaign brief. The writer receives selected statements and their cited evidence. Exports retain passage IDs, document names, offsets, links and source review status.
 
 The default is lexical RAG. Optional experimental hybrid search adds local English all-MiniLM-L6-v2 embeddings and reciprocal rank fusion. It adds no embedding API or hosted vector database. It can miss synonyms and cross-language matches; an English interpretation can seed a search of English documents. No matches block generation. Partial matches do not prove the question is answered: the planner and reviewer must identify missing support. Changing the question or documents invalidates old outputs.
 
-RAG selects evidence; it does not verify whether a source is correct or whether a draft follows it faithfully. The first live RAG draft still added an unsupported generic introduction, which was caught in review and removed through regeneration. A separate model scope check now reviews the proposed topic before acceptance. Broader retrieval and factual-support evaluation remain necessary.
+RAG selects evidence; it does not verify whether a source is correct or whether a draft follows it faithfully. The first live RAG draft still added an unsupported generic introduction, which was caught in review and removed through regeneration. A separate model scope check now reviews the proposed topic before acceptance. A separate draft-support check now examines the headline and body sentences, requests up to two revisions and blocks incomplete or failed reviews. Broader retrieval and factual-support evaluation remain necessary.
 
 ## Evidence and limits
 
 [Shared factual guardrails](guidelines/factual_guardrails.md) cover supplied facts, missing evidence, unsupported claims and human approval. Runtime checks reject unknown IDs, invented excerpts, missing paragraph references, changed CTAs and em dashes in generated prose. Original source quotations retain their punctuation.
 
-These checks establish traceability, not correctness. Review must assess whether excerpts support the full meaning of a statement. The live test exposed overly broad comparison framing and video findings whose brief excerpts did not support every implication. A comparison topic was narrowed before drafting. The 3 October example adds replacement evidence and narrows the scope to that question. Pricing, insurance, daily wear and treatment comparisons remain outside this completed sample.
+Exact-reference checks establish traceability. The model-assisted reviewer additionally assesses source support, but can miss errors or overflag wording; it does not establish independent truth. Human review remains necessary. The live test exposed overly broad comparison framing and video findings whose brief excerpts did not support every implication. A comparison topic was narrowed before drafting. The 3 October example adds replacement evidence and narrows the scope to that question. Pricing, insurance, daily wear and treatment comparisons remain outside this completed sample.
 
 The collection is a small snapshot of recent top-level comments, not exhaustive social listening. Engagement totals and repeated saved runs do not yet establish trends, market demand, audience geography, medical facts or bookings. Cross-industry accuracy and commercial readiness have not been demonstrated.
 
@@ -90,6 +95,7 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 | Location | Contents |
 | --- | --- |
 | [social_listening/](social_listening/) | Streamlit app, collector, analyzers, planner, writer, tests and setup |
+| [docs/progress/2026-10-05/](docs/progress/2026-10-05/) | Automatic review, campaign package, audits, screenshots and quota diagnosis |
 | [docs/progress/2026-10-04/](docs/progress/2026-10-04/) | Retrieval evaluation, live RAG evidence and review record |
 | [docs/progress/2026-10-02/](docs/progress/2026-10-02/) | Earlier PDF, screenshots, drafts and source catalog |
 | [guidelines/factual_guardrails.md](guidelines/factual_guardrails.md) | Reusable content and research rules |
@@ -98,6 +104,18 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 | [Editorial guidance](data/raw/campaigns/keratoconus_editorial_guidance.md) | First example's wording, tone and factual constraints |
 
 ## Daily progress
+
+### 5 October 2026: Automatic support review and campaign packages
+
+**Implemented:** LangGraph retrieval/planning and draft/review/revision workflows, with at most two revisions and a pause for human review. Added direct-topic entry without audience analysis, multi-format campaign generation, separate approvals and retries, campaign exports, detailed validation failures and Gemini quota diagnostics. Session checkpoints remain in memory, not durable across restarts.
+
+**Verified:** All 88 automated tests pass using mocked model responses and UI checks. A live standalone blog had an unsupported introduction rejected, was automatically rewritten, passed a second review and paused for user review, without manual text corrections. One other reviewer flag was overly strict; model checks remain fallible.
+
+**Incomplete live test:** The direct-topic campaign generated a LinkedIn draft that passed review. The blog was automatically rewritten after an uncited introduction but its subsequent review hit HTTP 429. Google Business Profile review also hit HTTP 429. A small diagnostic request confirmed daily quota exhaustion for the configured model. Neither blocked format is shown as ready. The exact test outcomes and earlier attempts are retained in the audit.
+
+**Limits:** The checker covers draft content, not every research interpretation or topic rationale. Clinical approval, durable campaign storage, independent user tests and broader nonmedical evaluation remain pending. No automatic publication or Deep Agents integration was added.
+
+[Inspect the public progress page](https://gtm-campaign-sample.netlify.app/progress-oct5) · [Audits and test evidence](docs/progress/2026-10-05/)
 
 ### 4 October 2026: Passage retrieval connected to generation
 
@@ -264,7 +282,7 @@ python -m pip install -r requirements.txt
 python -m streamlit run app.py --server.address 127.0.0.1
 ```
 
-Use the labelled synthetic demo or enter a YouTube Data API key for public comment collection. A separate Gemini key runs analysis and generation. Account quota and pricing apply; no paid transcript fallback is used. See [setup, workflow and limits](social_listening/README.md).
+Choose “I already have a topic” to begin with documents and a question, or use the labelled synthetic demo or a YouTube Data API key for public comment collection. A separate Gemini key runs analysis and generation. Account quota and pricing apply; no paid transcript fallback is used. See [setup, workflow and limits](social_listening/README.md).
 
 ```sh
 python -m unittest discover -s . -p 'test_*.py'

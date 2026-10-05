@@ -28,31 +28,34 @@ def prepare_statements(topic,selected,sources):
         raise AnalysisError('Selected statements failed source checks. Review the topic brief.') from None
 
 def draft_fingerprint(topic,statements,brief,title,format_name,notes):
-    return hashlib.sha256(json.dumps([topic,statements,brief,title,format_name,notes],sort_keys=True).encode()).hexdigest()
+    return hashlib.sha256(json.dumps([topic,statements,brief,title,format_name,notes,"langgraph-claims-v1"],sort_keys=True).encode()).hexdigest()
 
 def validate_draft(raw,statements,brief):
     try:
-        if not isinstance(raw['headline'],str) or not raw['headline'].strip(): raise ValueError()
+        if not isinstance(raw['headline'],str) or not raw['headline'].strip(): raise ValueError('Invalid field or reference')
         ids={s['id'] for s in statements}; blocks=raw['blocks']; cited=set(); ctas=0
-        if not isinstance(blocks,list) or not 1<=len(blocks)<=30: raise ValueError()
+        if not isinstance(blocks,list) or not 1<=len(blocks)<=30: raise ValueError('Invalid field or reference')
         for block in blocks:
-            if not isinstance(block['text'],str) or not block['text'].strip(): raise ValueError()
+            if not isinstance(block['text'],str) or not block['text'].strip(): raise ValueError('Invalid field or reference')
             refs=block['statement_ids']
-            if not isinstance(refs,list) or len(refs)!=len(set(refs)) or not set(refs)<=ids: raise ValueError()
+            if not isinstance(refs,list) or len(refs)!=len(set(refs)) or not set(refs)<=ids: raise ValueError('Invalid field or reference')
             if block['kind']=='factual':
-                if not refs: raise ValueError()
+                if not refs: raise ValueError('An explanatory paragraph has no statement reference')
                 cited.update(refs)
             elif block['kind']=='cta':
-                if refs or not brief.get('call_to_action') or block['text']!=brief['call_to_action']: raise ValueError()
+                if refs or not brief.get('call_to_action') or block['text']!=brief['call_to_action']: raise ValueError('The CTA differs from the supplied brief or contains statement references')
                 ctas+=1
-            else: raise ValueError()
-        if not cited or ctas>1: raise ValueError()
-        if brief.get('call_to_action') and (ctas!=1 or blocks[-1]['kind']!='cta'): raise ValueError()
-        if not isinstance(raw['review_notes'],list) or not raw['review_notes'] or not all(isinstance(n,str) and n.strip() for n in raw['review_notes']): raise ValueError()
-        if '\u2014' in json.dumps(raw,ensure_ascii=False): raise ValueError()
+            else: raise ValueError('Invalid field or reference')
+        if not cited or ctas>1: raise ValueError('Invalid field or reference')
+        if brief.get('call_to_action') and (ctas!=1 or blocks[-1]['kind']!='cta'): raise ValueError('Invalid field or reference')
+        if not isinstance(raw['review_notes'],list) or not raw['review_notes'] or not all(isinstance(n,str) and n.strip() for n in raw['review_notes']): raise ValueError('Invalid field or reference')
+        if '\u2014' in json.dumps(raw,ensure_ascii=False): raise ValueError('Generated content or review notes contain an em dash')
         return raw
-    except (KeyError,TypeError,ValueError):
-        raise AnalysisError('Draft failed statement-reference or CTA checks. No draft was accepted.') from None
+    except (KeyError,TypeError,ValueError) as error:
+        reason=str(error) if type(error) is ValueError else 'Invalid draft structure'
+        failure=AnalysisError('Draft checks failed: '+reason+'. No draft was accepted.')
+        failure.details={'rejected_draft':raw}
+        raise failure from None
 
 def write_content(topic,sources,selected,brief,title,format_name,notes,key,model='gemini-2.5-flash',transport=None):
     if not key.strip(): raise AnalysisError('Enter a Gemini API key.')
@@ -73,8 +76,8 @@ def write_content(topic,sources,selected,brief,title,format_name,notes,key,model
         raw=validate_draft(json.loads(text),statements,brief)
         return dict(raw,statements=statements,sources=[s for s in sources if s["id"] in {c["source_id"] for item in statements for c in item["citations"]}],brief=brief,reviewed_title=title,format=format_name,editor_notes=notes,model=model,created_at=dt.datetime.now(dt.timezone.utc).isoformat(),input_fingerprint=draft_fingerprint(topic,statements,brief,title,format_name,notes),status='Draft for human review; not approved for publication')
     except urllib.error.HTTPError as error:
-        message='Google is temporarily unavailable. Your brief is retained; retry shortly.' if error.code in (500,502,503,504) else 'Check API access and quota.'
-        raise AnalysisError('Gemini HTTP '+str(error.code)+'. '+message) from None
+        from gemini_errors import describe_http_error
+        raise AnalysisError(describe_http_error(error)) from None
     except (urllib.error.URLError,TimeoutError,OSError):
         raise AnalysisError('Gemini connection failed or timed out. Retry.') from None
     except (KeyError,TypeError,ValueError,IndexError):

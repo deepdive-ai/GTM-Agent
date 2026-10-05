@@ -1,0 +1,6 @@
+5 October 2026
+Python unittest suite
+Ran 88 tests
+OK
+
+Model responses are mocked in automated tests. Live results are documented separately in the two JSON audits.

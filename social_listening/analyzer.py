@@ -64,8 +64,8 @@ def analyze(report,key,model='gemini-2.5-flash',transport=None):
         result=validate(json.loads(text),report)
         return dict(result,model=model,analyzed_at=dt.datetime.now(dt.timezone.utc).isoformat(),report_fingerprint=fingerprint(report),status='AI interpretation; human review required',synthetic=bool(report.get('synthetic')))
     except urllib.error.HTTPError as e:
-        tips={400:'Check the key, model and Gemini API setup.',403:'Gemini access is blocked. Check this key allows the Gemini API.',404:'This model is unavailable. Select a supported Gemini model.',429:'Gemini quota exhausted or rate limited. Wait or check your quota.'}
-        raise AnalysisError('Gemini HTTP '+str(e.code)+'. '+tips.get(e.code,'Google could not complete the request. Retry later.')) from None
+        from gemini_errors import describe_http_error
+        raise AnalysisError(describe_http_error(e)) from None
     except (urllib.error.URLError,TimeoutError,OSError):
         raise AnalysisError('Gemini connection failed or timed out. Please retry.') from None
     except (ValueError,KeyError,IndexError,TypeError):

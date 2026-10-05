@@ -1,5 +1,5 @@
 # Public saved campaign sample
 
-Updated 4 October 2026 with a completed hybrid retrieval, scope-check and three-format generation run. This static browser sample displays saved Gemini outputs with explicitly documented Codex editorial corrections; it does not run fresh generation. Clinical review remains pending.
+Updated 5 October 2026. The homepage preserves the October 4 saved sample and its manual editorial review history. `/progress-oct5` adds the verified automatic single-blog revision, direct-topic and campaign-package implementation, per-format incomplete live outcomes, screenshots and selected audits. This is static development evidence, not hosted AI generation.
 
-`sample.json` holds the reviewed display copies and retrieval trace. `campaign-evidence.json` preserves the original topic and three raw model outputs with the correction log. Only the relevant audience comment is included. `progress-oct4.html` explains verification and limits. No campaign posts were published.
+The campaign remains incomplete: LinkedIn passed, while blog and Google Business Profile reviews hit HTTP 429. A separate small diagnostic confirmed daily quota exhaustion. All medical content requires clinical review. No campaign was published.
