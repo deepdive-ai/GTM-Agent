@@ -101,6 +101,23 @@ class CampaignTests(unittest.TestCase):
             self.assertEqual(len(app.tabs),3)
             next(b for b in app.button if b.label=='Accept Blog').click().run()
             self.assertEqual(app.session_state['campaign_package']['items']['Blog']['result']['status'],'user_accepted')
+            import tempfile
+            with tempfile.TemporaryDirectory() as folder,patch.dict('os.environ',{'GTM_CAMPAIGN_DB':str(Path(folder)/'campaigns.sqlite')}):
+                app.run()
+                next(t for t in app.text_input if t.label=='Campaign name').set_value('Round trip').run()
+                next(b for b in app.button if b.label=='Save campaign').click().run()
+                self.assertFalse(app.exception)
+                calls_before=len(self.calls)
+                # Fresh session: no file upload and no key. Restore the actual saved workspace.
+                with patch('streamlit.file_uploader',return_value=[]):
+                    reopened=AppTest.from_file(str(Path(__file__).with_name('app.py'))).run()
+                    next(b for b in reopened.button if b.label=='Open campaign').click().run()
+                    self.assertFalse(reopened.exception)
+                    self.assertEqual(reopened.session_state['campaign_package']['items']['Blog']['result']['status'],'user_accepted')
+                    next(b for b in reopened.button if b.label=='Accept LinkedIn post').click().run()
+                    self.assertFalse(reopened.exception)
+                    self.assertEqual(reopened.session_state['campaign_package']['items']['LinkedIn post']['result']['status'],'user_accepted')
+                    self.assertEqual(len(self.calls),calls_before)
             next(t for t in app.text_input if t.label=='Reviewed topic title').set_value('New scope').run()
             self.assertFalse(app.exception)
             self.assertNotIn('campaign_package',app.session_state)

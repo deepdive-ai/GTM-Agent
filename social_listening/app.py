@@ -10,9 +10,10 @@ from writer import write_content, prepare_statements, draft_fingerprint, plain_t
 from video_research import fetch_transcript, research, research_fingerprint
 from planner import recommend, prepare_sources, plan_fingerprint
 from retriever import retrieve
-from workflow import plan_workflow, start_content_workflow, workflow_export
+from workflow import plan_workflow, start_content_workflow, workflow_export, can_resume_review, restore_content_workflow
 from langgraph.types import Command
-from campaign import create_package, package_fingerprint, export_package, package_markdown, decide, retry_format
+from campaign import create_package, package_fingerprint, export_package, package_markdown, decide, retry_format, resume_format_review
+from campaign_store import capture, restore, save_campaign, load_campaign, list_campaigns
 from listener import THEMES, CollectionError, collect, connect, demo, previous_ids, save, themes
 
 st.set_page_config(page_title='Audience Listening Lab', page_icon='🔎', layout='wide')
@@ -20,6 +21,34 @@ st.title('Audience Listening Lab')
 st.write('Explore audience discussions, inspect the evidence, and decide what deserves further research.')
 st.caption('YouTube audience research · Gemini interpretation · Source-linked evidence')
 root=Path(__file__).parent
+campaign_db=Path(os.environ.get('GTM_CAMPAIGN_DB',str(root/'campaigns.sqlite')))
+if st.session_state.get('pending_campaign_restore'):
+    saved=st.session_state.pop('pending_campaign_restore')
+    try:
+        restore(st.session_state,saved['snapshot'])
+        st.session_state.active_campaign={k:saved[k] for k in ('id','revision','name','updated')}
+        st.session_state.campaign_save_name=saved['name']
+    except AnalysisError as error:st.error(str(error))
+with st.sidebar:
+    st.header('Saved campaigns')
+    saved_campaigns=list_campaigns(campaign_db)
+    if saved_campaigns:
+        saved_choice=st.selectbox('Local campaigns',saved_campaigns,format_func=lambda x:x['name']+' · '+x['updated'][:16])
+        def queue_campaign_restore():
+            try:st.session_state.pending_campaign_restore=load_campaign(campaign_db,saved_choice['id'])
+            except AnalysisError as error:st.session_state.campaign_open_error=str(error)
+        st.button('Open campaign',on_click=queue_campaign_restore)
+        if st.session_state.get('campaign_open_error'):st.error(st.session_state.pop('campaign_open_error'))
+    else:st.caption('No saved campaigns yet.')
+    st.caption('Opening replaces the current workspace. Save changes first. API keys are never included in campaign snapshots.')
+# Preserve an already-open campaign when introducing keyed save controls.
+existing_plan=st.session_state.get('topic_brief')
+if existing_plan:
+    for setting,value in {'brief_formats':existing_plan['brief']['formats'],'campaign_model':existing_plan.get('model','gemini-2.5-flash'),'evidence_search_mode':('hybrid' if existing_plan.get('retrieval',{}).get('method','').startswith('hybrid') else 'bm25')}.items():
+        if setting not in st.session_state:st.session_state[setting]=value
+    if 'saved_campaign_documents' not in st.session_state:
+        st.session_state.saved_campaign_documents=[{'name':d['name'],'text':d['text']} for d in existing_plan.get('source_documents',[])]
+        st.session_state.use_saved_campaign_documents=True
 entry_mode=st.radio('How would you like to start?', ['Discover topics from audience comments','I already have a topic'],key='entry_mode')
 direct_mode=entry_mode=='I already have a topic'
 with st.sidebar:
@@ -31,7 +60,7 @@ with st.sidebar:
     st.caption('The window filters videos. Comment dates are shown separately. Search favors English; it does not strictly filter language or location.')
     key=st.text_input('YouTube API key (session only)',type='password',value=os.environ.get('YOUTUBE_API_KEY',''))
     gemini_key=st.text_input('Gemini API key (session only)',type='password',value=os.environ.get('GEMINI_API_KEY',''),key='gemini_key',on_change=lambda:st.session_state.pop('quota_diagnosis',None))
-    model=st.text_input('Gemini model',value='gemini-2.5-flash',on_change=lambda:st.session_state.pop('quota_diagnosis',None))
+    model=st.text_input('Gemini model',value='gemini-2.5-flash',key='campaign_model',on_change=lambda:st.session_state.pop('quota_diagnosis',None))
     st.caption('Analyze sends comment text, IDs, video titles and the topic to Google Gemini. Your account quota and pricing apply; free access is not guaranteed.')
     if st.button('Check Gemini access and quota',disabled=not gemini_key):
         from gemini_errors import probe_quota
@@ -193,12 +222,12 @@ else:
 
 st.subheader('Topics grounded in your sources')
 st.write('Connect your topic to explanations your business can support.' if direct_mode else 'Connect audience questions to explanations your business can support.')
-uploads=st.file_uploader('Upload source documents (.md or .txt)',type=['md','txt'],accept_multiple_files=True)
-st.caption('Use approved material. On Generate, retrieved passages, the campaign brief and relevant comments are sent to Gemini. Documents and topic briefs stay in this session and can be downloaded.')
+uploads=st.file_uploader('Upload source documents (.md or .txt)',type=['md','txt'],accept_multiple_files=True,key='sources_upload_'+st.session_state.get('upload_generation','initial'))
+st.caption('Use approved material. On Generate, retrieved passages, the campaign brief and relevant comments are sent to Gemini. Use Save campaign below to keep documents and results locally between sessions.')
 business=st.text_input('Business or product',key='brief_business')
 audience=st.text_input('Target audience',key='brief_audience')
 goal=st.text_input('Campaign goal',key='brief_goal')
-formats=st.multiselect('Content formats',list(FORMATS),default=['LinkedIn post','Blog'])
+formats=st.multiselect('Content formats',list(FORMATS),default=['LinkedIn post','Blog'],key='brief_formats')
 cta=st.text_input('Call to action (optional)',key='brief_cta')
 language=st.text_input('Content language',value='English',key='brief_language')
 tone=st.text_input('Tone',value='Warm and reassuring',key='brief_tone')
@@ -206,7 +235,9 @@ source_status=st.selectbox('Source review status',['Draft material; review pendi
 brief={'business':business.strip(),'audience':audience.strip(),'goal':goal.strip(),'formats':formats,'call_to_action':cta.strip(),'language':language.strip(),'tone':tone.strip(),'source_review_status':source_status}
 documents=[]; sources=[]; source_error=None
 try:
-    documents=[{'name':f.name,'text':f.getvalue().decode('utf-8')} for f in uploads]
+    use_saved=bool(st.session_state.get('saved_campaign_documents')) and st.checkbox('Use saved campaign documents',key='use_saved_campaign_documents')
+    documents=st.session_state['saved_campaign_documents'] if use_saved else [{'name':f.name,'text':f.getvalue().decode('utf-8')} for f in uploads]
+    if use_saved:st.caption('Saved sources: '+', '.join(d['name'] for d in documents)+'. Uncheck to replace with uploaded documents.')
     if documents: sources=prepare_sources(documents)
 except (UnicodeDecodeError,AnalysisError) as error:
     source_error='Upload UTF-8 Markdown or plain text.' if isinstance(error,UnicodeDecodeError) else str(error)
@@ -223,7 +254,7 @@ question_choice='Write my own question' if direct_mode else st.selectbox('Audien
 question_key=report_id[:12]+'_'+question_choice
 retrieval_query=st.text_input('Research question (use the language of your documents)',value=question_choices[question_choice],key='research_question_'+question_key).strip()
 st.caption('Enter the question your content should answer. Evidence search runs locally without an API key.' if direct_mode else 'Select an audience comment or enter a question. Its AI interpretation is editable. Evidence search runs locally without an API key.')
-retrieval_mode=st.selectbox('Evidence search method',['bm25','hybrid'],format_func=lambda value: 'Keyword (BM25)' if value=='bm25' else 'Hybrid (experimental, local semantic + keyword)')
+retrieval_mode=st.selectbox('Evidence search method',['bm25','hybrid'],key='evidence_search_mode',format_func=lambda value: 'Keyword (BM25)' if value=='bm25' else 'Hybrid (experimental, local semantic + keyword)')
 if retrieval_mode=='hybrid':
     st.caption('First use downloads a public embedding model. Document text stays local. This experimental English model can still return irrelevant passages.')
 retrieval=None
@@ -305,7 +336,7 @@ if not topic_brief:
     st.session_state.pop('content_workflow',None)
     st.session_state.pop('campaign_package',None)
 else:
-    choice=st.selectbox('Topic to review',range(len(topic_brief['topics'])),format_func=lambda i:topic_brief['topics'][i]['title'])
+    choice=st.selectbox('Topic to review',range(len(topic_brief['topics'])),key='topic_choice',format_func=lambda i:topic_brief['topics'][i]['title'])
     chosen=topic_brief['topics'][choice]
     scope_key=topic_brief['input_fingerprint'][:12]+'_'+str(choice)
     reviewed_title=st.text_input('Reviewed topic title',value=chosen['title'],key='title_'+scope_key)
@@ -343,7 +374,7 @@ else:
     current_workflow=st.session_state.get('content_workflow')
     if current_workflow:
         outcome=current_workflow['result']
-        st.caption('LangGraph workflow: '+outcome['status']+' · '+str(outcome.get('attempts',0))+' draft attempt(s). Checkpoints are session-local and do not survive a server restart.')
+        st.caption('LangGraph workflow: '+outcome['status']+' · '+str(outcome.get('attempts',0))+' draft attempt(s). Save the campaign below to reopen this review after a restart.')
         with st.expander('Automated claim checks and revision history',expanded=outcome['status']=='blocked'):
             for attempt in outcome.get('history',[]):
                 st.write('Attempt '+str(attempt['attempt']))
@@ -354,6 +385,15 @@ else:
                     st.caption(unit['reason'])
         if outcome['status']=='blocked':
             st.error(outcome['error'])
+            if can_resume_review(outcome) and st.button('Resume existing draft review',disabled=not gemini_key):
+                try:
+                    request=current_workflow.get('request') or {k:outcome[k] for k in ('topic','sources','selected','brief','title','notes')}
+                    request=dict(request,model=model)
+                    graph,config,result=restore_content_workflow(request,draft_format,outcome,gemini_key,resume_review=True)
+                    current_workflow.update(graph=graph,config=config,result=result,request=request)
+                    if result['status']=='awaiting_user_review':st.session_state.content_draft=dict(result['draft'],status='Automated check passed; awaiting user review')
+                    st.rerun()
+                except AnalysisError as error:st.error(str(error))
             st.warning('No draft is ready for user acceptance. Inspect the audit, add evidence or change the scope before retrying.')
         st.download_button('Download workflow audit (JSON)',json.dumps(workflow_export(outcome),indent=2,ensure_ascii=False),file_name='gtm-workflow-audit.json',mime='application/json')
         if outcome['status']=='awaiting_user_review':
@@ -362,6 +402,9 @@ else:
             reject=st.button('Reject draft')
             if accept or reject:
                 try:
+                    if 'graph' not in current_workflow:
+                        graph,config,result=restore_content_workflow(current_workflow['request'],draft_format,outcome)
+                        current_workflow.update(graph=graph,config=config,result=result)
                     result=current_workflow['graph'].invoke(Command(resume=bool(accept)),current_workflow['config'])
                     current_workflow['result']=result
                     if accept:
@@ -427,6 +470,11 @@ else:
                 elif result['status']=='blocked':st.error(result.get('error','Draft blocked.'))
                 else:st.info('Draft rejected. Generate a new package after revising the brief or evidence.')
                 if result['status'] in ('blocked','user_rejected') and package.get('request'):
+                    if can_resume_review(result) and st.button('Resume review '+name,key='package_resume_'+name,disabled=not gemini_key):
+                        try:
+                            with st.spinner('Reviewing the existing '+name+' draft...'):resume_format_review(package,name,gemini_key)
+                            st.rerun()
+                        except AnalysisError as error:st.error(str(error))
                     if st.button('Retry '+name,key='package_retry_'+name,disabled=not gemini_key):
                         with st.spinner('Retrying only '+name+'...'):
                             retry_format(package,name,gemini_key)
@@ -444,7 +492,7 @@ else:
                     rejected=st.button('Reject '+name,key='package_reject_'+name)
                     if accepted or rejected:
                         try:
-                            decide(package,name,bool(accepted));st.rerun()
+                            decide(package,name,bool(accepted),key=gemini_key);st.rerun()
                         except AnalysisError as error:st.error(str(error))
         st.download_button('Download campaign package (Markdown)',package_markdown(package),file_name='campaign-package.md',mime='text/markdown')
         st.download_button('Download campaign audit (JSON)',json.dumps(export_package(package),indent=2,ensure_ascii=False),file_name='campaign-audit.json',mime='application/json')
@@ -456,4 +504,21 @@ with st.expander('All collected comments and video context'):
     st.json({'videos':report['videos'],'comments':report['comments']})
 export=dict(report,campaign_package=export_package(st.session_state.campaign_package) if st.session_state.get('campaign_package') else None,keyword_candidates=groups,ai_analysis=analysis,video_research=video_research,transcripts=transcripts,topic_brief=topic_brief,content_draft=st.session_state.get('content_draft'),retrieval=retrieval,workflow=workflow_export(st.session_state.content_workflow['result']) if st.session_state.get('content_workflow') else None)
 st.download_button('Download evidence report (JSON)',json.dumps(export,indent=2),file_name='audience-evidence.json',mime='application/json')
-st.caption('API keys are not saved. Local snapshots expire on app access after 29 days. Delete exported reports separately when no longer needed. Analysis is sent to Gemini only when you click Analyze. AI results are held in this session and included in your download; they are not saved to collection history. No content is published.')
+st.caption('API keys are not saved. Collection-history snapshots expire on app access after 29 days; explicitly saved campaigns do not. Delete exported reports separately when no longer needed. Analysis is sent to Gemini only when you click Analyze. AI results are held in this session and included in your download; they are not saved to collection history. No content is published.')
+
+
+st.subheader('Save this campaign')
+st.caption('Keeps source documents, campaign details, drafts and review history on this computer. API keys are excluded. Save again after making changes. Campaign saves remain until removed from local storage.')
+if 'campaign_save_name' not in st.session_state:
+    st.session_state.campaign_save_name=st.session_state.get('active_campaign',{}).get('name','')
+name=st.text_input('Campaign name',key='campaign_save_name')
+save_current=st.button('Save campaign',disabled=not(name.strip() and documents))
+save_copy=st.button('Save as new campaign',disabled=not(name.strip() and documents)) if st.session_state.get('active_campaign') else False
+if save_current or save_copy:
+    try:
+        snapshot=capture(st.session_state,documents,report,analysis,video_research,transcripts,model,brief,retrieval_mode)
+        active=st.session_state.get('active_campaign',{}) if not save_copy else {}
+        saved=save_campaign(campaign_db,name,snapshot,active.get('id'),active.get('revision'))
+        st.session_state.active_campaign=saved
+        st.success('Saved locally: '+saved['name']+'. Reopen it from Saved campaigns in the sidebar.')
+    except AnalysisError as error:st.error(str(error))

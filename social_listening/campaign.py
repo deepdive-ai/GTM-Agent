@@ -3,7 +3,7 @@ import hashlib
 import json
 from analyzer import AnalysisError
 from writer import FORMATS, prepare_statements, plain_text
-from workflow import start_content_workflow, workflow_export
+from workflow import start_content_workflow, workflow_export, restore_content_workflow
 from langgraph.types import Command
 
 VERSION='campaign-package-v1'
@@ -39,10 +39,13 @@ def retry_format(package,format_name,key,transport=None):
     replacement['previous_runs']=history
     package['items'][format_name]=replacement
 
-def decide(package,format_name,accept):
+def decide(package,format_name,accept,key="",transport=None):
     if type(accept) is not bool:raise AnalysisError('Choose accept or reject.')
     item=package['items'][format_name]
     if item['result']['status']!='awaiting_user_review':raise AnalysisError('This draft is not waiting for review.')
+    if 'graph' not in item:
+        graph,config,result=restore_content_workflow(package['request'],format_name,item['result'],key,transport)
+        item.update(graph=graph,config=config,result=result)
     item['result']=item['graph'].invoke(Command(resume=accept),item['config'])
 
 def export_package(package):
@@ -73,3 +76,9 @@ def package_markdown(package):
                 lines.extend(source.get('source_urls',[]))
         lines.append('### Review notes');lines.extend(d['review_notes'])
     return '\n\n'.join(lines)+'\n'
+
+
+def resume_format_review(package,format_name,key,transport=None):
+    item=package['items'][format_name]
+    graph,config,result=restore_content_workflow(package['request'],format_name,item['result'],key,transport,resume_review=True)
+    item.update(graph=graph,config=config,result=result)

@@ -116,3 +116,42 @@ def start_content_workflow(topic,sources,selected,brief,title,format_name,notes,
 def workflow_export(result):
     # Explicit selection excludes __interrupt__ objects and any runtime/credential handles.
     return {'framework':'LangGraph','version':VERSION,'status':result['status'],'attempts':result.get('attempts',0),'max_revisions':MAX_REVISIONS,'history':result.get('history',[]),'draft':result.get('draft'),'error':result.get('error',''),'input_fingerprint':result.get('input_fingerprint'),'user_decision':result.get('user_decision'),'checkpoint_storage':'Session-local memory; lost when session/server ends.'}
+
+def can_resume_review(result):
+    history=result.get('history',[])
+    return bool(result.get('status')=='blocked' and result.get('draft') and history and history[-1].get('review_error') and history[-1].get('draft') and content_hash(result['draft'])==content_hash(history[-1]['draft']))
+
+def restore_content_workflow(request,format_name,result,key='',transport=None,resume_review=False):
+    """Rebuild graph control state from an explicit JSON snapshot, never a pickled graph."""
+    from claim_review import review_units, validate_review
+    statements=prepare_statements(request['topic'],request['selected'],request['sources'])
+    expected=draft_fingerprint(request['topic'],statements,request['brief'],request['title'],format_name,request['notes'])
+    draft=result.get('draft')
+    if not draft or result.get('input_fingerprint')!=expected or draft.get('input_fingerprint')!=expected:
+        raise AnalysisError('Saved draft does not match the campaign inputs. Generate a new draft.')
+    if draft.get('statements')!=statements or draft.get('brief')!=request['brief'] or draft.get('format')!=format_name:
+        raise AnalysisError('Saved draft evidence or brief has changed. Generate a new draft.')
+    source_lookup={s['id']:s for s in request['sources']}
+    if any(source_lookup.get(s['id'])!=s for s in draft['sources']):
+        raise AnalysisError('Saved draft sources have changed. Generate a new draft.')
+    units=review_units(draft)
+    attempts=result.get('attempts')
+    if type(attempts) is not int or not 1<=attempts<=MAX_REVISIONS+1:
+        raise AnalysisError('Invalid saved revision count.')
+    state={k:copy.deepcopy(request[k]) for k in ('topic','sources','selected','brief','title','notes')}
+    state.update(format=format_name,input_fingerprint=expected,draft=copy.deepcopy(draft),attempts=attempts,history=copy.deepcopy(result.get('history',[])),error='')
+    if resume_review:
+        if not can_resume_review(result):raise AnalysisError('Only an interrupted source-support review can resume without redrafting.')
+        state['status']='checking_claims';node='write'
+    else:
+        if result.get('status')!='awaiting_user_review':raise AnalysisError('Saved draft is not awaiting approval.')
+        review=draft.get('claim_review',{})
+        checked=validate_review(review,units,draft)
+        if not checked['passed'] or not review.get('passed') or review.get('draft_hash')!=content_hash(draft):
+            raise AnalysisError('Saved review does not support this draft. A new review is required.')
+        state.update(status='awaiting_user_review',review=copy.deepcopy(review));node='review_claims'
+    graph=create_content_workflow(key,request.get('model','gemini-2.5-flash'),transport)
+    config={'configurable':{'thread_id':str(uuid.uuid4())},'recursion_limit':16}
+    graph.update_state(config,state,as_node=node)
+    restored=graph.invoke(None,config)
+    return graph,config,restored

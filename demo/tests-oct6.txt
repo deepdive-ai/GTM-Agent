@@ -1,0 +1,1 @@
+6 October 2026: 93 automated tests passed. Automated model responses are mocked. Separate live Gemini reviews passed for the saved Blog (9 units) and Google Business Profile draft (7 units). No additional draft attempts or manual text edits. Tests include saved campaign reopening, key exclusion, session key retention, stale-save protection and review resumption.

@@ -110,3 +110,13 @@ Blocked or rejected formats can be retried individually. The audit retains earli
 Validation: 81 automated tests pass, using mocked model responses. In the live direct-topic package test, LinkedIn passed; Blog was automatically rewritten after an uncited introduction, but its subsequent review hit Gemini HTTP 429. Google Business Profile review also hit HTTP 429. Both remain blocked and the package is explicitly incomplete. All three passing live outputs have not yet been verified. The source summaries still require clinical review.
 
 Quota diagnostics now distinguish daily exhaustion, per-minute limits, zero quotas and unknown 429 errors from Google's response metadata. The sidebar access check sends one small test request and consumes quota. Changing the key or model clears its displayed diagnosis. Live diagnosis on October 5 confirmed daily quota exhaustion for the configured Gemini model; the next reset is October 6 at 12:30 PM IST. 88 automated tests pass.
+
+## Save and reopen campaigns
+
+Use **Save campaign** at the bottom of the workbench, then **Saved campaigns → Open campaign** in the sidebar. Saves include source documents, campaign settings, topic, drafts, prior attempts and individual format decisions. Save again after edits or approvals. Opening replaces the current workspace.
+
+Snapshots use explicit JSON in local `campaigns.sqlite`, excluded from Git. API credential fields and executable graph objects are excluded. Saved campaigns persist across browser/server sessions and do not follow collection-history expiry. This is local persistence, not cloud sync or encrypted storage.
+
+For a draft blocked by an interrupted claim check, **Resume review** checks the existing draft first. It preserves prior attempts and uses the remaining revision budget if the check requires changes. Reopening and approving an already checked draft need no model request. Resuming an interrupted check requires a session Gemini key and available quota.
+
+Validation: 93 automated tests, including a fresh Streamlit session reopening a saved three-format package and retaining a previous approval, credential exclusion, concurrent-save protection, and an interrupted review resuming without redrafting. Model responses are mocked; live review resumption remains unverified while Gemini quota is exhausted.
