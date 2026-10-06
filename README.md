@@ -286,6 +286,8 @@ Future daily entries should record the work completed, verification results, rem
 
 ## Running the prototype
 
+[Quick run guide: enter a brief, check claims and save a package](docs/run-guide.md).
+
 From a local checkout, with Python 3.9+:
 
 ```sh
