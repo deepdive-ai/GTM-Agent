@@ -91,6 +91,8 @@ def create_content_workflow(key,model='gemini-2.5-flash',transport=None,checkpoi
         # Runs again on resume. No API call or mutation before the interrupt.
         if not s['review']['passed'] or s['review']['draft_hash']!=content_hash(s['draft']):raise AnalysisError('The claim review does not match this draft.')
         decision=interrupt({'type':'editorial_review','draft_hash':s['review']['draft_hash'],'message':'Automated support check passed. Accept or reject this draft for further use. This is not clinical approval or publication.'})
+        from platform_policy import assess_platform
+        if decision is True and assess_platform(s['draft'])['status']=='withheld':raise AnalysisError('This draft is withheld pending platform-policy review.')
         if type(decision) is not bool:raise AnalysisError('Review decision must be true or false.')
         return {'user_decision':decision,'status':'user_accepted' if decision else 'user_rejected'}
     def after_write(s):

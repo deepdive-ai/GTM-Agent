@@ -1,7 +1,7 @@
 {
   "version": "campaign-package-v1",
   "input_fingerprint": "4259f7f63f5331feb4a6b8c874f17037379a5ff033bf757e0266a3a152cd754b",
-  "status": "review_required",
+  "status": "platform_review_required",
   "formats": [
     "LinkedIn post",
     "Blog",
@@ -645,7 +645,11 @@
       "input_fingerprint": "9f016645f2f6a6912654eaa490f85ddd8e45ceac4ab2a37d3a1aa5b4e5901269",
       "user_decision": null,
       "checkpoint_storage": "Session-local memory; lost when session/server ends.",
-      "previous_runs": []
+      "previous_runs": [],
+      "platform_review": {
+        "status": "not_assessed",
+        "reason": "Full platform suitability has not been assessed. This narrow check does not certify compliance."
+      }
     },
     "Blog": {
       "framework": "LangGraph",
@@ -1919,7 +1923,11 @@
           "user_decision": null,
           "checkpoint_storage": "Session-local memory; lost when session/server ends."
         }
-      ]
+      ],
+      "platform_review": {
+        "status": "not_assessed",
+        "reason": "Full platform suitability has not been assessed. This narrow check does not certify compliance."
+      }
     },
     "Google Business Profile post": {
       "framework": "LangGraph",
@@ -2751,7 +2759,14 @@
       "input_fingerprint": "09f5b37e443107f0515af16b5438dd88b5f75efb22493d241dc6e16eeb33d985",
       "user_decision": null,
       "checkpoint_storage": "Session-local memory; lost when session/server ends.",
-      "previous_runs": []
+      "previous_runs": [],
+      "platform_review": {
+        "status": "withheld",
+        "rule": "gbp-scleral-lens-review-v1",
+        "checked_on": "2026-10-06",
+        "reason": "Withheld from Google Business Profile use pending platform-policy review. Google restricts posts about regulated products, including health and medical devices. Applying that rule to this scleral-lens draft is our conservative interpretation, not a Google rejection. Source-support checks do not establish platform suitability.",
+        "policy_url": "https://support.google.com/business/answer/7342169?hl=en"
+      }
     }
   },
   "notice": "Source-support checks are model-assisted. User acceptance is not clinical approval or publication."

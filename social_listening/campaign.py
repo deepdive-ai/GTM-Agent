@@ -5,6 +5,7 @@ from analyzer import AnalysisError
 from writer import FORMATS, prepare_statements, plain_text
 from workflow import start_content_workflow, workflow_export, restore_content_workflow
 from langgraph.types import Command
+from platform_policy import assess_platform
 
 VERSION='campaign-package-v1'
 
@@ -42,6 +43,7 @@ def retry_format(package,format_name,key,transport=None):
 def decide(package,format_name,accept,key="",transport=None):
     if type(accept) is not bool:raise AnalysisError('Choose accept or reject.')
     item=package['items'][format_name]
+    if accept and assess_platform(item['result'].get('draft') or {})['status']=='withheld':raise AnalysisError('This format is withheld pending platform-policy review.')
     if item['result']['status']!='awaiting_user_review':raise AnalysisError('This draft is not waiting for review.')
     if 'graph' not in item:
         graph,config,result=restore_content_workflow(package['request'],format_name,item['result'],key,transport)
@@ -50,9 +52,11 @@ def decide(package,format_name,accept,key="",transport=None):
 
 def export_package(package):
     items={name:dict(workflow_export(item['result']),previous_runs=item.get('previous_runs',[])) for name,item in package['items'].items()}
+    for item in items.values():item['platform_review']=assess_platform(item.get('draft') or {})
     statuses=[item['status'] for item in items.values()]
     state='accepted' if statuses and all(s=='user_accepted' for s in statuses) else 'review_required'
     if any(s in ('blocked','user_rejected') for s in statuses):state='incomplete'
+    if any(i['platform_review']['status']=='withheld' for i in items.values()):state='platform_review_required'
     return {'version':VERSION,'input_fingerprint':package['input_fingerprint'],'status':state,'formats':package['formats'],'items':items,'notice':'Source-support checks are model-assisted. User acceptance is not clinical approval or publication.'}
 
 def package_markdown(package):
@@ -62,6 +66,8 @@ def package_markdown(package):
         lines.extend(['## '+name,'Status: '+item['status']])
         if item['status'] not in ('awaiting_user_review','user_accepted'):
             lines.append('No accepted or reviewable draft. '+item.get('error',''));continue
+        if item['platform_review']['status']=='withheld':
+            lines.extend([item['platform_review']['reason'],item['platform_review']['policy_url'],'Draft text is retained only in the audit for inspection.']);continue
         d=item['draft'];lines.append('### '+d['headline'])
         for block in d['blocks']:
             lines.append(block['text'])

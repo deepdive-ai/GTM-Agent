@@ -107,6 +107,8 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 
 ### 6 October 2026: Saved campaigns and successful review resumption
 
+**Platform-policy correction (6 October):** The scleral-lens Google Business Profile draft is withheld pending platform-policy review, based on our conservative interpretation of [Google’s regulated-products guidance](https://support.google.com/business/answer/7342169?hl=en). This is not a Google rejection. Passing source-support checks does not establish platform suitability. The app blocks acceptance and omits this draft from campaign-copy Markdown while preserving the audit. LinkedIn and Blog remain drafts awaiting human review and clinical approval. This is a narrow English scleral-lens check, not comprehensive platform compliance. 96 automated tests pass.
+
 Added local campaign saving and reopening with documents, inputs, drafts, prior runs and per-format decisions. API key fields and executable graph objects are excluded from snapshots. Interrupted claim checks can resume on an existing draft; already checked drafts can resume human approval without another model request.
 
 **Live verified:** Reopened Nexus Vision and resumed the Blog and Google Business Profile checks using Gemini. Both passed with unchanged draft text and unchanged attempt counts (2 and 1 respectively). Blog reviewed 9 units; Google Business Profile reviewed 7. LinkedIn had already passed. All three await human review and medical content still needs clinical approval. Earlier failures remain in the audit.

@@ -13,6 +13,7 @@ from retriever import retrieve
 from workflow import plan_workflow, start_content_workflow, workflow_export, can_resume_review, restore_content_workflow
 from langgraph.types import Command
 from campaign import create_package, package_fingerprint, export_package, package_markdown, decide, retry_format, resume_format_review
+from platform_policy import assess_platform
 from campaign_store import capture, restore, save_campaign, load_campaign, list_campaigns
 from listener import THEMES, CollectionError, collect, connect, demo, previous_ids, save, themes
 
@@ -398,7 +399,9 @@ else:
         st.download_button('Download workflow audit (JSON)',json.dumps(workflow_export(outcome),indent=2,ensure_ascii=False),file_name='gtm-workflow-audit.json',mime='application/json')
         if outcome['status']=='awaiting_user_review':
             st.info('Automated claim support passed. Review the text and evidence below, then accept or reject. This check does not establish source truth or clinical approval.')
-            accept=st.button('Accept reviewed draft')
+            policy=assess_platform(outcome['draft'])
+            if policy['status']=='withheld':st.warning(policy['reason']);st.link_button('Google post policy',policy['policy_url'])
+            accept=st.button('Accept reviewed draft',disabled=policy['status']=='withheld')
             reject=st.button('Reject draft')
             if accept or reject:
                 try:
@@ -428,7 +431,8 @@ else:
                     for citation in statement_lookup[sid]['citations']:
                         st.caption(names[citation['source_id']]); st.text(citation['excerpt'])
             for note in content_draft['review_notes']: st.write('• '+note)
-        st.download_button('Download content draft (TXT)',plain_text(content_draft),file_name='gtm-content-draft.txt',mime='text/plain')
+        single_policy=assess_platform(content_draft)
+        st.download_button('Download content draft (TXT)',plain_text(content_draft),disabled=single_policy['status']=='withheld',file_name='gtm-content-draft.txt',mime='text/plain')
         st.download_button('Download draft with sources (JSON)',json.dumps(content_draft,indent=2,ensure_ascii=False),file_name='gtm-content-draft.json',mime='application/json')
 
 
@@ -458,6 +462,8 @@ else:
         for tab,name in zip(tabs,package['formats']):
             with tab:
                 item=package['items'][name]; result=item['result']
+                policy=assess_platform(result.get('draft') or {})
+                if policy['status']=='withheld':st.warning(policy['reason']);st.link_button('Platform policy for '+name,policy['policy_url'])
                 st.caption(name+' · '+result['status']+' · '+str(result.get('attempts',0))+' draft attempt(s)')
                 if result['status'] in ('awaiting_user_review','user_accepted'):
                     draft=result['draft'];st.subheader(draft['headline'])
@@ -488,7 +494,7 @@ else:
                         for unit in attempt.get('review',{}).get('units',[]):
                             st.write(unit['verdict']+': '+unit['reviewed_text']);st.caption(unit['reason'])
                 if result['status']=='awaiting_user_review':
-                    accepted=st.button('Accept '+name,key='package_accept_'+name)
+                    accepted=st.button('Accept '+name,key='package_accept_'+name,disabled=policy['status']=='withheld')
                     rejected=st.button('Reject '+name,key='package_reject_'+name)
                     if accepted or rejected:
                         try:
