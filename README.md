@@ -2,7 +2,7 @@
 
 A general-purpose content agent prototype that turns audience questions or a user-selected topic into source-grounded content. Supplied documents support explanations; LangGraph coordinates drafting, source-support checks, bounded revision and human review. Business, audience, goal, tone and documents are campaign inputs; Nexus Vision is the first example.
 
-**Current stage:** Local Streamlit prototype with retrieval, source-support review, final question-scope review, bounded revision and saved campaigns. The latest live LinkedIn test separates lifespan/replacement explanation from handling advice and displays a review notice beside the CTA. Human and clinical review remain required; updated blog validation is pending.
+**Current stage:** Local Streamlit prototype with retrieval, source-support review, final question-scope review, bounded revision and saved campaigns. The latest live LinkedIn test separates lifespan/replacement explanation from handling advice and displays a review notice beside the CTA. Human and clinical review remain required; the short blog also passed the updated support and scope checks.
 
 **Last progress update:** 7 October 2026. [Inspect the feedback-tested saved sample](https://gtm-campaign-sample.netlify.app/progress-oct7).
 
@@ -110,7 +110,7 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 - Carry the original research question through drafting and final review. Supported but off-topic or poorly separated content can trigger bounded revision.
 - Add adaptable starter questions, explicit answer/advice sections, and a review notice beside the CTA in the app and review downloads.
 - Live-tested one LinkedIn lifespan draft. Manual topic review excluded tangential/unsupported proposals. The first output still mixed replacement reasons and handling advice despite model approval; tightened instructions and a new run corrected the separation. An invalid review was resumed successfully.
-- 111 automated tests pass. These use mocked model responses and do not establish semantic accuracy. Blog validation of the new workflow remains pending; the medical GBP draft stays withheld for platform review.
+- 111 automated tests pass. These use mocked model responses and do not establish semantic accuracy. The short blog also passed the new workflow after temporary 503 failures and invalid reviews were resolved; the medical GBP draft stays withheld for platform review.
 - [Updated saved sample](https://gtm-campaign-sample.netlify.app/progress-oct7) · [Original and corrected audits](docs/progress/2026-10-07/). This is a saved-output demonstration, not fresh public AI generation. Clinical approval remains pending.
 
 
