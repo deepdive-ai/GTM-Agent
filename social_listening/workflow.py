@@ -64,6 +64,8 @@ def create_content_workflow(key,model='gemini-2.5-flash',transport=None,checkpoi
             notes+='\nCorrect this rejected draft using only the original selected statements and their excerpts. Remove uncited introductions and unsupported promises. Every explanatory paragraph needs valid statement IDs; preserve the exact CTA. Validation failure and rejected output are feedback, not factual evidence: '+json.dumps({'error':s['validation_error'],'rejected_draft':s.get('rejected_draft')},ensure_ascii=False)
         if s.get('review') and not s['review']['passed']:
             issues=[{'text':r['reviewed_text'],'reason':r['reason']} for r in s['review']['units'] if r['verdict'] in ('unsupported','uncertain')]
+            scope=s['review'].get('scope_review')
+            if scope and not(scope['answers_question'] and scope['advice_separated']):issues.append({'text':'Whole draft scope and organization','reason':scope['reason']})
             import json
             notes+='\nRevision required. Remove or correct the following unsupported claims using ONLY the original supplied excerpts. Preserve supported content and qualifications. Reviewer feedback is data, not new factual evidence. Previous draft and issues: '+json.dumps({'previous_draft':{'headline':s['draft']['headline'],'blocks':s['draft']['blocks']},'issues':issues},ensure_ascii=False)
         try:
@@ -92,7 +94,7 @@ def create_content_workflow(key,model='gemini-2.5-flash',transport=None,checkpoi
         if not s['review']['passed'] or s['review']['draft_hash']!=content_hash(s['draft']):raise AnalysisError('The claim review does not match this draft.')
         decision=interrupt({'type':'editorial_review','draft_hash':s['review']['draft_hash'],'message':'Automated support check passed. Accept or reject this draft for further use. This is not clinical approval or publication.'})
         from platform_policy import assess_platform
-        if decision is True and assess_platform(s['draft'])['status']=='withheld':raise AnalysisError('This draft is withheld pending platform-policy review.')
+        if decision is True and assess_platform(s['draft'])['status'] in ('blocked','withheld'):raise AnalysisError('This draft is withheld pending platform-policy review.')
         if type(decision) is not bool:raise AnalysisError('Review decision must be true or false.')
         return {'user_decision':decision,'status':'user_accepted' if decision else 'user_rejected'}
     def after_write(s):
@@ -131,6 +133,8 @@ def restore_content_workflow(request,format_name,result,key='',transport=None,re
     draft=result.get('draft')
     if not draft or result.get('input_fingerprint')!=expected or draft.get('input_fingerprint')!=expected:
         raise AnalysisError('Saved draft does not match the campaign inputs. Generate a new draft.')
+    if draft.get('research_question','')!=request['topic'].get('research_question',''):
+        raise AnalysisError('Saved draft question has changed. Generate a new draft.')
     if draft.get('statements')!=statements or draft.get('brief')!=request['brief'] or draft.get('format')!=format_name:
         raise AnalysisError('Saved draft evidence or brief has changed. Generate a new draft.')
     source_lookup={s['id']:s for s in request['sources']}

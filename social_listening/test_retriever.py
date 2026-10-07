@@ -84,8 +84,9 @@ class RagPipelineTests(unittest.TestCase):
         self.assertEqual(result['retrieval']['indexed_documents'],2)
         def writer_transport(req,timeout):
             payload=json.loads(json.loads(req.data)['contents'][0]['parts'][0]['text'])
+            self.assertEqual(payload['research_question'],'lens replacement')
             st=payload['statements'][0]
-            return self.response({'headline':'Lens replacement','blocks':[{'kind':'factual','text':st['text'],'statement_ids':[st['id']]},{'kind':'cta','text':'Call to book','statement_ids':[]}],'review_notes':['Review pending']})
+            return self.response({'headline':'Lens replacement','blocks':[{'kind':'factual','section':'answer','text':st['text'],'statement_ids':[st['id']]},{'kind':'cta','section':'cta','text':'Call to book','statement_ids':[]}],'review_notes':['Review pending']})
         draft=write_content(result['topics'][0],result['sources'],[0],self.brief,'Lens replacement','Blog','','test',transport=writer_transport)
         self.assertEqual(draft['sources'][0]['name'],'care.md')
         self.assertEqual(draft['sources'][0]['start'],0)

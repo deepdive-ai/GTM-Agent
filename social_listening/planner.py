@@ -134,6 +134,7 @@ def recommend(report,analysis,documents,brief,key,model='gemini-2.5-flash',trans
             raise AnalysisError('Question-scope review returned an invalid result. No brief was accepted.')
         if not scope['in_scope']:
             raise AnalysisError('Topic scope check failed: '+scope['reason'][:500]+' No brief was accepted.')
+        for topic in topics:topic['research_question']=retrieval_query
         return {'citation_location_corrections':citation_corrections,'input_mode':'direct' if direct else 'audience','scope_review':scope,'research_question':retrieval_query,'topics':topics,'sources':evidence['passages'],'source_documents':sources,'retrieval':evidence,'brief':brief,'model':model,'created_at':dt.datetime.now(dt.timezone.utc).isoformat(),'input_fingerprint':plan_fingerprint(report,analysis,sources,brief,retrieval_query,retrieval_mode),'synthetic':bool(report.get('synthetic')),'status':'Proposed topics and source-grounded draft statements; human review required'}
     except urllib.error.HTTPError as e:
         from gemini_errors import describe_http_error

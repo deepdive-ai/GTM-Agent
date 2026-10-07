@@ -16,7 +16,7 @@ class CampaignTests(unittest.TestCase):
         self.docs=[{'name':'software.md','text':'Tasks can be exported as CSV from the Tasks menu.'}]
         self.sources=[dict(self.docs[0],id='source-1')]
         self.topic={'title':'Export tasks as CSV','theme_index':-1,'audience_ids':[],'rationale':'User-selected topic.','format':'Blog','statements':[{'text':self.docs[0]['text'],'citations':[{'source_id':'source-1','excerpt':self.docs[0]['text']}]}],'missing_evidence':[]}
-        self.brief={'business':'TaskNest','audience':'Project managers','goal':'Explain CSV export','call_to_action':'Explore the demo','source_review_status':'Synthetic test material'}
+        self.brief={'business':'TaskNest','audience':'Project managers','goal':'Explain CSV export','call_to_action':'Explore the demo','source_review_status':'Synthetic test material','platform_settings':{'action':'NONE','post_type':'UPDATE'}}
         self.calls=[]
     def transport(self,req,timeout):
         data=json.loads(json.loads(req.data)['contents'][0]['parts'][0]['text']);self.calls.append(data)
@@ -27,6 +27,10 @@ class CampaignTests(unittest.TestCase):
             raw={'headline':'Export tasks','blocks':[{'kind':'factual','text':self.docs[0]['text'],'statement_ids':['statement-1']},{'kind':'cta','text':self.brief['call_to_action'],'statement_ids':[]}],'review_notes':['Synthetic software example.']}
         else:
             raw={'topics':[deepcopy(self.topic)]};raw['topics'][0]['statements'][0]['citations'][0]['source_id']=data['sources'][0]['id']
+        if data.get('research_question'):
+            if data.get('task')=='claim_support_review':raw['scope_review']={'answers_question':True,'advice_separated':True,'reason':'Answers export question without extra advice.'}
+            elif 'reviewed_title' in data:
+                for b in raw['blocks']:b['section']='cta' if b['kind']=='cta' else 'answer'
         return io.BytesIO(json.dumps({'candidates':[{'finishReason':'STOP','content':{'parts':[{'text':json.dumps(raw)}]}}]}).encode())
     def package(self,formats=None):
         return create_package(self.topic,self.sources,[0],self.brief,'Export tasks',formats or ['LinkedIn post','Blog','Google Business Profile post'],'','test-secret',transport=self.transport)
@@ -99,6 +103,7 @@ class CampaignTests(unittest.TestCase):
             next(b for b in app.button if b.label=='Generate campaign package').click().run()
             self.assertFalse(app.exception)
             self.assertEqual(len(app.tabs),3)
+            next(w for w in app.selectbox if w.label=='GBP action button').set_value('NONE').run()
             next(b for b in app.button if b.label=='Accept Blog').click().run()
             self.assertEqual(app.session_state['campaign_package']['items']['Blog']['result']['status'],'user_accepted')
             import tempfile

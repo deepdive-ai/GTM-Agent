@@ -43,12 +43,12 @@ def retry_format(package,format_name,key,transport=None):
 def decide(package,format_name,accept,key="",transport=None):
     if type(accept) is not bool:raise AnalysisError('Choose accept or reject.')
     item=package['items'][format_name]
-    if accept and assess_platform(item['result'].get('draft') or {})['status']=='withheld':raise AnalysisError('This format is withheld pending platform-policy review.')
+    if accept and assess_platform(item['result'].get('draft') or {})['status'] in ('blocked','withheld'):raise AnalysisError('This format is withheld pending platform-policy review.')
     if item['result']['status']!='awaiting_user_review':raise AnalysisError('This draft is not waiting for review.')
     if 'graph' not in item:
         graph,config,result=restore_content_workflow(package['request'],format_name,item['result'],key,transport)
         item.update(graph=graph,config=config,result=result)
-    item['result']=item['graph'].invoke(Command(resume=accept),item['config'])
+    item['result']=item['graph'].invoke(Command(resume=accept,update={'draft':item['result']['draft']} if accept else {}),item['config'])
 
 def export_package(package):
     items={name:dict(workflow_export(item['result']),previous_runs=item.get('previous_runs',[])) for name,item in package['items'].items()}
@@ -56,7 +56,7 @@ def export_package(package):
     statuses=[item['status'] for item in items.values()]
     state='accepted' if statuses and all(s=='user_accepted' for s in statuses) else 'review_required'
     if any(s in ('blocked','user_rejected') for s in statuses):state='incomplete'
-    if any(i['platform_review']['status']=='withheld' for i in items.values()):state='platform_review_required'
+    if any(i.get('draft') and i['platform_review']['status'] in ('blocked','withheld') for i in items.values()):state='platform_review_required'
     return {'version':VERSION,'input_fingerprint':package['input_fingerprint'],'status':state,'formats':package['formats'],'items':items,'notice':'Source-support checks are model-assisted. User acceptance is not clinical approval or publication.'}
 
 def package_markdown(package):
@@ -66,12 +66,18 @@ def package_markdown(package):
         lines.extend(['## '+name,'Status: '+item['status']])
         if item['status'] not in ('awaiting_user_review','user_accepted'):
             lines.append('No accepted or reviewable draft. '+item.get('error',''));continue
-        if item['platform_review']['status']=='withheld':
-            lines.extend([item['platform_review']['reason'],item['platform_review']['policy_url'],'Draft text is retained only in the audit for inspection.']);continue
-        d=item['draft'];lines.append('### '+d['headline'])
-        for block in d['blocks']:
-            lines.append(block['text'])
-            if block['statement_ids']:lines.append('Supporting statements: '+', '.join(block['statement_ids']))
+        if item['platform_review']['status'] in ('blocked','withheld'):
+            lines.extend([item['platform_review']['reason'],str(item['platform_review'].get('policy_url') or ''),'Draft text is retained only in the audit for inspection.']);continue
+        d=item['draft']
+        from draft_display import review_notice
+        if d.get('research_question'):lines.append('Original question: '+d['research_question'])
+        text=item['platform_review']['payload']['text']
+        cta=d.get('brief',{}).get('call_to_action','')
+        if cta and text.endswith(cta):text=text[:-len(cta)]+review_notice(d)+'\n\n'+cta
+        else:lines.append(review_notice(d))
+        lines.append(text)
+        action=item['platform_review']['payload']['action']
+        if action:lines.extend(['### Separate action button',json.dumps(action,ensure_ascii=False)])
         lines.append('### Source references')
         source_lookup={source['id']:source for source in d['sources']}
         for statement in d['statements']:

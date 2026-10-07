@@ -13,9 +13,53 @@ from retriever import retrieve
 from workflow import plan_workflow, start_content_workflow, workflow_export, can_resume_review, restore_content_workflow
 from langgraph.types import Command
 from campaign import create_package, package_fingerprint, export_package, package_markdown, decide, retry_format, resume_format_review
-from platform_policy import assess_platform
+from platform_policy import assess_platform, ACTIONS
 from campaign_store import capture, restore, save_campaign, load_campaign, list_campaigns
 from listener import THEMES, CollectionError, collect, connect, demo, previous_ids, save, themes
+
+def show_draft(draft):
+    from draft_display import display_blocks
+    question=draft.get('research_question')
+    if question:st.info('Original question: '+question)
+    else:st.caption('Legacy draft: the original question was not retained for final scope review.')
+    st.subheader(draft['headline'])
+    for kind,text in display_blocks(draft):
+        if kind=='heading':st.markdown('**'+text+'**')
+        elif kind=='notice':st.warning(text)
+        else:st.write(text)
+    scope=draft.get('claim_review',{}).get('scope_review')
+    if scope:st.caption('Final question-scope review: '+scope['reason'])
+
+def show_platform_checks(draft,widget_prefix):
+    if draft.get('format')=='Google Business Profile post':
+        settings=draft.setdefault('platform_settings',{})
+        with st.expander('GBP post and action settings',expanded=settings.get('action','UNCONFIGURED')=='UNCONFIGURED'):
+            st.caption('Supported post type: Update. Action settings are separate from post text. Changing them does not add factual evidence.')
+            action_key=widget_prefix+'_action'
+            if action_key not in st.session_state:st.session_state[action_key]=settings.get('action','UNCONFIGURED')
+            action=st.selectbox('GBP action button',ACTIONS,key=action_key)
+            settings['action']=action;settings['post_type']='UPDATE'
+            if action=='CALL':
+                k=widget_prefix+'_verified'
+                if k not in st.session_state:st.session_state[k]=settings.get('phone_verified',False)
+                settings['phone_verified']=st.checkbox('I confirm the Business Profile phone number is verified',key=k)
+            elif action in ACTIONS[3:]:
+                k=widget_prefix+'_url'
+                if k not in st.session_state:st.session_state[k]=settings.get('url','')
+                settings['url']=st.text_input('GBP button destination URL',key=k)
+            if action not in ('NONE','UNCONFIGURED'):st.caption('The original CTA paragraph is retained in the audit but omitted from platform-copy text. The selected button carries the action.')
+    policy=assess_platform(draft)
+    st.write('Source support: '+('passed' if draft.get('claim_review',{}).get('passed') else 'not passed'))
+    st.write('Platform checks: '+policy['status'].replace('_',' '))
+    st.caption(str(policy['characters'])+' characters / '+str(policy['utf16_units'])+' UTF-16 units'+(' · Limit: '+str(policy['limit'])+' ('+policy['limit_basis']+')' if policy['limit'] else ' · No universal destination limit applied'))
+    if policy['status'] in ('blocked','withheld'):st.warning(policy['reason'])
+    for warning in policy['warnings']:st.caption(warning)
+    if policy.get('policy_url'):st.link_button('Platform rule reference',policy['policy_url'])
+    st.caption(policy['limitations'])
+    with st.expander('Exact platform-copy preview'):
+        st.text(policy['payload']['text'])
+        if policy['payload']['action']:st.json(policy['payload']['action'])
+    return policy
 
 st.set_page_config(page_title='Audience Listening Lab', page_icon='🔎', layout='wide')
 st.title('Audience Listening Lab')
@@ -253,6 +297,13 @@ if analysis and not direct_mode:
 comment_text={c['id']:c['text'] for c in report['comments']}
 question_choice='Write my own question' if direct_mode else st.selectbox('Audience question',list(question_choices),format_func=lambda x:comment_text.get(x,x),key='question_choice_'+report_id[:12])
 question_key=report_id[:12]+'_'+question_choice
+if direct_mode:
+    with st.expander('Need a starting question?'):
+        st.write('Examples to adapt to your business and sources:')
+        for example in ('How long does this product typically last?', 'When might it need replacement?', 'What is included in this service?', 'How do I export my data?'):
+            if st.button(example,key='starter_'+example):
+                st.session_state['research_question_'+question_key]=example
+        st.caption('Replace generic words with your product or service. Choosing an example does not generate content or establish evidence.')
 retrieval_query=st.text_input('Research question (use the language of your documents)',value=question_choices[question_choice],key='research_question_'+question_key).strip()
 st.caption('Enter the question your content should answer. Evidence search runs locally without an API key.' if direct_mode else 'Select an audience comment or enter a question. Its AI interpretation is editable. Evidence search runs locally without an API key.')
 retrieval_mode=st.selectbox('Evidence search method',['bm25','hybrid'],key='evidence_search_mode',format_func=lambda value: 'Keyword (BM25)' if value=='bm25' else 'Hybrid (experimental, local semantic + keyword)')
@@ -338,7 +389,7 @@ if not topic_brief:
     st.session_state.pop('campaign_package',None)
 else:
     choice=st.selectbox('Topic to review',range(len(topic_brief['topics'])),key='topic_choice',format_func=lambda i:topic_brief['topics'][i]['title'])
-    chosen=topic_brief['topics'][choice]
+    chosen=dict(topic_brief['topics'][choice],research_question=topic_brief['research_question'])
     scope_key=topic_brief['input_fingerprint'][:12]+'_'+str(choice)
     reviewed_title=st.text_input('Reviewed topic title',value=chosen['title'],key='title_'+scope_key)
     selected=st.multiselect('Statements to use',range(len(chosen['statements'])),default=list(range(len(chosen['statements']))),format_func=lambda i:chosen['statements'][i]['text'],key='facts_'+scope_key)
@@ -399,16 +450,16 @@ else:
         st.download_button('Download workflow audit (JSON)',json.dumps(workflow_export(outcome),indent=2,ensure_ascii=False),file_name='gtm-workflow-audit.json',mime='application/json')
         if outcome['status']=='awaiting_user_review':
             st.info('Automated claim support passed. Review the text and evidence below, then accept or reject. This check does not establish source truth or clinical approval.')
-            policy=assess_platform(outcome['draft'])
-            if policy['status']=='withheld':st.warning(policy['reason']);st.link_button('Google post policy',policy['policy_url'])
-            accept=st.button('Accept reviewed draft',disabled=policy['status']=='withheld')
+            policy=show_platform_checks(outcome['draft'],'platform_single_'+draft_id[:12])
+            if st.session_state.get('content_draft'):st.session_state.content_draft['platform_settings']=outcome['draft'].get('platform_settings',{})
+            accept=st.button('Accept reviewed draft',disabled=policy['status'] in ('blocked','withheld'))
             reject=st.button('Reject draft')
             if accept or reject:
                 try:
                     if 'graph' not in current_workflow:
                         graph,config,result=restore_content_workflow(current_workflow['request'],draft_format,outcome)
                         current_workflow.update(graph=graph,config=config,result=result)
-                    result=current_workflow['graph'].invoke(Command(resume=bool(accept)),current_workflow['config'])
+                    result=current_workflow['graph'].invoke(Command(resume=bool(accept),update={'draft':current_workflow['result']['draft']} if accept else {}),current_workflow['config'])
                     current_workflow['result']=result
                     if accept:
                         st.session_state.content_draft=dict(result['draft'],workflow=workflow_export(result),status='User accepted; source and clinical approval requirements still apply')
@@ -418,8 +469,7 @@ else:
     content_draft=st.session_state.get('content_draft')
     if content_draft:
         st.success(content_draft['status'])
-        st.subheader(content_draft['headline'])
-        for paragraph in content_draft['blocks']: st.write(paragraph['text'])
+        show_draft(content_draft)
         with st.expander('Check paragraph sources and limitations',expanded=True):
             statement_lookup={s['id']:s for s in content_draft['statements']}
             names={s['id']:s['name'] for s in topic_brief['sources']}
@@ -432,7 +482,7 @@ else:
                         st.caption(names[citation['source_id']]); st.text(citation['excerpt'])
             for note in content_draft['review_notes']: st.write('• '+note)
         single_policy=assess_platform(content_draft)
-        st.download_button('Download content draft (TXT)',plain_text(content_draft),disabled=single_policy['status']=='withheld',file_name='gtm-content-draft.txt',mime='text/plain')
+        st.download_button('Download content draft (TXT)',plain_text(content_draft),disabled=single_policy['status'] in ('blocked','withheld'),file_name='gtm-content-draft.txt',mime='text/plain')
         st.download_button('Download draft with sources (JSON)',json.dumps(content_draft,indent=2,ensure_ascii=False),file_name='gtm-content-draft.json',mime='application/json')
 
 
@@ -462,12 +512,10 @@ else:
         for tab,name in zip(tabs,package['formats']):
             with tab:
                 item=package['items'][name]; result=item['result']
-                policy=assess_platform(result.get('draft') or {})
-                if policy['status']=='withheld':st.warning(policy['reason']);st.link_button('Platform policy for '+name,policy['policy_url'])
+                policy=show_platform_checks(result['draft'],'platform_package_'+package_id[:12]+'_'+name) if result.get('draft') else {'status':'blocked'}
                 st.caption(name+' · '+result['status']+' · '+str(result.get('attempts',0))+' draft attempt(s)')
                 if result['status'] in ('awaiting_user_review','user_accepted'):
-                    draft=result['draft'];st.subheader(draft['headline'])
-                    for paragraph in draft['blocks']:st.write(paragraph['text'])
+                    draft=result['draft'];show_draft(draft)
                     with st.expander('Sources and review notes for '+name):
                         for statement in draft['statements']:
                             st.write(statement['id']+': '+statement['text'])
@@ -494,7 +542,7 @@ else:
                         for unit in attempt.get('review',{}).get('units',[]):
                             st.write(unit['verdict']+': '+unit['reviewed_text']);st.caption(unit['reason'])
                 if result['status']=='awaiting_user_review':
-                    accepted=st.button('Accept '+name,key='package_accept_'+name,disabled=policy['status']=='withheld')
+                    accepted=st.button('Accept '+name,key='package_accept_'+name,disabled=policy['status'] in ('blocked','withheld'))
                     rejected=st.button('Reject '+name,key='package_reject_'+name)
                     if accepted or rejected:
                         try:
