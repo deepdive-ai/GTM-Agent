@@ -4,7 +4,7 @@ A general-purpose content agent prototype that turns audience questions or a use
 
 **Current stage:** Local Streamlit prototype with retrieval, source-support review, final question-scope review, bounded revision and saved campaigns. The latest live LinkedIn test separates lifespan/replacement explanation from handling advice and displays a review notice beside the CTA. Human and clinical review remain required; the short blog also passed the updated support and scope checks.
 
-**Last progress update:** 7 October 2026. [Inspect the feedback-tested saved sample](https://gtm-campaign-sample.netlify.app/progress-oct7).
+**Last progress update:** 20 October 2026. Festival social-creative review workflow added; publication and clinical review remain pending.
 
 [Inspect the 5 October automatic review and campaign-package evidence](https://gtm-campaign-sample.netlify.app/progress-oct5). Includes passing and blocked outcomes, original drafts, revisions and quota diagnosis. The page displays saved results, not a live AI service.
 
@@ -104,6 +104,20 @@ The collection is a small snapshot of recent top-level comments, not exhaustive 
 | [Editorial guidance](data/raw/campaigns/keratoconus_editorial_guidance.md) | First example's wording, tone and factual constraints |
 
 ## Daily progress
+
+
+### 20 October 2026: Festival social-creative review workflow
+
+**Completed**
+
+- Created a reusable Nexus Festival Social skill to verify Indian festival dates, create a brand-aligned social creative and caption, and prepare review material.
+- Added a private OpenAI image-generation configuration for creative production. The key is excluded from the repository.
+- Generated a Dussehra creative with Dussehra-specific bow-and-arrow symbolism and prepared it for internal review.
+
+**Review status and limits**
+
+- The creative is a draft. It has not been published, and clinical content review remains pending.
+- This workflow is currently a local skill and review process, not a public content-publishing feature in the GTM Agent application.
 
 ### 7 October 2026: Tester feedback applied to the agent
 
