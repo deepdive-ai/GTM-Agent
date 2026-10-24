@@ -8,6 +8,12 @@ OptiFlow brings content planning, audience research, social publishing, enquiry 
 
 ![OptiFlow explained: content, enquiries and clinical workspace](optiflow-explainer.png)
 
+## Inside the deployed app
+
+The OptiFlow workspace, showing the Business & Audience Brief and sidebar navigation.
+
+![Deployed OptiFlow workspace with Brand Brain and campaign navigation](deployed-workspace.png)
+
 ## What does it help you do?
 
 ### 1. Plan content around the right audience
