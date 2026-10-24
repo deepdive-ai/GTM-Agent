@@ -1,5 +1,7 @@
 # GTM Agent
 
+**[Meet OptiFlow: public app overview and visual guide](docs/optiflow/README.md)**
+
 ## Latest deployed progress: 24 October 2026
 
 [View today’s OptiFlow progress and screenshot gallery](docs/progress/2026-10-24/README.md). Includes the populated ICP, synthetic clinical workspace, clearer referral reporting, current tab guide and remaining limitations. The deployed app is a private pilot; the older prototype description below is retained as historical context.
